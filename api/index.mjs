@@ -5,6 +5,8 @@ import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
 const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/role-archetypes.js':['role-archetypes.js','text/javascript'],'/GT-Canon-VF.ttf':['GT-Canon-VF.ttf','font/ttf'],'/GT-Standard-VF.ttf':['GT-Standard-VF.ttf','font/ttf'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
+export const PUBLIC_HOST='ai.spearpointsearch.com';
+export const isPublicRequest=req=>process.env.VERCEL==='1'&&req.headers.host===PUBLIC_HOST;
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
 export function authorized(req){
  const user=process.env.STAGING_USER;
@@ -18,9 +20,15 @@ export default async function handler(req,res){
  for(const [k,v] of Object.entries({'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow, noarchive','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",'Strict-Transport-Security':'max-age=31536000'}))res.setHeader(k,v);
  const json=(status,body)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));};
  const path=new URL(req.url,'http://localhost').pathname;
+ const publicSite=isPublicRequest(req);
+ if(publicSite&&['/GT-Canon-VF.ttf','/GT-Standard-VF.ttf','/api/login','/login.js','/login'].includes(path))return json(404,{error:'Not found'});
  const asset=async(file,type)=>{res.setHeader('Content-Type',type);res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));};
  if(req.method==='GET'&&path==='/login.js')return asset('login.js','text/javascript');
- if(req.method==='GET'&&path==='/style.css')return asset('style.css','text/css');
+ if(req.method==='GET'&&path==='/style.css'){
+  let css=await readFile(new URL('../views/style.css',import.meta.url),'utf8');
+  if(publicSite)css=css.replace(/@font-face\{[^}]*\}/g,'').replaceAll('\"GT Canon Trial VF\",','').replaceAll('\"GT Standard Trial VF\",','');
+  res.setHeader('Content-Type','text/css');return res.end(css);
+ }
  if(req.method==='GET'&&path==='/logomark.svg')return asset('logomark.svg','image/svg+xml');
  if(req.method==='GET'&&path==='/lockup-dark.svg')return asset('lockup-dark.svg','image/svg+xml');
  if(path==='/api/login'){
@@ -40,11 +48,14 @@ export default async function handler(req,res){
    res.setHeader('Set-Cookie',sessionCookie());return json(200,{ok:true});
   }catch{return json(503,{error:'Sign-in is not ready. The staging operator needs to check its secure configuration.'});}
  }
- if(!authorized(req)){
+ if(!publicSite&&!authorized(req)){
   if(req.method==='GET'&&(path==='/'||path==='/login'))return asset('login.html','text/html; charset=utf-8');
   return json(401,{error:'Please sign in to the private staging site.'});
  }
- if(req.method==='GET'&&files[path]){const [file,type]=files[path];res.setHeader('Content-Type',type);return res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));}
+ if(req.method==='GET'&&files[path]){const [file,type]=files[path];res.setHeader('Content-Type',type);
+  if(publicSite&&path==='/privacy')return asset('privacy-public.html',type);
+  if(publicSite&&path==='/'){let html=await readFile(new URL('../views/index.html',import.meta.url),'utf8');html=html.replace(/<div class=\"staging\">.*?<\/div>/,'').replace(' Please use test data in staging.','');return res.end(html);}
+  return res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));}
  if(path==='/robots.txt'){res.setHeader('Content-Type','text/plain');return res.end('User-agent: *\nDisallow: /\n');}
  if(!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});
  if(req.method!=='POST'){res.setHeader('Allow','POST');return json(405,{error:'Method not allowed'});}
@@ -63,5 +74,5 @@ export default async function handler(req,res){
   }
   if(process.env.RETENTION_JOB_CONFIRMED!=='true')throw Error('storage_unavailable');
   const saved=await saveBrief(input);return json(201,{reference:saved.id,bookingUrl:BOOKING_URL,message:'Your briefing request has been saved securely. Book a time to discuss your search.'});
- }catch(e){if(e.message==='validation')return json(400,{error:'Please check your details and privacy consent.'});return json(503,{error:'This staging service is not ready. No successful submission is being claimed. Please use the booking link.'});}
+ }catch(e){if(e.message==='validation')return json(400,{error:'Please check your details and privacy consent.'});return json(503,{error:'This service is temporarily unavailable. Please use the booking link.'});}
 }
