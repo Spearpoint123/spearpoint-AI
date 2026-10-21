@@ -4,7 +4,7 @@ import {searchInput,briefInput,archetypes,BOOKING_URL} from '../lib/domain.mjs';
 import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
-const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
+const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
 export function authorized(req){
  const user=process.env.STAGING_USER;

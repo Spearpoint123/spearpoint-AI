@@ -24,14 +24,18 @@ function profileCard(profile,index,bookingUrl){
  card.append(booking,el('p',profile.availability,'availability'));return card;
 }
 const niches={
+ 'Market makers & prop trading':{hint:'Electronic trading, liquidity and quantitative firms',skills:['Electronic trading','Market structure','Quantitative systems']},
+ 'Hedge funds':{hint:'Investment, quantitative and multi-strategy businesses',skills:['Investment management','Risk management','Quantitative research']},
  'Exchanges':{hint:'Trading venues, liquidity and market infrastructure',skills:['Trading systems','Market structure','Operational resilience']},
  'Digital assets':{hint:'Custody, tokenisation and institutional adoption',skills:['Digital asset infrastructure','Institutional adoption','Risk management']},
  'Payments':{hint:'Money movement, acquiring and payment infrastructure',skills:['Payment infrastructure','Commercial partnerships','Operational resilience']},
  'Fintech':{hint:'Financial technology built for the next stage of growth',skills:['Financial technology','Platform scale','Regulated environments']},
- 'Banking & investment':{hint:'Financial institutions, investment and wealth',skills:['Financial services','Risk management','Business transformation']},
- 'Technology & SaaS':{hint:'Platforms, enterprise software and product businesses',skills:['Enterprise software','Platform scale','Product strategy']}
+ 'Financial institutions':{hint:'Financial institutions, investment and wealth',skills:['Financial services','Risk management','Business transformation']},
+ 'AI infrastructure for finance':{hint:'AI, data and infrastructure for financial markets',skills:['Financial markets','Machine learning infrastructure','Platform scale']}
 };
 const functions={
+ 'Trading & investment':{roles:['Head of Trading','Head of Market Making','Head of Quantitative Research','Portfolio Manager','Principal Quantitative Engineer'],mandate:'Build the trading or investment capability your mandate requires.',pillars:[['Domain judgement','Define the strategies, markets and decision rights relevant to the role.'],['Research and execution','Connect research quality, execution and measurable business outcomes.'],['Risk discipline','Establish clear controls, limits and accountability.']]},
+ 'AI & data':{roles:['Chief AI Officer','Head of AI','Head of Data','Principal Machine Learning Engineer'],mandate:'Connect AI and data capability to a defined financial markets use case.',pillars:[['Use-case discipline','Set the problem, evidence standard and success criteria.'],['Technical depth','Validate model, data and infrastructure capability against the mandate.'],['Controlled delivery','Build an accountable path from research to reliable deployment.']]},
  'Technology & engineering':{roles:['Chief Technology Officer','VP Engineering','Head of Engineering','Chief Information Security Officer'],mandate:'Build the technical foundations for the next stage of growth.',pillars:[['Architecture that scales','Set a platform direction that supports the commercial roadmap.'],['Teams that deliver','Develop engineering leadership and a clear delivery rhythm.'],['Resilience by design','Balance speed, security and operational reliability.']]},
  'Commercial & growth':{roles:['Chief Revenue Officer','Chief Commercial Officer','VP Sales','Head of Business Development'],mandate:'Turn market opportunity into a repeatable commercial engine.',pillars:[['Market focus','Identify the segments and partnerships that deserve investment.'],['Commercial execution','Bring structure to pipeline, sales leadership and accountability.'],['Durable growth','Connect revenue ambitions with customer value and retention.']]},
  'Product & strategy':{roles:['Chief Product Officer','VP Product','Head of Product','Head of Strategy'],mandate:'Connect customer needs, product choices and commercial ambition.',pillars:[['Product direction','Translate market insight into a focused roadmap.'],['Prioritisation','Make deliberate choices about what to build and why.'],['Cross-functional leadership','Align product, engineering and commercial teams.']]},
@@ -40,9 +44,10 @@ const functions={
  'Executive leadership':{roles:['Chief Executive Officer','Managing Director','General Manager','Chief People Officer'],mandate:'Set the direction and build the leadership capacity to deliver it.',pillars:[['Strategic direction','Turn an ambitious vision into clear priorities.'],['Leadership depth','Build an accountable and aligned senior team.'],['Business impact','Connect culture, execution and commercial outcomes.']]}
 };
 const markets=['London','United Kingdom','Europe','New York','United States','Dubai','Abu Dhabi','Singapore','Hong Kong','Global / location flexible'];
-function optionButton(title,hint,handler){const button=el('button','','choice');button.type='button';button.append(el('strong',title));if(hint)button.append(el('small',hint));button.addEventListener('click',handler);return button;}
+function optionButton(title,hint,handler){const button=el('button','','choice');button.type='button';button.append(el('strong',title));if(hint)button.append(el('small',hint));button.addEventListener('click',()=>{button.setAttribute('aria-pressed','true');handler();});return button;}
 function advance(key,value){selection[key]=value;guideStep++;drawGuide();}
 function drawGuide(){
+ $('#search-form').dataset.stage=String(guideStep);
  const titles=['Choose your sector.','Choose the function.','Select the closest role.','Set the location.'];
  const intros=['Choose your niche. We’ll help you pinpoint the leadership your business needs.','Choose the function at the heart of your next hire.','Choose a starting point. We’ll refine the exact title and scope with you.','Choose the closest market. Location and working arrangements can be refined on a call.'];
  $('#search-title').textContent=titles[guideStep];$('#guide-intro').textContent=intros[guideStep];
@@ -90,12 +95,14 @@ const sectorPages={
  'Fintech':'https://www.spearpointsearch.com/fintech-payments-executive-search'
 };
 const pools={
+ 'Market makers & prop trading':['Electronic market makers','Proprietary trading firms','Trading infrastructure and quantitative technology teams'],
+ 'Hedge funds':['Investment and multi-strategy funds','Quantitative investment businesses','Relevant trading and financial technology teams'],
  'Exchanges':['Trading venues and exchange infrastructure','Market makers and liquidity providers','Institutional brokerage and trading technology'],
  'Digital assets':['Custody and digital asset infrastructure','Institutional financial services with digital asset teams','Exchanges and prime brokerage'],
  'Payments':['Payment processors and acquiring platforms','Banks with payments infrastructure teams','Financial technology and embedded finance businesses'],
  'Fintech':['Financial technology platforms','Banks and financial infrastructure businesses','Adjacent software businesses with relevant operating complexity'],
- 'Banking & investment':['Banks and investment businesses','Financial market infrastructure','Financial technology businesses with relevant regulatory exposure'],
- 'Technology & SaaS':['Enterprise software and platform businesses','Adjacent product companies at a comparable growth stage','Financial technology businesses where the mandate overlaps']
+ 'Financial institutions':['Banks and investment businesses','Financial market infrastructure','Financial technology businesses with relevant regulatory exposure'],
+ 'AI infrastructure for finance':['AI and data businesses serving financial markets','Quantitative research and financial engineering teams','Financial infrastructure platforms with relevant AI capability']
 };
 function buildMarketBrief(input,crmStatus){
  const spec=functions[selection.function];const niche=selection.niche;
