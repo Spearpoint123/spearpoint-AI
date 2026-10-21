@@ -13,7 +13,7 @@ create table public.sp_profile_approvals (
  consent_evidence text not null, consent_expires_at timestamptz not null,
  revoked_at timestamptz, reviewed_at timestamptz not null,
  public_title text not null, public_summary text not null, public_skills text[] not null,
- check (array_length(public_skills,1) between 1 and 10)
+ check (cardinality(public_skills) between 1 and 10)
 );
 create table public.sp_rate_limits (key text primary key, count integer not null, reset_at timestamptz not null);
 alter table public.sp_briefs enable row level security;
@@ -22,7 +22,7 @@ alter table public.sp_rate_limits enable row level security;
 revoke all on public.sp_briefs, public.sp_profile_approvals, public.sp_rate_limits from anon, authenticated;
 grant all on public.sp_briefs, public.sp_profile_approvals, public.sp_rate_limits to service_role;
 create function public.sp_take_rate_limit(p_key text,p_limit integer,p_window_seconds integer)
-returns boolean language plpgsql security definer set search_path=pg_catalog,public as $$
+returns boolean language plpgsql security invoker set search_path=pg_catalog,public as $$
 declare consumed integer;
 begin
  if p_limit<1 or p_limit>100 or p_window_seconds<60 or p_window_seconds>86400 then return false; end if;
@@ -34,7 +34,7 @@ begin
 end; $$;
 revoke all on function public.sp_take_rate_limit(text,integer,integer) from public,anon,authenticated;
 grant execute on function public.sp_take_rate_limit(text,integer,integer) to service_role;
-create function public.sp_purge_staging() returns void language sql security definer set search_path=pg_catalog,public as $$
+create function public.sp_purge_staging() returns void language sql security invoker set search_path=pg_catalog,public as $$
  delete from public.sp_briefs where expires_at<now();
  delete from public.sp_rate_limits where reset_at<now()-interval '1 day';
  delete from public.sp_profile_approvals where consent_expires_at<now() or revoked_at is not null;

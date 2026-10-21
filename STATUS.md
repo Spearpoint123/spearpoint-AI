@@ -1,5 +1,34 @@
 # Delivery status
 
+## Staging password and rate-limit configuration
+
+- User saved a Secret under `STAGINGPASSWORD`; the app accepts this alias alongside `STAGING_PASSWORD`, preserving the 20-character minimum. The saved value was not read.
+- Supabase server key is now saved as a Vercel Secret. It was shared in chat and still needs owner-led replacement.
+- A cryptographically random RATE_LIMIT_HMAC_KEY was generated directly into Vercel's Secret form without printing or writing it locally.
+- Eight local security tests passed, including the password alias and minimum length. Redeployment and authenticated browser verification remain pending.
+
+## Database configuration completed
+
+- Accessed the authorised Supabase project through the signed-in dashboard and created the three `sp_` tables and two server-only functions.
+- Verified RLS is enabled on all three tables, and anon/authenticated roles have no SELECT privilege.
+- Verified the rate-limit function accepts the first fixture request and rejects the next above the configured cap, within a rolled-back test transaction.
+- Functions use SECURITY INVOKER, a fixed search path and explicit service_role-only execute privileges.
+- Enabled pg_cron, scheduled `spearpoint-staging-retention` daily at 03:17 UTC, verified active status, and successfully invoked the retention function in a rolled-back test transaction.
+- Saved non-secret Vercel Production environment configuration in the separate staging project: APP_ORIGIN (stable staging domain), SUPABASE_URL, STAGING_USER=staging, RETENTION_JOB_CONFIRMED=true, RECRUIT_CRM_ENABLED=false, HUBSPOT_SYNC_AUTHORIZED=false.
+- Prepared an unsaved Vercel Secret entry form for STAGING_PASSWORD, SUPABASE_SERVICE_ROLE_KEY, RATE_LIMIT_HMAC_KEY and RECRUIT_CRM_API_KEY. No credential values were read or entered. User entry, redeployment and live acceptance tests remain required.
+
+## Latest verified deployment
+
+- Browser deployment in the user's actual **Spearpoint AI** workspace succeeded. Vercel reports **Ready**, deployment `dpl_7SctzG9DzW9ZriR4pTtVZUeG7Luk`, build duration 7 seconds.
+- URL: https://spearpoint-ai-staging-a7oou2n6a-spearpoint-ai.vercel.app/
+- Stable staging domain: https://spearpoint-ai-staging-psi.vercel.app/
+- Source: `staging-mvp` branch, commit `0765bd6cbbe24ec8691743ffe18fb3d0ace192e6`.
+- The browser dialog offered Create Preview Deployment, but the resulting deployment details explicitly label the environment **Production** inside this separate staging project. Do not describe it as a verified Preview environment.
+- The deployed URL requires authentication; browser navigation returned invalid authentication credentials. Authenticated application behaviour is not yet verified. Supabase storage, retention, live CRM and secure environment setup remain pending.
+- The earlier `sw-6031` project is a separate connector scope. The user's browser workspace is `spearpoint-ai` (team `team_mw1a0wr2OHTIU1olIElYrmMw`); native connector access to it still returns 403.
+
+## Earlier build and access findings
+
 - Source implemented; seven local security tests passed. A local browser fixture verified labelled synthetic results, the booking destination, and rejection of brief submission without storage readiness. Fixture mode exists only outside the deployable source, uses no live data and is not deployed.
 - GitHub `Spearpoint123/spearpoint-AI` was confirmed empty. No prior Spearpoint Intelligence prototype was available in the workspace or that repository.
 - Supabase connection lists no projects and rejects access to `pcezdsdhmjxpjakxtdhz`. Migration and live database tests are pending access restoration.

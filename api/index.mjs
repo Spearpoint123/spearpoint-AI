@@ -5,7 +5,8 @@ import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8']};
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
 export function authorized(req){
- const {STAGING_USER:user,STAGING_PASSWORD:pass}=process.env;
+ const user=process.env.STAGING_USER;
+ const pass=process.env.STAGING_PASSWORD||process.env.STAGINGPASSWORD;
  if(!user||!pass||pass.length<20)return false;
  const header=req.headers.authorization||'';if(!header.startsWith('Basic '))return false;
  return same(Buffer.from(header.slice(6),'base64').toString(),`${user}:${pass}`);
