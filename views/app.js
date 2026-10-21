@@ -1,4 +1,5 @@
 let currentSearch;
+let currentReport;
 let guideStep=0;
 const selection={};
 const $=s=>document.querySelector(s);
@@ -69,18 +70,59 @@ function blueprint(input){
 }
 $('#search-form').addEventListener('submit',async event=>{
  event.preventDefault();if(guideStep!==3||!selection.location)return;
- const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Building your target profile and checking relevant, shareable CRM profiles…';$('#results').hidden=true;currentSearch=null;
+ const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Building your target profile and checking relevant, shareable CRM profiles…';$('#results').hidden=true;$('#market-brief').hidden=true;currentSearch=null;currentReport=null;
  try{
   const input={role:selection.role,location:selection.location,skills:niches[selection.niche].skills.join(', ')};
   const data=await post('/api/search',input);currentSearch=input;const grid=$('#profile-grid');grid.replaceChildren();
   $('#result-tag').textContent=data.synthetic?'Your search blueprint':'Permission-based profile preview';
   $('#result-message').textContent=data.synthetic?data.crmStatus==='unavailable'?"The live profile check couldn’t complete. Explore this target brief, then discuss a tailored search with us.":'Here is a focused starting point for your hire. A briefing turns this target into a search tailored to your business.':data.message;
   if(data.synthetic)grid.append(blueprint(input));else data.profiles.forEach((profile,index)=>grid.append(profileCard(profile,index,data.bookingUrl)));
-  grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your target profile is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
+  buildMarketBrief(input,data.crmStatus);grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your target profile is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(error){$('#search-status').textContent=error.message;}finally{button.disabled=false;}
 });
 drawGuide();
+const salaryGuide='https://www.spearpointsearch.com/resources/salary-guide';
+const sectorPages={
+ 'Exchanges':'https://www.spearpointsearch.com/exchanges-venues-executive-search',
+ 'Digital assets':'https://www.spearpointsearch.com/digital-assets-crypto-executive-search',
+ 'Payments':'https://www.spearpointsearch.com/fintech-payments-executive-search',
+ 'Fintech':'https://www.spearpointsearch.com/fintech-payments-executive-search'
+};
+const pools={
+ 'Exchanges':['Trading venues and exchange infrastructure','Market makers and liquidity providers','Institutional brokerage and trading technology'],
+ 'Digital assets':['Custody and digital asset infrastructure','Institutional financial services with digital asset teams','Exchanges and prime brokerage'],
+ 'Payments':['Payment processors and acquiring platforms','Banks with payments infrastructure teams','Financial technology and embedded finance businesses'],
+ 'Fintech':['Financial technology platforms','Banks and financial infrastructure businesses','Adjacent software businesses with relevant operating complexity'],
+ 'Banking & investment':['Banks and investment businesses','Financial market infrastructure','Financial technology businesses with relevant regulatory exposure'],
+ 'Technology & SaaS':['Enterprise software and platform businesses','Adjacent product companies at a comparable growth stage','Financial technology businesses where the mandate overlaps']
+};
+function buildMarketBrief(input,crmStatus){
+ const spec=functions[selection.function];const niche=selection.niche;
+ currentReport={role:input.role,location:input.location,niche,function:selection.function,prepared:new Date().toISOString().slice(0,10),crmStatus,
+ sections:[
+  {title:'Salary guide',eyebrow:'01 / COMPENSATION',intro:`Benchmark ${input.role} in ${input.location} against the scope of your mandate.`,items:['Use the Spearpoint Compensation Guide as a starting point, then confirm that sector, function, seniority and city match your brief.','Compare base salary, target bonus and long-term incentives separately. Equity or token arrangements need their own valuation and terms.','An exact salary band is not reproduced here. Where the selected role or market is absent, request a tailored benchmark rather than substitute an unrelated figure.'],source:{label:'Spearpoint Compensation Guide · 2026 / 2027 edition, September 2026',url:salaryGuide},action:'Open the salary guide ↗',note:'Source checked 21 October 2026. The guide uses researched ranges and location indices; its percentiles are not a large-sample survey statistic.'},
+  {title:'Candidate landscape',eyebrow:'02 / SEARCH DIRECTION',intro:`Where we would start exploring a ${niche.toLowerCase()} leadership search.`,items:pools[niche].map(pool=>`Potential talent pool: ${pool}.`),source:sectorPages[niche]?{label:'Spearpoint sector search overview',url:sectorPages[niche]}:null,action:'Explore the sector ↗',note:'These are proposed sourcing directions, not measured talent supply, candidate counts or evidence of availability. Validate transferable experience against the mandate.'},
+  {title:'Talent insight',eyebrow:'03 / SHAPE THE MANDATE',intro:spec.mandate,items:[...spec.pillars.map(([title,description])=>`${title}: ${description}`),'Before launching: agree the first-year outcomes, essential experience, reporting line and the flexibility of the package.'],source:null,note:'Planning guidance based on your selected function and niche. A consultant should validate it against your business stage and exact role.'}
+ ]};
+ $('#market-context').textContent=`${input.role} / ${niche} / ${input.location}`;
+ const container=$('#market-sections');container.replaceChildren();
+ currentReport.sections.forEach(part=>{
+  const card=el('article','','insight-card');card.append(el('span',part.eyebrow,'step'),el('h3',part.title),el('p',part.intro,'insight-intro'));section(card,'What to consider',part.items);
+  if(part.source){const link=el('a',part.action,'insight-source');link.href=part.source.url;link.target='_blank';link.rel='noopener noreferrer';card.append(link,el('p',part.source.label,'source-caption'));}
+  card.append(el('p',part.note,'insight-note'));container.append(card);
+ });
+ $('#market-brief').hidden=false;$('#download-status').textContent='';
+}
+const escapeHtml=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+$('#download-brief').addEventListener('click',()=>{
+ if(!currentReport)return;const r=currentReport,e=escapeHtml;
+ const html=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spearpoint hiring market brief — ${e(r.role)}</title><style>body{font:15px/1.7 Arial,sans-serif;color:#183d32;max-width:850px;padding:40px 24px;margin:auto}h1,h2{font-family:Georgia,serif;font-weight:400}h1{font-size:40px;line-height:1.2}header{border-bottom:3px solid #183d32;padding-bottom:25px}.brand{font-weight:bold;letter-spacing:2px}section{padding:24px 0;border-bottom:1px solid #d9dfd4}a{color:#285844}.note,footer{font-size:12px;color:#63706a}li{margin:10px 0}.call{padding:22px;background:#edf2e5} @media print{body{padding:0}a{color:inherit}section{break-inside:avoid}}</style></head><body><header><p class="brand">↗ SPEARPOINT AI</p><p>HIRING MARKET BRIEF / PRIVATE STAGING</p><h1>${e(r.role)}</h1><p>${e(r.niche)} · ${e(r.location)} · Prepared ${e(r.prepared)}</p><p class="note">Search-planning guidance. No candidate identities, availability claims or unsourced compensation figures are included.</p></header>${r.sections.map(part=>`<section><p class="note">${e(part.eyebrow)}</p><h2>${e(part.title)}</h2><p>${e(part.intro)}</p><ul>${part.items.map(item=>`<li>${e(item)}</li>`).join('')}</ul>${part.source?`<p><a href="${e(part.source.url)}">${e(part.source.label)}</a></p>`:''}<p class="note">${e(part.note)}</p></section>`).join('')}<section class="call"><h2>Turn the brief into a focused search.</h2><p>Discuss the mandate, validate the market and agree your next move.</p><a href="https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone">Book your hiring briefing ↗</a></section><footer><p>This brief is generated from your selected niche, function, role and market. Candidate landscape and talent insight are planning recommendations, not a live market survey. Salary guidance links to the published Spearpoint source; no specific role/market band has been independently verified here.</p><p>Open this file in a browser to read it, or use Print → Save as PDF to keep a PDF copy.</p></footer></body></html>`;
+ const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));const link=el('a');link.href=url;link.download=`spearpoint-hiring-brief-${r.role.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.html`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);$('#download-status').textContent='Your brief download has started. Open it in a browser to read it or print it as a PDF.';
+});
+$('#request-report').addEventListener('click',()=>{
+ if(!currentReport)return;$('#brief-details').open=true;$('#brief-form [name=notes]').value=`Please follow up with a tailored hiring market brief for ${currentReport.role} in ${currentReport.location}, within ${currentReport.niche}. I would like to discuss salary benchmarking, candidate landscape and talent insight.`;$('#brief-details').scrollIntoView({behavior:'smooth',block:'start'});$('#brief-form [name=name]').focus({preventScroll:true});
+});
 $('#brief-form').addEventListener('submit',async event=>{
  event.preventDefault();if(!currentSearch)return;const button=event.target.querySelector('button');button.disabled=true;$('#brief-status').textContent='Saving your briefing request…';
- try{const data=Object.fromEntries(new FormData(event.target));const result=await post('/api/brief',{...currentSearch,...data,consent:data.consent==='on'});$('#brief-status').textContent=`${result.message} Reference: ${result.reference}`;event.target.reset();}catch(error){$('#brief-status').textContent=error.message;}finally{button.disabled=false;}
+ try{const data=Object.fromEntries(new FormData(event.target));const result=await post('/api/brief',{...currentSearch,...data,notes:`${data.notes||'Hiring briefing request'}\nSearch context: ${currentReport?.niche||selection.niche}; ${currentReport?.function||selection.function}. Report version: 2026-10-21.`,consent:data.consent==='on'});$('#brief-status').textContent=`${result.message} Reference: ${result.reference}`;event.target.reset();}catch(error){$('#brief-status').textContent=error.message;}finally{button.disabled=false;}
 });
