@@ -51,7 +51,7 @@ function drawGuide(){
  if(guideStep===1)Object.entries(functions).forEach(([key,value])=>choices.append(optionButton(key,value.roles.slice(0,2).join(' · '),()=>advance('function',key))));
  if(guideStep===2){
   const label=el('label','Find a role in the suggested list');const filter=el('input');filter.type='search';filter.placeholder='Search titles, e.g. CTO or Head of Product';label.append(filter);panel.append(label);
-  const populate=()=>{choices.replaceChildren();const query=filter.value.toLowerCase().trim();const roles=query?Object.values(functions).flatMap(value=>value.roles).filter(role=>(role+' '+role.split(' ').map(w=>w[0]).join('')).toLowerCase().includes(query)):functions[selection.function].roles;
+  const populate=()=>{choices.replaceChildren();const query=filter.value.toLowerCase().trim();const roles=query?Object.values(functions).flatMap(value=>value.roles).filter(role=>(role.split(' ').map(w=>w[0]).join('').toLowerCase()===query||role.toLowerCase().split(/\s+/).some((_,i,words)=>words.slice(i).join(' ').startsWith(query)))):functions[selection.function].roles;
    roles.forEach(role=>choices.append(optionButton(role,'Explore this target profile ↗',()=>{selection.function=Object.keys(functions).find(key=>functions[key].roles.includes(role));advance('role',role);})));if(!roles.length)choices.append(el('p','No listed title matches. Clear your search to choose the closest role; we can refine it on a briefing call.'));};
   filter.addEventListener('input',populate);populate();
  }
@@ -63,7 +63,7 @@ function blueprint(input){
  const spec=functions[selection.function];const article=el('article','','blueprint');
  const top=el('div','','blueprint-top');top.append(el('span',selection.niche.toUpperCase()+' / '+input.location.toUpperCase(),'step'),el('span','Illustrative target profile','blueprint-label'));article.append(top);
  const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('span','THE MANDATE','step'),el('h3',input.role),el('p',spec.mandate,'mandate'));
- const chips=el('div','','chips');niches[selection.niche].skills.forEach(skill=>chips.append(el('span',skill)));story.append(chips,el('p','A target to shape your search—not a real person or a statement of candidate availability.','blueprint-disclosure'));core.append(story);
+ const chips=el('div','','chips');niches[selection.niche].skills.forEach(skill=>chips.append(el('span',skill)));const call=el('a','Discuss this search ↗','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(chips,call,el('p','A target to shape your search—not a real person or a statement of candidate availability.','blueprint-disclosure'));core.append(story);
  const pillars=el('div','','capabilities');spec.pillars.forEach(([title,description],index)=>{const row=el('div','','capability');row.append(el('span','0'+(index+1),'capability-number'));const text=el('div');text.append(el('h4',title),el('p',description));row.append(text);pillars.append(row);});core.append(pillars);article.append(core);
  const question=el('div','','brief-question');question.append(el('span','THE QUESTION WORTH A CONVERSATION','step'),el('p','What would this leader need to change in their first 12 months?'));article.append(question);return article;
 }
