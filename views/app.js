@@ -1,3 +1,4 @@
+import {targetArchetype} from './role-archetypes.js';
 let currentSearch;
 let currentReport;
 let guideStep=0;
@@ -43,7 +44,7 @@ const functions={
  'Operations & finance':{roles:['Chief Operating Officer','Chief Financial Officer','Head of Operations','Finance Director'],mandate:'Create the operating discipline to support your next stage.',pillars:[['Operating clarity','Establish ownership, cadence and decision-making.'],['Financial discipline','Connect resources and investment to business priorities.'],['Execution at scale','Strengthen processes as the organisation grows.']]},
  'Executive leadership':{roles:['Chief Executive Officer','Managing Director','General Manager','Chief People Officer'],mandate:'Set the direction and build the leadership capacity to deliver it.',pillars:[['Strategic direction','Turn an ambitious vision into clear priorities.'],['Leadership depth','Build an accountable and aligned senior team.'],['Business impact','Connect culture, execution and commercial outcomes.']]}
 };
-const markets=['London','United Kingdom','Europe','New York','United States','Dubai','Abu Dhabi','Singapore','Hong Kong','Global / location flexible'];
+const markets=['London','United Kingdom','Europe','New York','Chicago','United States','Dubai','Abu Dhabi','Singapore','Hong Kong','Global / location flexible'];
 function optionButton(title,hint,handler){const button=el('button','','choice');button.type='button';button.append(el('strong',title));if(hint)button.append(el('small',hint));button.addEventListener('click',()=>{button.setAttribute('aria-pressed','true');handler();});return button;}
 function advance(key,value){selection[key]=value;guideStep++;drawGuide();}
 function drawGuide(){
@@ -66,18 +67,18 @@ function drawGuide(){
 }
 $('#guide-back').addEventListener('click',()=>{guideStep=Math.max(0,guideStep-1);$('#results').hidden=true;drawGuide();});
 function blueprint(input){
- const spec=functions[selection.function];const article=el('article','','blueprint');
+ const spec=targetArchetype(input.role,selection.niche,input.location);const article=el('article','','blueprint');
  const top=el('div','','blueprint-top');top.append(el('span',selection.niche+' / '+input.location,'step'),el('span','Illustrative target profile','blueprint-label'));article.append(top);
- const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('span','The mandate','step'),el('h3',input.role),el('p',spec.mandate,'mandate'));
- const chips=el('div','','chips');niches[selection.niche].skills.forEach(skill=>chips.append(el('span',skill)));const call=el('a','Discuss this search ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(chips,call,el('p','A target to shape your search.not a real person or a statement of candidate availability.','blueprint-disclosure'));core.append(story);
+ const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('span','Target candidate profile','step'),el('h3',input.role),el('p',spec.mandate,'mandate'));
+ const chips=el('div','','chips');[input.location,...spec.focus].forEach(skill=>chips.append(el('span',skill)));const call=el('a','Discuss this search ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(chips,el('p',spec.baseFocus,'target-salary'),call,el('p','Illustrative search target. This is not a real candidate or a statement of availability.','blueprint-disclosure'));core.append(story);
  const pillars=el('div','','capabilities');spec.pillars.forEach(([title,description],index)=>{const row=el('div','','capability');row.append(el('span','0'+(index+1),'capability-number'));const text=el('div');text.append(el('h4',title),el('p',description));row.append(text);pillars.append(row);});core.append(pillars);article.append(core);
- const question=el('div','','brief-question');question.append(el('span','The first-year mandate','step'),el('p','Define what this leader must change in the first 12 months.'));article.append(question);return article;
+ const question=el('div','','brief-question');question.append(el('span','The first-year mandate','step'),el('p',spec.question));article.append(question);return article;
 }
 $('#search-form').addEventListener('submit',async event=>{
  event.preventDefault();if(guideStep!==3||!selection.location)return;
  const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Building your target profile and checking relevant, shareable CRM profiles…';$('#results').hidden=true;$('#market-brief').hidden=true;currentSearch=null;currentReport=null;
  try{
-  const input={role:selection.role,location:selection.location,skills:niches[selection.niche].skills.join(', ')};
+  const roleTarget=targetArchetype(selection.role,selection.niche,selection.location);const input={role:selection.role,location:selection.location,skills:roleTarget.focus.join(', ')};
   const data=await post('/api/search',input);currentSearch=input;const grid=$('#profile-grid');grid.replaceChildren();
   $('#result-tag').textContent=data.synthetic?'Your search blueprint':'Permission-based profile preview';
   $('#result-message').textContent=data.synthetic?data.crmStatus==='unavailable'?"The live profile check couldn’t complete. Explore this target brief, then discuss a tailored search with us.":'Here is a focused starting point for your hire. A briefing turns this target into a search tailored to your business.':data.message;
@@ -105,7 +106,7 @@ const pools={
  'AI infrastructure for finance':['AI and data businesses serving financial markets','Quantitative research and financial engineering teams','Financial infrastructure platforms with relevant AI capability']
 };
 function buildMarketBrief(input,crmStatus){
- const spec=functions[selection.function];const niche=selection.niche;
+ const spec=targetArchetype(input.role,selection.niche,input.location);const niche=selection.niche;
  currentReport={role:input.role,location:input.location,niche,function:selection.function,prepared:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),crmStatus,
  sections:[
   {title:'Salary guide',eyebrow:'3.2 / Compensation',intro:`Benchmark ${input.role} in ${input.location} against the scope of your mandate.`,items:['Use the Spearpoint Compensation Guide as a starting point, then confirm that sector, function, seniority and city match your brief.','Compare base salary, target bonus and long-term incentives separately. Equity or token arrangements need their own valuation and terms.','An exact salary band is not reproduced here. Where the selected role or market is absent, request a tailored benchmark rather than substitute an unrelated figure.'],source:{label:'Spearpoint Compensation Guide · 2026 / 2027 edition, September 2026',url:salaryGuide},action:'Open the salary guide ',note:'Source checked 21 October 2026. The guide uses researched ranges and location indices; its percentiles are not a large-sample survey statistic.'},
