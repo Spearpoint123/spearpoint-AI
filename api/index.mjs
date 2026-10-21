@@ -4,7 +4,7 @@ import {searchInput,briefInput,archetypes,BOOKING_URL} from '../lib/domain.mjs';
 import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
-const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8']};
+const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
 export function authorized(req){
  const user=process.env.STAGING_USER;
@@ -21,6 +21,8 @@ export default async function handler(req,res){
  const asset=async(file,type)=>{res.setHeader('Content-Type',type);res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));};
  if(req.method==='GET'&&path==='/login.js')return asset('login.js','text/javascript');
  if(req.method==='GET'&&path==='/style.css')return asset('style.css','text/css');
+ if(req.method==='GET'&&path==='/logomark.svg')return asset('logomark.svg','image/svg+xml');
+ if(req.method==='GET'&&path==='/lockup-dark.svg')return asset('lockup-dark.svg','image/svg+xml');
  if(path==='/api/login'){
   if(req.method!=='POST')return json(405,{error:'POST required'});
   if(!originAllowed(req.headers.origin))return json(403,{error:'Request origin rejected. Please use the main staging address.'});
