@@ -6,7 +6,7 @@ Booking: https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone
 
 ## Run and verify
 
-Node 22 or newer, zero runtime packages. `npm test`, `npm run check`, then `npm run dev` after securely configuring the environment. No environment values are committed. All pages and endpoints require HTTP Basic Authentication; a missing password or password shorter than 20 characters denies all access. Assets live in `views/` and are served through the protected function, not an unprotected static directory.
+Node 22 or newer, zero runtime packages. `npm test`, `npm run check`, then `npm run dev` after securely configuring the environment. No environment values are committed. Protected pages and endpoints require a signed session from the browser sign-in form (or HTTP Basic Authentication); a missing password or password shorter than 20 characters denies all access. Assets live in `views/` and are served through the protected function, not an unprotected static directory.
 
 ## Secure staging setup
 
@@ -31,6 +31,6 @@ Node 22 or newer, zero runtime packages. `npm test`, `npm run check`, then `npm 
 
 ## Required live acceptance checks
 
-Verify an authenticated page and assets load, and anonymous page/API/assets requests are denied. Confirm no source or secret files are served. Verify the deployment’s security headers, mobile layout and booking destination. Test Supabase schema and RLS using anon/authenticated roles; rate-limit concurrency; 21st search and 6th brief limits; missing database rejection; a synthetic fallback; an explicitly approved fixture; expiry/revocation; CRM timeout; successful test brief storage; retention execution. Remove test data. Capture deployment state and live response checks before claiming the MVP is operational.
+Verify an authenticated page and assets load, and anonymous protected-page/API requests are denied and the sign-in page is shown. Confirm no source or secret files are served. Verify the deployment’s security headers, mobile layout and booking destination. Test Supabase schema and RLS using anon/authenticated roles; rate-limit concurrency; 21st search and 6th brief limits; missing database rejection; a synthetic fallback; an explicitly approved fixture; expiry/revocation; CRM timeout; successful test brief storage; retention execution. Remove test data. Capture deployment state and live response checks before claiming the MVP is operational.
 
 Local security tests are necessary but do not verify Vercel, Supabase or Recruit CRM connectivity. Deployment and integration status are tracked separately in `STATUS.md`.

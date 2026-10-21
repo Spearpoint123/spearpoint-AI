@@ -2,20 +2,45 @@ import {readFile} from 'node:fs/promises';
 import {timingSafeEqual} from 'node:crypto';
 import {searchInput,briefInput,archetypes,BOOKING_URL} from '../lib/domain.mjs';
 import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
+import {sessionCookie,sessionValid} from '../lib/session.mjs';
 const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8']};
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
 export function authorized(req){
  const user=process.env.STAGING_USER;
  const pass=process.env.STAGING_PASSWORD||process.env.STAGINGPASSWORD;
  if(!user||!pass||pass.length<20)return false;
+ if(sessionValid(req.headers.cookie))return true;
  const header=req.headers.authorization||'';if(!header.startsWith('Basic '))return false;
  return same(Buffer.from(header.slice(6),'base64').toString(),`${user}:${pass}`);
 }
 export default async function handler(req,res){
  for(const [k,v] of Object.entries({'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow, noarchive','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",'Strict-Transport-Security':'max-age=31536000'}))res.setHeader(k,v);
  const json=(status,body)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));};
- if(!authorized(req)){res.setHeader('WWW-Authenticate','Basic realm="Spearpoint staging", charset="UTF-8"');res.statusCode=401;return res.end('Private staging. Credentials are required.');}
  const path=new URL(req.url,'http://localhost').pathname;
+ const asset=async(file,type)=>{res.setHeader('Content-Type',type);res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));};
+ if(req.method==='GET'&&path==='/login.js')return asset('login.js','text/javascript');
+ if(req.method==='GET'&&path==='/style.css')return asset('style.css','text/css');
+ if(path==='/api/login'){
+  if(req.method!=='POST')return json(405,{error:'POST required'});
+  if(!process.env.APP_ORIGIN||req.headers.origin!==process.env.APP_ORIGIN)return json(403,{error:'Request origin rejected'});
+  if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'JSON required'});
+  try{
+   let body=req.body;
+   if(!body){let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>2000)return json(413,{error:'Request too large'});}body=JSON.parse(raw);}
+   else {if(Buffer.byteLength(JSON.stringify(body))>2000)return json(413,{error:'Request too large'});if(typeof body==='string')body=JSON.parse(body);}
+   if(!body||typeof body.username!=='string'||typeof body.password!=='string'||body.username.length>80||body.password.length>200)return json(400,{error:'Please enter your username and password.'});
+   if(!await rateLimit(req,'login')){res.setHeader('Retry-After','3600');return json(429,{error:'Too many sign-in attempts. Please try later.'});}
+   const configured=process.env.STAGING_PASSWORD||process.env.STAGINGPASSWORD;
+   if(!configured||configured.length<20)return json(503,{error:'The staging password must be saved in Vercel with at least 20 characters.'});
+   const header=`Basic ${Buffer.from(`${body.username}:${body.password}`).toString('base64')}`;
+   if(!authorized({headers:{authorization:header}}))return json(401,{error:'Username or password did not match.'});
+   res.setHeader('Set-Cookie',sessionCookie());return json(200,{ok:true});
+  }catch{return json(503,{error:'Sign-in is not ready. The staging operator needs to check its secure configuration.'});}
+ }
+ if(!authorized(req)){
+  if(req.method==='GET'&&(path==='/'||path==='/login'))return asset('login.html','text/html; charset=utf-8');
+  return json(401,{error:'Please sign in to the private staging site.'});
+ }
  if(req.method==='GET'&&files[path]){const [file,type]=files[path];res.setHeader('Content-Type',type);return res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));}
  if(path==='/robots.txt'){res.setHeader('Content-Type','text/plain');return res.end('User-agent: *\nDisallow: /\n');}
  if(!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});

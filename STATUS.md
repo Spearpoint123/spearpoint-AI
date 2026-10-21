@@ -1,5 +1,11 @@
 # Delivery status
 
+## Browser sign-in page
+
+- Added a normal sign-in page so testers do not need a browser HTTP authentication popup. Username defaults to staging; the password stays in Vercel.
+- Login is same-origin, rate-limited to 10 attempts per hour, and issues an 8-hour Secure/HttpOnly/SameSite=Strict signed cookie. Password rotation invalidates existing cookies. Protected content remains inaccessible without valid authentication.
+- Ten local security tests passed. The deployment must be confirmed before this change is treated as live.
+
 ## Staging password and rate-limit configuration
 
 - User saved a Secret under `STAGINGPASSWORD`; the app accepts this alias alongside `STAGING_PASSWORD`, preserving the 20-character minimum. The saved value was not read.
