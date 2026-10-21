@@ -21,12 +21,11 @@ export default async function handler(req,res){
  const json=(status,body)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));};
  const path=new URL(req.url,'http://localhost').pathname;
  const publicSite=isPublicRequest(req);
- if(publicSite&&['/GT-Canon-VF.ttf','/GT-Standard-VF.ttf','/api/login','/login.js','/login'].includes(path))return json(404,{error:'Not found'});
+ if(publicSite&&['/api/login','/login.js','/login'].includes(path))return json(404,{error:'Not found'});
  const asset=async(file,type)=>{res.setHeader('Content-Type',type);res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));};
  if(req.method==='GET'&&path==='/login.js')return asset('login.js','text/javascript');
  if(req.method==='GET'&&path==='/style.css'){
   let css=await readFile(new URL('../views/style.css',import.meta.url),'utf8');
-  if(publicSite)css=css.replace(/@font-face\{[^}]*\}/g,'').replaceAll('\"GT Canon Trial VF\",','').replaceAll('\"GT Standard Trial VF\",','');
   res.setHeader('Content-Type','text/css');return res.end(css);
  }
  if(req.method==='GET'&&path==='/logomark.svg')return asset('logomark.svg','image/svg+xml');
