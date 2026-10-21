@@ -13,7 +13,7 @@ test('80% admission uses explicit criteria and keeps unknown location visible as
  assert.equal(assessProfile(input,{...approval,public_title:'Chief Financial Officer'}).eligible,false);
 });
 test('role aliases do not confuse different executive positions',()=>{assert.equal(roleMatches('CTO','Chief Technology Officer'),true);assert.equal(roleMatches('CTO','Chief Financial Officer'),false);assert.deepEqual(roleQueries('CTO'),['chief technology officer','CTO']);});
-test('synthetic cards share the experience/fit/gaps format and never claim a real match score',()=>{for(const card of archetypes(input)){assert.ok(card.experience.length);assert.ok(card.fitReasons.length);assert.ok(card.gaps.length);assert.equal(card.matchScore,null);assert.equal(card.label,'Model CV');assert.equal(card.kind,'synthetic');assert.match(card.availability,/Not a real person/);}});
+test('synthetic cards share the experience/fit/gaps format and never claim a real match score',()=>{for(const card of archetypes(input)){assert.ok(card.experience.length);assert.ok(card.fitReasons.length);assert.ok(card.gaps.length);assert.equal(card.matchScore,null);assert.equal(card.label,'search preview');assert.equal(card.kind,'synthetic');assert.match(card.availability,/Not a real person/);}});
 test('CRM-first search is GET-only, excludes off-limits, requires consent and returns no raw records',async()=>{
  const priorFetch=globalThis.fetch;const priorEnv={...process.env};
  process.env.RECRUIT_CRM_ENABLED='true';process.env.RECRUIT_CRM_API_KEY='fixture';process.env.SUPABASE_URL='https://pcezdsdhmjxpjakxtdhz.supabase.co';process.env.SUPABASE_SERVICE_ROLE_KEY='fixture';
