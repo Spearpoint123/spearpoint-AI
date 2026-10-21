@@ -1,5 +1,11 @@
 # Delivery status
 
+## Employer curiosity and booking showcase
+
+- Added a prominent synthetic CTO/financial-technology showcase before the search form, with a target-experience narrative, potential impact and direct booking CTA.
+- Each fallback search archetype now includes distinct experience/impact prompts and its own briefing link. No real identities, invented availability, employers or candidate track records are claimed.
+- All synthetic profiles explicitly state they are illustrative and not real available candidates.
+
 ## Browser sign-in page
 
 - Added a normal sign-in page so testers do not need a browser HTTP authentication popup. Username defaults to staging; the password stays in Vercel.
