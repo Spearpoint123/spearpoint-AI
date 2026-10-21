@@ -1,0 +1,1 @@
+{"name":"spearpoint-ai-staging","version":"0.1.0","private":true,"type":"module","engines":{"node":">=22"},"scripts":{"dev":"node dev.mjs","test":"node --test","check":"node --check api/index.mjs && node --check views/app.js"}}

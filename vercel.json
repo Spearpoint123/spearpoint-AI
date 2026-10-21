@@ -1,0 +1,1 @@
+{"functions":{"api/index.mjs":{"includeFiles":"views/**","maxDuration":30}},"rewrites":[{"source":"/(.*)","destination":"/api/index"}],"headers":[{"source":"/(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]}]}
