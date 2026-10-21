@@ -1,4 +1,4 @@
-import {targetArchetype} from './role-archetypes.js';
+let currentArchetype;
 let currentSearch;
 let currentReport;
 let guideStep=0;
@@ -53,24 +53,27 @@ function drawGuide(){
  panel.append(choices);$('#guide-back').hidden=guideStep===0;$('#guide-context').textContent=[selection.niche,guideStep>1?selection.function:null,guideStep>2?selection.role:null].filter(Boolean).join(' / ');$('#search-submit').hidden=guideStep!==3||!selection.location;
 }
 $('#guide-back').addEventListener('click',()=>{guideStep=Math.max(0,guideStep-1);$('#results').hidden=true;drawGuide();});
-function blueprint(input){
- const spec=targetArchetype(input.role,selection.niche,input.location);const article=el('article','','blueprint');
- const top=el('div','','blueprint-top');top.append(el('span',selection.niche+' / '+input.location,'step'),el('span','search preview','blueprint-label'));article.append(top);
- const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('span','search preview','step'),el('h3',input.role),el('p',spec.mandate,'mandate'));
- const chips=el('div','','chips');[input.location,...spec.focus].forEach(skill=>chips.append(el('span',skill)));const call=el('a','Discuss this search ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(chips,el('p',spec.baseFocus,'target-salary'),call,el('p','A role-based search preview, not an individual candidate. Experience and capabilities are search criteria, not a verified career history.','blueprint-disclosure'));core.append(story);
- const pillars=el('div','','capabilities');spec.pillars.forEach(([title,description],index)=>{const row=el('div','','capability');row.append(el('span','0'+(index+1),'capability-number'));const text=el('div');text.append(el('h4',title),el('p',description));row.append(text);pillars.append(row);});core.append(pillars);article.append(core);
- const question=el('div','','brief-question');question.append(el('span','The first-year mandate','step'),el('p',spec.question));article.append(question);return article;
+function blueprint(input,spec){
+ const article=el('article','','blueprint candidate-cv');
+ const top=el('div','','blueprint-top');top.append(el('span',spec.niche+' / '+input.location,'step'),el('span','Target profile','blueprint-label'));article.append(top);
+ const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('h3',spec.role),el('p',spec.mandate,'mandate'));
+ const chips=el('div','','chips');spec.focus.forEach(skill=>chips.append(el('span',skill)));story.append(chips,el('p',spec.sectorContext,'cv-sector'),el('p',spec.baseFocus,'target-salary'));
+ const call=el('a','Discuss this profile ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(call);core.append(story);
+ const history=el('div','','cv-history');history.append(el('h4','Career progression','cv-section-heading'));
+ spec.careerHistory.forEach(stage=>{const item=el('section','','cv-role');item.append(el('span',stage.stage,'step'),el('h4',stage.title),el('p',stage.environment,'cv-environment'));const list=el('ul','','profile-highlights');stage.responsibilities.forEach(line=>list.append(el('li',line)));item.append(list);history.append(item);});
+ history.append(el('h4','Contribution examples','cv-section-heading'));spec.achievementExamples.forEach(item=>{const row=el('div','','capability');const text=el('div');text.append(el('h4',item.area),el('p',item.example));row.append(text);history.append(row);});core.append(history);article.append(core);
+ const question=el('div','','brief-question');question.append(el('span','Your first-year mandate','step'),el('p',spec.question));article.append(question);return article;
 }
 $('#search-form').addEventListener('submit',async event=>{
  event.preventDefault();if(guideStep!==3||!selection.location)return;
- const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Building your target profile and checking relevant, shareable CRM profiles…';$('#results').hidden=true;$('#market-brief').hidden=true;currentSearch=null;currentReport=null;
+ const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Building your target profile and checking relevant, shareable CRM profiles…';$('#results').hidden=true;$('#market-brief').hidden=true;currentSearch=null;currentReport=null;currentArchetype=null;
  try{
-  const roleTarget=targetArchetype(selection.role,selection.niche,selection.location);const input={role:selection.role,location:selection.location,skills:roleTarget.focus.join(', ')};
-  const data=await post('/api/search',input);currentSearch=input;if(data.crmDiagnostic)console.warn('Recruit CRM connection:',data.crmDiagnostic);const grid=$('#profile-grid');grid.replaceChildren();
-  $('#result-tag').textContent='Role-based search preview';
-  $('#result-message').textContent=data.crmStatus==='searched'?'Your confidential CRM search has been checked privately. This search preview describes the target for your brief. A consultant can confirm candidate fit, interest and availability.':data.crmStatus==='unavailable'?'Your search preview is ready. The private CRM check could not complete; discuss the brief with us to validate candidate fit.':'Your search preview describes the target for your brief. Discuss it with us to begin a confidential candidate search.';
-  grid.append(blueprint(input));
-  buildMarketBrief(input,data.crmStatus);grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your search preview is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
+  const input={role:selection.role,location:selection.location,niche:selection.niche,function:selection.function,skills:niches[selection.niche].skills.join(', ')};
+  const data=await post('/api/search',input);currentArchetype=data.profiles?.[0];if(!currentArchetype||currentArchetype.kind!=='synthetic'||!Array.isArray(currentArchetype.careerHistory))throw Error('The saved profile is unavailable. Please book a briefing.');currentSearch={...input,skills:currentArchetype.focus.join(', ')};if(data.crmDiagnostic)console.warn('Recruit CRM connection:',data.crmDiagnostic);const grid=$('#profile-grid');grid.replaceChildren();
+  $('#result-tag').textContent='Example CV · Hypothetical career history';
+  $('#result-message').textContent=data.crmStatus==='searched'?'Your brief has been checked against our confidential CRM and saved role archetypes. Speak with us to confirm candidate fit, availability and interest.':data.crmStatus==='unavailable'?'Your saved role archetype is ready. The private CRM check is temporarily unavailable.':'Your saved role archetype is ready. A briefing can begin a confidential candidate search.';
+  grid.append(blueprint(input,currentArchetype));
+  buildMarketBrief(input,data.crmStatus,currentArchetype);grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your search preview is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(error){$('#search-status').textContent=error.message;}finally{button.disabled=false;}
 });
 drawGuide();
@@ -92,8 +95,8 @@ const pools={
  'Financial institutions':['Banks and investment businesses','Financial market infrastructure','Financial technology businesses with relevant regulatory exposure'],
  'AI infrastructure for finance':['AI and data businesses serving financial markets','Quantitative research and financial engineering teams','Financial infrastructure platforms with relevant AI capability']
 };
-function buildMarketBrief(input,crmStatus){
- const spec=targetArchetype(input.role,selection.niche,input.location);const niche=selection.niche;
+function buildMarketBrief(input,crmStatus,spec){
+const niche=selection.niche;
  currentReport={role:input.role,location:input.location,niche,function:selection.function,prepared:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),crmStatus,
  sections:[
   {title:'Salary guide',eyebrow:'3.2 / Compensation',intro:`Benchmark ${input.role} in ${input.location} against the scope of your mandate.`,items:['Use the Spearpoint Compensation Guide as a starting point, then confirm that sector, function, seniority and city match your brief.','Compare base salary, target bonus and long-term incentives separately. Equity or token arrangements need their own valuation and terms.','An exact salary band is not reproduced here. Where the selected role or market is absent, request a tailored benchmark rather than substitute an unrelated figure.'],source:{label:'Spearpoint Compensation Guide · 2026 / 2027 edition, September 2026',url:salaryGuide},action:'Open the salary guide ',note:'Source checked 21 October 2026. The guide uses researched ranges and location indices; its percentiles are not a large-sample survey statistic.'},

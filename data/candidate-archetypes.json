@@ -1,0 +1,2117 @@
+{
+  "version": "2026-10-21.1",
+  "records": [
+    {
+      "id": "sp-head-of-trading",
+      "version": "2026-10-21.1",
+      "role": "Head of Trading",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead a trading desk with clear strategy ownership, execution standards and risk accountability.",
+      "focus": [
+        "Trading strategy",
+        "Execution quality",
+        "Desk risk"
+      ],
+      "experience": [
+        "Leading traders or systematic strategies across relevant products and venues.",
+        "Reviewing execution costs, market impact and trading performance.",
+        "Owning desk limits, escalation and operational controls."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Trading",
+          "responsibilities": [
+            "Led traders or systematic strategies across relevant products and venues."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Senior Trader / Desk Lead",
+          "responsibilities": [
+            "Reviewed execution costs, market impact and trading performance."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Trader / Quantitative Analyst",
+          "responsibilities": [
+            "Owned desk limits, escalation and operational controls."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Trading strategy",
+          "example": "Introduced a consistent desk review covering execution quality, risk usage and strategy performance.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Execution quality",
+          "example": "Aligned traders and engineering around execution monitoring and exception handling.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Desk risk",
+          "example": "Established clear escalation paths for trading limits and operational incidents.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which strategies, products and risk budget will this desk own?"
+    },
+    {
+      "id": "sp-head-of-market-making",
+      "version": "2026-10-21.1",
+      "role": "Head of Market Making",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead systematic liquidity provision with disciplined pricing, inventory and venue risk.",
+      "focus": [
+        "Electronic market making",
+        "Pricing and inventory",
+        "Liquidity risk"
+      ],
+      "experience": [
+        "Leading an electronic market-making desk or systematic liquidity strategies.",
+        "Managing quote quality, spreads, inventory exposure and adverse selection.",
+        "Working with quant research and engineering on venue connectivity, hedging and trading controls."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Market Making",
+          "responsibilities": [
+            "Led an electronic market-making desk or systematic liquidity strategies."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Market Making Desk Lead",
+          "responsibilities": [
+            "Managed quote quality, spreads, inventory exposure and adverse selection."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Quantitative Trader",
+          "responsibilities": [
+            "Worked with quant research and engineering on venue connectivity, hedging and trading controls."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Electronic market making",
+          "example": "Built a pricing and inventory review process across quoting and hedging strategies.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Pricing and inventory",
+          "example": "Introduced adverse-selection monitoring to inform quote and spread decisions.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Liquidity risk",
+          "example": "Coordinated venue onboarding with quant research, connectivity engineering and risk.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which venues, instruments, inventory limits and liquidity obligations define this mandate?"
+    },
+    {
+      "id": "sp-head-of-quantitative-research",
+      "version": "2026-10-21.1",
+      "role": "Head of Quantitative Research",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead a research agenda that connects robust signals with deployable trading strategies.",
+      "focus": [
+        "Signal research",
+        "Research validation",
+        "Production hand-off"
+      ],
+      "experience": [
+        "Leading quantitative researchers through hypothesis design and empirical testing.",
+        "Controlling data leakage, overfitting and research reproducibility.",
+        "Working with trading and engineering to evaluate live behaviour against research assumptions."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Quantitative Research",
+          "responsibilities": [
+            "Led quantitative researchers through hypothesis design and empirical testing."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Senior Quantitative Researcher",
+          "responsibilities": [
+            "Controlled data leakage, overfitting and research reproducibility."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Quantitative Researcher",
+          "responsibilities": [
+            "Worked with trading and engineering to evaluate live behaviour against research assumptions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Signal research",
+          "example": "Established a reproducible signal-research process with independent validation.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Research validation",
+          "example": "Strengthened checks for overfitting, transaction costs and changing market conditions.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Production hand-off",
+          "example": "Created a structured hand-off from research experiments to production strategies.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which research horizon, data advantage and deployment constraints matter most?"
+    },
+    {
+      "id": "sp-portfolio-manager",
+      "version": "2026-10-21.1",
+      "role": "Portfolio Manager",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own an investment mandate within an agreed risk budget and investment process.",
+      "focus": [
+        "Portfolio construction",
+        "Risk allocation",
+        "Investment discipline"
+      ],
+      "experience": [
+        "Managing a relevant investment strategy with explicit decision rights.",
+        "Assessing position sizing, liquidity, drawdown and concentration risk.",
+        "Explaining attribution and portfolio decisions to investment and risk stakeholders."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Portfolio Manager",
+          "responsibilities": [
+            "Managed a relevant investment strategy with explicit decision rights."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Deputy Portfolio Manager / Senior Analyst",
+          "responsibilities": [
+            "Assessed position sizing, liquidity, drawdown and concentration risk."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Investment Analyst",
+          "responsibilities": [
+            "Explained attribution and portfolio decisions to investment and risk stakeholders."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Portfolio construction",
+          "example": "Defined a repeatable investment process and documented portfolio decision rules.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Risk allocation",
+          "example": "Integrated liquidity, concentration and drawdown reviews into portfolio oversight.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Investment discipline",
+          "example": "Built an investment review linking research assumptions with realised outcomes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "What capital allocation, risk limits and investment horizon will apply?"
+    },
+    {
+      "id": "sp-principal-quantitative-engineer",
+      "version": "2026-10-21.1",
+      "role": "Principal Quantitative Engineer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Build reliable research and trading systems that connect quantitative work to production.",
+      "focus": [
+        "Quantitative systems",
+        "Research tooling",
+        "Production reliability"
+      ],
+      "experience": [
+        "Building research infrastructure, data pipelines or trading systems in relevant markets.",
+        "Working with researchers on simulation fidelity, testing and reproducibility.",
+        "Owning performance, observability and failure recovery for critical systems."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Principal Quantitative Engineer",
+          "responsibilities": [
+            "Built research infrastructure, data pipelines or trading systems in relevant markets."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Senior Quantitative Engineer",
+          "responsibilities": [
+            "Worked with researchers on simulation fidelity, testing and reproducibility."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Quantitative Developer",
+          "responsibilities": [
+            "Owned performance, observability and failure recovery for critical systems."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Quantitative systems",
+          "example": "Reworked a research-to-production path with stronger testing and reproducibility.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Research tooling",
+          "example": "Improved observability across data, strategy and execution components.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Production reliability",
+          "example": "Partnered with traders to prioritise performance, reliability and delivery trade-offs.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Where does the role sit between research infrastructure and live trading?"
+    },
+    {
+      "id": "sp-chief-ai-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief AI Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Set an AI strategy tied to business outcomes, AI governance and delivery accountability.",
+      "focus": [
+        "AI strategy",
+        "AI governance",
+        "Business adoption"
+      ],
+      "experience": [
+        "Setting an AI investment agenda across a complex organisation.",
+        "Building leadership across research, engineering, data and risk.",
+        "Defining evaluation, deployment and oversight standards for material use cases."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief AI Officer",
+          "responsibilities": [
+            "Set an AI investment agenda across a complex organisation."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Head of AI / Machine Learning",
+          "responsibilities": [
+            "Built leadership across research, engineering, data and risk."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Machine Learning Lead",
+          "responsibilities": [
+            "Defined evaluation, deployment and oversight standards for material use cases."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "AI strategy",
+          "example": "Prioritised an AI investment roadmap against business value and delivery readiness.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "AI governance",
+          "example": "Established executive accountability for AI evaluation, governance and deployment.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Business adoption",
+          "example": "Built collaboration between research, engineering, risk and business leadership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which business decisions should AI improve, and who owns the associated risk?"
+    },
+    {
+      "id": "sp-head-of-ai",
+      "version": "2026-10-21.1",
+      "role": "Head of AI",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead an AI team from use-case selection through evaluated production delivery.",
+      "focus": [
+        "AI delivery",
+        "Evaluation standards",
+        "Research leadership"
+      ],
+      "experience": [
+        "Leading applied AI or machine-learning teams on relevant business problems.",
+        "Defining evaluation datasets, AI-quality thresholds and release criteria.",
+        "Working with product, data and platform teams on adoption and monitoring."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of AI",
+          "responsibilities": [
+            "Led applied AI or machine-learning teams on relevant business problems."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Machine Learning Lead",
+          "responsibilities": [
+            "Defined evaluation datasets, AI-quality thresholds and release criteria."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Senior Machine Learning Engineer",
+          "responsibilities": [
+            "Worked with product, data and platform teams on adoption and monitoring."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "AI delivery",
+          "example": "Established a use-case portfolio with clear evaluation and production-readiness criteria.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Evaluation standards",
+          "example": "Built a repeatable path from experiments to monitored production services.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Research leadership",
+          "example": "Developed an AI team with explicit research, engineering and product ownership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which use cases need research depth, and which need dependable execution?"
+    },
+    {
+      "id": "sp-head-of-data",
+      "version": "2026-10-21.1",
+      "role": "Head of Data",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Build trusted data foundations with clear ownership, quality and access controls.",
+      "focus": [
+        "Data governance",
+        "Data platforms",
+        "Data quality"
+      ],
+      "experience": [
+        "Leading data engineering, governance or analytics in a relevant environment.",
+        "Establishing lineage, ownership, quality controls and access policies.",
+        "Delivering reliable datasets for trading, investment, product or regulatory needs."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Data",
+          "responsibilities": [
+            "Led data engineering, governance or analytics in a relevant environment."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Data Engineering / Analytics Lead",
+          "responsibilities": [
+            "Established lineage, ownership, quality controls and access policies."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Senior Data Engineer",
+          "responsibilities": [
+            "Delivered reliable datasets for trading, investment, product or regulatory needs."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Data governance",
+          "example": "Introduced data ownership, quality standards and incident escalation.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Data platforms",
+          "example": "Aligned platform investment with analytics, research and regulatory priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Data quality",
+          "example": "Established governance for access, lineage and critical data definitions.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which data products and control gaps must this person own?"
+    },
+    {
+      "id": "sp-principal-machine-learning-engineer",
+      "version": "2026-10-21.1",
+      "role": "Principal Machine Learning Engineer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Build and operate machine-learning systems with rigorous evaluation and reliable serving.",
+      "focus": [
+        "ML engineering",
+        "AI evaluation",
+        "Production operations"
+      ],
+      "experience": [
+        "Deploying models into consequential production workflows.",
+        "Building training, feature, serving and monitoring infrastructure.",
+        "Diagnosing drift, latency, reproducibility and operational failure modes."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Principal Machine Learning Engineer",
+          "responsibilities": [
+            "Deployed models into consequential production workflows."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Senior Machine Learning Engineer",
+          "responsibilities": [
+            "Built training, feature, serving and monitoring infrastructure."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Machine Learning Engineer",
+          "responsibilities": [
+            "Diagnosed drift, latency, reproducibility and operational failure modes."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "ML engineering",
+          "example": "Built evaluation and release checks for a production machine-learning service.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "AI evaluation",
+          "example": "Improved monitoring for data drift, quality and inference failures.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Production operations",
+          "example": "Created reusable deployment components across research and engineering teams.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "What evaluation, latency and reliability requirements must the system meet?"
+    },
+    {
+      "id": "sp-chief-technology-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Technology Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Set the technology direction and build the leadership capacity to deliver it.",
+      "focus": [
+        "Technology strategy",
+        "Engineering leadership",
+        "Platform resilience"
+      ],
+      "experience": [
+        "Setting architecture and investment priorities against a commercial roadmap.",
+        "Building senior engineering leadership and clear technical ownership.",
+        "Balancing platform scale, security, reliability and delivery discipline."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Technology Officer",
+          "responsibilities": [
+            "Set architecture and investment priorities against a commercial roadmap."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "VP Engineering / Head of Engineering",
+          "responsibilities": [
+            "Built senior engineering leadership and clear technical ownership."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Engineering Lead / Architect",
+          "responsibilities": [
+            "Balanced platform scale, security, reliability and delivery discipline."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Technology strategy",
+          "example": "Set a technology roadmap linked to business priorities and platform risk.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Engineering leadership",
+          "example": "Strengthened technical leadership and architecture decision-making.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Platform resilience",
+          "example": "Introduced service ownership and resilience reviews across critical systems.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which technical constraints are limiting the business today?"
+    },
+    {
+      "id": "sp-vp-engineering",
+      "version": "2026-10-21.1",
+      "role": "VP Engineering",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Turn the technology roadmap into accountable engineering execution.",
+      "focus": [
+        "Engineering delivery",
+        "Team leadership",
+        "Operating cadence"
+      ],
+      "experience": [
+        "Leading multiple engineering teams and managers.",
+        "Improving delivery planning, quality and cross-team dependency management.",
+        "Developing engineering leadership and a sustainable operating cadence."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "VP Engineering",
+          "responsibilities": [
+            "Led multiple engineering teams and managers."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Engineering Director",
+          "responsibilities": [
+            "Improved delivery planning, quality and cross-team dependency management."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Engineering Manager",
+          "responsibilities": [
+            "Developed engineering leadership and a sustainable operating cadence."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Engineering delivery",
+          "example": "Established engineering delivery planning and measurable service ownership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Team leadership",
+          "example": "Developed engineering managers and clarified team boundaries.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Operating cadence",
+          "example": "Balanced roadmap delivery with platform reliability and technical debt.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which teams, delivery commitments and management layers will this role own?"
+    },
+    {
+      "id": "sp-head-of-engineering",
+      "version": "2026-10-21.1",
+      "role": "Head of Engineering",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead an engineering organisation with clear delivery and technical standards.",
+      "focus": [
+        "Technical delivery",
+        "Engineering standards",
+        "People development"
+      ],
+      "experience": [
+        "Managing engineers and technical leads across relevant systems.",
+        "Owning delivery commitments, incident learning and code-quality standards.",
+        "Working with product and infrastructure teams on priorities and capacity."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Engineering",
+          "responsibilities": [
+            "Managed engineers and technical leads across relevant systems."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Engineering Manager",
+          "responsibilities": [
+            "Owned delivery commitments, incident learning and code-quality standards."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Senior Software Engineer",
+          "responsibilities": [
+            "Worked with product and infrastructure teams on priorities and capacity."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Technical delivery",
+          "example": "Introduced a predictable delivery cadence and clearer engineering priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Engineering standards",
+          "example": "Improved release controls, incident learning and service monitoring.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "People development",
+          "example": "Strengthened hiring, coaching and technical review practices.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "What is the balance between hands-on technical leadership and people management?"
+    },
+    {
+      "id": "sp-chief-information-security-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Information Security Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own security strategy, assurance and incident readiness against the business threat assessment.",
+      "focus": [
+        "Security governance",
+        "Cyber resilience",
+        "Incident leadership"
+      ],
+      "experience": [
+        "Leading security programmes in environments with sensitive systems and data.",
+        "Setting security architecture, assurance and third-party risk priorities.",
+        "Directing incident readiness and communicating material risk to executives."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Information Security Officer",
+          "responsibilities": [
+            "Led security programmes in environments with sensitive systems and data."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Head of Information Security",
+          "responsibilities": [
+            "Set security architecture, assurance and third-party risk priorities."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Security Engineering Lead",
+          "responsibilities": [
+            "Directed incident readiness and communicating material risk to executives."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Security governance",
+          "example": "Established a risk-based security roadmap and executive reporting cadence.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Cyber resilience",
+          "example": "Strengthened incident response exercises and critical control ownership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Incident leadership",
+          "example": "Aligned security assurance with regulatory and customer requirements.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which threats and assurance obligations define the security mandate?"
+    },
+    {
+      "id": "sp-chief-revenue-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Revenue Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own the revenue system across acquisition, expansion and commercial execution.",
+      "focus": [
+        "Revenue strategy",
+        "Commercial leadership",
+        "Revenue operations"
+      ],
+      "experience": [
+        "Leading revenue teams with clear acquisition and expansion ownership.",
+        "Aligning sales, partnerships and customer success around account priorities.",
+        "Reviewing pipeline quality, forecast discipline and commercial economics."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Revenue Officer",
+          "responsibilities": [
+            "Led revenue teams with clear acquisition and expansion ownership."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "VP Sales / Commercial Director",
+          "responsibilities": [
+            "Aligned sales, partnerships and customer success around account priorities."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Regional Sales Lead",
+          "responsibilities": [
+            "Reviewed pipeline quality, forecast discipline and commercial economics."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Revenue strategy",
+          "example": "Introduced shared definitions for pipeline quality, forecasting and account ownership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Commercial leadership",
+          "example": "Aligned acquisition, expansion and retention priorities across commercial teams.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Revenue operations",
+          "example": "Built a commercial leadership cadence linked to customer value and revenue quality.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which revenue lines, regions and commercial teams report into this role?"
+    },
+    {
+      "id": "sp-chief-commercial-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Commercial Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Set the commercial direction across products, markets and strategic relationships.",
+      "focus": [
+        "Commercial strategy",
+        "Strategic relationships",
+        "Market expansion"
+      ],
+      "experience": [
+        "Owning commercial priorities, pricing or market-entry decisions.",
+        "Building senior customer and strategic partner relationships.",
+        "Aligning commercial commitments with product, risk and operating capacity."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Commercial Officer",
+          "responsibilities": [
+            "Owned commercial priorities, pricing or market-entry decisions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Commercial Director",
+          "responsibilities": [
+            "Built senior customer and strategic partner relationships."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Business Development Lead",
+          "responsibilities": [
+            "Aligned commercial commitments with product, risk and operating capacity."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Commercial strategy",
+          "example": "Defined priority markets, partnership criteria and commercial investment choices.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Strategic relationships",
+          "example": "Aligned sales, partnerships and product around institutional customer needs.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Market expansion",
+          "example": "Strengthened pricing, negotiation and contract review practices.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Where does this mandate differ from sales leadership alone?"
+    },
+    {
+      "id": "sp-vp-sales",
+      "version": "2026-10-21.1",
+      "role": "VP Sales",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead a sales organisation with disciplined execution in the target client segment.",
+      "focus": [
+        "Sales leadership",
+        "Pipeline discipline",
+        "Account strategy"
+      ],
+      "experience": [
+        "Leading sales managers or senior sellers in a relevant buying environment.",
+        "Building account plans, qualification standards and forecast discipline.",
+        "Developing repeatable sales execution for complex buying decisions."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "VP Sales",
+          "responsibilities": [
+            "Led sales managers or senior sellers in a relevant buying environment."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Sales Director",
+          "responsibilities": [
+            "Built account plans, qualification standards and forecast discipline."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Enterprise Account Executive",
+          "responsibilities": [
+            "Developed repeatable sales execution for complex buying decisions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Sales leadership",
+          "example": "Introduced a consistent enterprise sales process and forecast review.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Pipeline discipline",
+          "example": "Built account plans connecting buying committees, value cases and deal risks.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Account strategy",
+          "example": "Coached sales managers around qualification, execution and customer outcomes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which customer segment, sales cycle and territory structure must this leader understand?"
+    },
+    {
+      "id": "sp-head-of-business-development",
+      "version": "2026-10-21.1",
+      "role": "Head of Business Development",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Develop partnerships and new commercial opportunities with a clear route to value.",
+      "focus": [
+        "Partnership development",
+        "Commercial structuring",
+        "Opportunity qualification"
+      ],
+      "experience": [
+        "Building relevant institutional or ecosystem relationships.",
+        "Qualifying opportunities and structuring partnership economics.",
+        "Coordinating product, legal and operational stakeholders through execution."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Business Development",
+          "responsibilities": [
+            "Built relevant institutional or ecosystem relationships."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Business Development Director",
+          "responsibilities": [
+            "Qualified opportunities and structuring partnership economics."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Partnerships Manager",
+          "responsibilities": [
+            "Coordinated product, legal and operational stakeholders through execution."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Partnership development",
+          "example": "Built a prioritised partnership pipeline and clear qualification criteria.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Commercial structuring",
+          "example": "Negotiated partnerships with explicit commercial and delivery ownership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Opportunity qualification",
+          "example": "Established a hand-off between business development, product and implementation.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Is success defined by distribution, strategic partnerships or direct revenue?"
+    },
+    {
+      "id": "sp-chief-product-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Product Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own product direction across the portfolio and connect it to commercial priorities.",
+      "focus": [
+        "Product strategy",
+        "Portfolio decisions",
+        "Product leadership"
+      ],
+      "experience": [
+        "Leading product organisations with multiple products or customer segments.",
+        "Making portfolio choices using customer evidence and commercial context.",
+        "Aligning product, design, engineering and go-to-market leadership."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Product Officer",
+          "responsibilities": [
+            "Led product organisations with multiple products or customer segments."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "VP Product / Product Director",
+          "responsibilities": [
+            "Made portfolio choices using customer evidence and commercial context."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Senior Product Manager",
+          "responsibilities": [
+            "Aligned product, design, engineering and go-to-market leadership."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Product strategy",
+          "example": "Defined a product portfolio and investment framework linked to market opportunity.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Portfolio decisions",
+          "example": "Aligned product leadership, engineering and commercial teams around customer outcomes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Product leadership",
+          "example": "Introduced structured discovery and evidence-based roadmap reviews.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which portfolio decisions and product outcomes belong to this role?"
+    },
+    {
+      "id": "sp-vp-product",
+      "version": "2026-10-21.1",
+      "role": "VP Product",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Translate product strategy into a prioritised roadmap and a strong product organisation.",
+      "focus": [
+        "Roadmap ownership",
+        "Product management",
+        "Customer evidence"
+      ],
+      "experience": [
+        "Leading product managers across complex products or domains.",
+        "Setting prioritisation, discovery and product-measurement standards.",
+        "Managing roadmap dependencies with engineering and commercial teams."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "VP Product",
+          "responsibilities": [
+            "Led product managers across complex products or domains."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Product Director",
+          "responsibilities": [
+            "Set prioritisation, discovery and product-measurement standards."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Senior Product Manager",
+          "responsibilities": [
+            "Managed roadmap dependencies with engineering and commercial teams."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Roadmap ownership",
+          "example": "Established product team priorities and ownership across a portfolio.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Product management",
+          "example": "Connected roadmap investment with customer evidence and commercial goals.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Customer evidence",
+          "example": "Built a consistent product discovery and delivery review process.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "What product domains and team scope sit within the mandate?"
+    },
+    {
+      "id": "sp-head-of-product",
+      "version": "2026-10-21.1",
+      "role": "Head of Product",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead product development for a defined business domain or platform.",
+      "focus": [
+        "Domain expertise",
+        "Product discovery",
+        "Delivery alignment"
+      ],
+      "experience": [
+        "Owning a product domain with relevant customer and workflow complexity.",
+        "Validating requirements with users and commercial stakeholders.",
+        "Making explicit trade-offs across scope, risk and delivery capacity."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Product",
+          "responsibilities": [
+            "Owned a product domain with relevant customer and workflow complexity."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Group Product Manager",
+          "responsibilities": [
+            "Validated requirements with users and commercial stakeholders."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Product Manager",
+          "responsibilities": [
+            "Made explicit trade-offs across scope, risk and delivery capacity."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Domain expertise",
+          "example": "Translated customer and market requirements into a focused roadmap.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Product discovery",
+          "example": "Clarified prioritisation decisions and success criteria with engineering.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Delivery alignment",
+          "example": "Improved feedback loops between customers, commercial teams and product delivery.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which customer problem and product decisions will this person own?"
+    },
+    {
+      "id": "sp-head-of-strategy",
+      "version": "2026-10-21.1",
+      "role": "Head of Strategy",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Build a decision-ready strategy agenda with clear execution ownership.",
+      "focus": [
+        "Strategic analysis",
+        "Executive decisions",
+        "Execution planning"
+      ],
+      "experience": [
+        "Leading market, competitive and business strategy analysis.",
+        "Preparing investment or growth decisions for senior stakeholders.",
+        "Translating chosen priorities into accountable programmes."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Strategy",
+          "responsibilities": [
+            "Led market, competitive and business strategy analysis."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Strategy Director / Manager",
+          "responsibilities": [
+            "Prepared investment or growth decisions for senior stakeholders."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Strategy Analyst",
+          "responsibilities": [
+            "Translated chosen priorities into accountable programmes."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Strategic analysis",
+          "example": "Created a strategic planning process with explicit choices and trade-offs.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Executive decisions",
+          "example": "Evaluated market opportunities using competitive, customer and financial evidence.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Execution planning",
+          "example": "Connected strategic initiatives with owners, milestones and executive decisions.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Does the role own corporate strategy, business development or transformation?"
+    },
+    {
+      "id": "sp-chief-risk-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Risk Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Set the risk framework and challenge material decisions with independent judgement.",
+      "focus": [
+        "Enterprise risk",
+        "Risk appetite",
+        "Board oversight"
+      ],
+      "experience": [
+        "Leading relevant financial, market, credit or operational risk functions.",
+        "Defining appetite, limits, escalation and risk reporting.",
+        "Providing independent challenge to executive and board decisions."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Risk Officer",
+          "responsibilities": [
+            "Led relevant financial, market, credit or operational risk functions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Head of Risk",
+          "responsibilities": [
+            "Defined appetite, limits, escalation and risk reporting."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Senior Risk Manager",
+          "responsibilities": [
+            "Provided independent challenge to executive and board decisions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Enterprise risk",
+          "example": "Established a risk appetite framework and clear ownership of major exposures.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Risk appetite",
+          "example": "Strengthened board reporting, escalation and stress-testing practices.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Board oversight",
+          "example": "Connected risk oversight with product, trading and business decisions.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which risk types and regulated entities will fall within this remit?"
+    },
+    {
+      "id": "sp-chief-compliance-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Compliance Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own the compliance framework and senior regulatory accountability.",
+      "focus": [
+        "Regulatory leadership",
+        "Compliance governance",
+        "Regulatory engagement"
+      ],
+      "experience": [
+        "Leading compliance in relevant regulated products and jurisdictions.",
+        "Designing governance, monitoring and regulatory-change programmes.",
+        "Engaging regulators and advising senior leaders on material obligations."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Compliance Officer",
+          "responsibilities": [
+            "Led compliance in relevant regulated products and jurisdictions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Head of Compliance",
+          "responsibilities": [
+            "Designed governance, monitoring and regulatory-change programmes."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Compliance Manager",
+          "responsibilities": [
+            "Engaged regulators and advising senior leaders on material obligations."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Regulatory leadership",
+          "example": "Built a compliance framework aligned to the business and regulatory perimeter.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Compliance governance",
+          "example": "Established executive reporting and ownership of remediation priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Regulatory engagement",
+          "example": "Strengthened coordination between compliance, legal, operations and commercial teams.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which jurisdictions, licences and accountable responsibilities must be covered?"
+    },
+    {
+      "id": "sp-head-of-compliance",
+      "version": "2026-10-21.1",
+      "role": "Head of Compliance",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead day-to-day compliance delivery for the relevant regulated business.",
+      "focus": [
+        "Compliance operations",
+        "Monitoring frameworks",
+        "Regulatory change"
+      ],
+      "experience": [
+        "Managing compliance teams and practical control programmes.",
+        "Owning monitoring, policy implementation and issue remediation.",
+        "Advising business teams on applicable regulatory requirements."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Compliance",
+          "responsibilities": [
+            "Managed compliance teams and practical control programmes."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Senior Compliance Manager",
+          "responsibilities": [
+            "Owned monitoring, policy implementation and issue remediation."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Compliance Officer",
+          "responsibilities": [
+            "Advised business teams on applicable regulatory requirements."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Compliance operations",
+          "example": "Introduced a risk-based monitoring programme and clear issue tracking.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Monitoring frameworks",
+          "example": "Improved policy implementation and staff guidance for relevant obligations.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Regulatory change",
+          "example": "Established evidence and escalation standards for compliance reviews.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which compliance responsibilities remain with the CCO or other accountable officers?"
+    },
+    {
+      "id": "sp-head-of-financial-crime",
+      "version": "2026-10-21.1",
+      "role": "Head of Financial Crime",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead financial-crime controls matched to the business, customers and transaction risks.",
+      "focus": [
+        "AML and sanctions",
+        "Financial-crime controls",
+        "Investigation governance"
+      ],
+      "experience": [
+        "Leading relevant AML, sanctions or financial-crime programmes.",
+        "Overseeing customer-risk assessment, monitoring and case escalation.",
+        "Working with compliance, operations and engineering on control effectiveness."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Financial Crime",
+          "responsibilities": [
+            "Led relevant AML, sanctions or financial-crime programmes."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Financial Crime Manager / MLRO",
+          "responsibilities": [
+            "Oversaw customer-risk assessment, monitoring and case escalation."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Financial Crime Specialist",
+          "responsibilities": [
+            "Worked with compliance, operations and engineering on control effectiveness."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "AML and sanctions",
+          "example": "Strengthened customer due-diligence and financial-crime escalation processes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Financial-crime controls",
+          "example": "Reviewed monitoring coverage and governance for financial-crime controls.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Investigation governance",
+          "example": "Introduced management reporting on investigations, exceptions and remediation.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Does this role include a formally appointed reporting-officer responsibility?"
+    },
+    {
+      "id": "sp-chief-operating-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Operating Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own the operating structure and execution discipline needed to support the business.",
+      "focus": [
+        "Operating structure",
+        "Operational resilience",
+        "Cross-functional execution"
+      ],
+      "experience": [
+        "Leading complex operations across relevant products or locations.",
+        "Setting decision rights, service standards and resilience priorities.",
+        "Coordinating business, technology, finance and control functions."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Operating Officer",
+          "responsibilities": [
+            "Led complex operations across relevant products or locations."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Operations Director",
+          "responsibilities": [
+            "Set decision rights, service standards and resilience priorities."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Operations Manager",
+          "responsibilities": [
+            "Coordinated business, technology, finance and control functions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Operating structure",
+          "example": "Clarified operating ownership and cross-functional decision rights.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Operational resilience",
+          "example": "Introduced planning and performance reviews across core business processes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Cross-functional execution",
+          "example": "Strengthened service resilience and execution during organisational growth.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which functions and operating outcomes are directly accountable to the COO?"
+    },
+    {
+      "id": "sp-chief-financial-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Financial Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own financial strategy, stewardship and decision support for the next business stage.",
+      "focus": [
+        "Financial stewardship",
+        "Capital planning",
+        "Executive finance"
+      ],
+      "experience": [
+        "Leading finance through relevant growth, funding or organisational complexity.",
+        "Owning planning, reporting, treasury and financial control priorities.",
+        "Advising the board on capital allocation and business economics."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Financial Officer",
+          "responsibilities": [
+            "Led finance through relevant growth, funding or organisational complexity."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Finance Director",
+          "responsibilities": [
+            "Owned planning, reporting, treasury and financial control priorities."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Financial Controller",
+          "responsibilities": [
+            "Advised the board on capital allocation and business economics."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Financial stewardship",
+          "example": "Connected financial planning and capital allocation with strategic priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Capital planning",
+          "example": "Strengthened financial controls, reporting and board-level decision support.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Executive finance",
+          "example": "Built a finance leadership structure suited to the business stage.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which capital, reporting and control priorities define the first year?"
+    },
+    {
+      "id": "sp-head-of-operations",
+      "version": "2026-10-21.1",
+      "role": "Head of Operations",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead reliable operational delivery with clear control and escalation standards.",
+      "focus": [
+        "Operational delivery",
+        "Process controls",
+        "Service resilience"
+      ],
+      "experience": [
+        "Managing operational teams in relevant transaction or service workflows.",
+        "Strengthening reconciliation, exception management and control ownership.",
+        "Improving service performance while managing operational incidents."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Head of Operations",
+          "responsibilities": [
+            "Managed operational teams in relevant transaction or service workflows."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Operations Manager",
+          "responsibilities": [
+            "Strengthened reconciliation, exception management and control ownership."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Operations Specialist",
+          "responsibilities": [
+            "Improved service performance while managing operational incidents."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Operational delivery",
+          "example": "Standardised operational workflows, controls and exception handling.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Process controls",
+          "example": "Introduced service reporting and ownership of recurring operational issues.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Service resilience",
+          "example": "Coordinated process improvements with technology, finance and risk teams.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which workflows, service commitments and failure risks require ownership?"
+    },
+    {
+      "id": "sp-finance-director",
+      "version": "2026-10-21.1",
+      "role": "Finance Director",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead the finance function with reliable reporting, planning and control.",
+      "focus": [
+        "Financial reporting",
+        "Planning and analysis",
+        "Finance operations"
+      ],
+      "experience": [
+        "Leading accounting, reporting or finance teams at a comparable level.",
+        "Managing budgeting, close processes and management information.",
+        "Strengthening controls and supporting operational business decisions."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Finance Director",
+          "responsibilities": [
+            "Led accounting, reporting or finance teams at a comparable level."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Financial Controller",
+          "responsibilities": [
+            "Managed budgeting, close processes and management information."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Finance Manager",
+          "responsibilities": [
+            "Strengthened controls and supporting operational business decisions."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Financial reporting",
+          "example": "Improved reporting discipline and financial planning processes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Planning and analysis",
+          "example": "Strengthened controllership and ownership of financial close activities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Finance operations",
+          "example": "Built decision support connecting budgets, performance and business priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which statutory, management-reporting and commercial-finance responsibilities apply?"
+    },
+    {
+      "id": "sp-chief-executive-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief Executive Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Set the business direction and build the leadership team accountable for delivery.",
+      "focus": [
+        "Business strategy",
+        "Executive leadership",
+        "Board alignment"
+      ],
+      "experience": [
+        "Leading a business with relevant market and operating complexity.",
+        "Aligning the board, shareholders and leadership team on priorities.",
+        "Owning commercial performance, resource allocation and organisational direction."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief Executive Officer",
+          "responsibilities": [
+            "Led a business with relevant market and operating complexity."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Managing Director / Business Unit Leader",
+          "responsibilities": [
+            "Aligned the board, shareholders and leadership team on priorities."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Functional Director",
+          "responsibilities": [
+            "Owned commercial performance, resource allocation and organisational direction."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Business strategy",
+          "example": "Defined a strategic direction and explicit leadership accountability.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Executive leadership",
+          "example": "Aligned investment priorities, operating plans and board expectations.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Board alignment",
+          "example": "Built a senior team capable of delivering the next business stage.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "What authority, ownership context and first-year outcomes define the CEO mandate?"
+    },
+    {
+      "id": "sp-managing-director",
+      "version": "2026-10-21.1",
+      "role": "Managing Director",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Lead a business or division with clear commercial and operational accountability.",
+      "focus": [
+        "Business leadership",
+        "Commercial ownership",
+        "Organisational execution"
+      ],
+      "experience": [
+        "Leading a relevant division, region or business unit.",
+        "Owning commercial priorities and cross-functional operating performance.",
+        "Managing senior stakeholder relationships and leadership accountability."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Managing Director",
+          "responsibilities": [
+            "Led a relevant division, region or business unit."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Business Unit Director",
+          "responsibilities": [
+            "Owned commercial priorities and cross-functional operating performance."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Functional Head",
+          "responsibilities": [
+            "Managed senior stakeholder relationships and leadership accountability."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Business leadership",
+          "example": "Established a business-unit plan with clear commercial and operating priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Commercial ownership",
+          "example": "Strengthened accountability across functional leadership.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Organisational execution",
+          "example": "Connected resource decisions with market opportunity and business performance.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Is the remit a legal entity, region, division or product business?"
+    },
+    {
+      "id": "sp-general-manager",
+      "version": "2026-10-21.1",
+      "role": "General Manager",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Own the performance and coordination of a defined business unit.",
+      "focus": [
+        "Business-unit delivery",
+        "Operational coordination",
+        "Commercial performance"
+      ],
+      "experience": [
+        "Running a relevant business unit with a defined customer and operating remit.",
+        "Coordinating commercial, product and operational teams.",
+        "Managing budgets, priorities and performance against agreed targets."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "General Manager",
+          "responsibilities": [
+            "Ran a relevant business unit with a defined customer and operating remit."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "Operations / Commercial Director",
+          "responsibilities": [
+            "Coordinated commercial, product and operational teams."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "Department Manager",
+          "responsibilities": [
+            "Managed budgets, priorities and performance against agreed targets."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "Business-unit delivery",
+          "example": "Clarified the business-unit remit, decision rights and performance priorities.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Operational coordination",
+          "example": "Aligned commercial, product and operations around a shared operating plan.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Commercial performance",
+          "example": "Introduced a review cadence covering customer, financial and delivery outcomes.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which decisions, resources and results sit within the business-unit boundary?"
+    },
+    {
+      "id": "sp-chief-people-officer",
+      "version": "2026-10-21.1",
+      "role": "Chief People Officer",
+      "kind": "synthetic",
+      "label": "search preview",
+      "source": "curated_archetype",
+      "disclosure": "Example candidate CV. Career history and achievements are hypothetical.",
+      "mandate": "Build the people strategy and leadership infrastructure for the business stage.",
+      "focus": [
+        "People strategy",
+        "Leadership development",
+        "Organisation design"
+      ],
+      "experience": [
+        "Leading people functions through relevant growth or organisational change.",
+        "Advising executives on organisation design, succession and reward.",
+        "Building management standards, workforce planning and employee relations."
+      ],
+      "careerHistory": [
+        {
+          "stage": "Recent leadership",
+          "title": "Chief People Officer",
+          "responsibilities": [
+            "Led people functions through relevant growth or organisational change."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Previous role",
+          "title": "People / HR Director",
+          "responsibilities": [
+            "Advised executives on organisation design, succession and reward."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        },
+        {
+          "stage": "Earlier specialism",
+          "title": "HR Business Partner / People Lead",
+          "responsibilities": [
+            "Built management standards, workforce planning and employee relations."
+          ],
+          "environment": "Capital markets or a relevant adjacent business"
+        }
+      ],
+      "achievementExamples": [
+        {
+          "area": "People strategy",
+          "example": "Aligned organisation design and leadership planning with business strategy.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Leadership development",
+          "example": "Introduced succession, management development and workforce planning practices.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        },
+        {
+          "area": "Organisation design",
+          "example": "Strengthened reward governance and executive decision support.",
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+        }
+      ],
+      "question": "Which organisational changes and leadership gaps must this role address?"
+    }
+  ]
+}
