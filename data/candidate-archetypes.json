@@ -49,7 +49,7 @@
           "responsibilities": [
             "Owned desk limits, escalation and operational controls.",
             "Built transaction-cost analysis and daily trading-risk reporting for the desk.",
-            "Tools and methods: SQL, FIX connectivity, kdb+."
+            "Tools and methods: Python, C++."
           ],
           "environment": "Quantitative trading team",
           "period": "2009 - 2017"
@@ -165,7 +165,7 @@
           "responsibilities": [
             "Worked with quant research and engineering on venue connectivity, hedging and trading controls.",
             "Developed market-data replay analysis to investigate fills and stale-quote exposure.",
-            "Tools and methods: FIX connectivity, kdb+, Linux."
+            "Tools and methods: C++, Python."
           ],
           "environment": "Quantitative liquidity team",
           "period": "2010 - 2017"
@@ -281,7 +281,7 @@
           "responsibilities": [
             "Worked with trading and engineering to evaluate live behaviour against research assumptions.",
             "Researched cross-sectional signals and maintained clean experiment datasets.",
-            "Tools and methods: NumPy, pandas, Git."
+            "Tools and methods: Python, SQL."
           ],
           "environment": "Financial research group",
           "period": "2011 - 2017"
@@ -397,7 +397,7 @@
           "responsibilities": [
             "Explained attribution and portfolio decisions to investment and risk stakeholders.",
             "Developed equity signal research and performance attribution for portfolio reviews.",
-            "Tools and methods: Portfolio optimiser, Risk attribution, Execution analytics."
+            "Tools and methods: Python, SQL."
           ],
           "environment": "Equity investment research team",
           "period": "2010 - 2017"
@@ -529,7 +529,7 @@
           "responsibilities": [
             "Owned performance, observability and failure recovery for critical systems.",
             "Implemented research data utilities and automated regression tests for trading components.",
-            "Tools and methods: Linux, SQL, Kafka."
+            "Tools and methods: C++, Python."
           ],
           "environment": "Trading software team",
           "period": "2012 - 2017"
@@ -645,7 +645,7 @@
           "responsibilities": [
             "Defined evaluation, deployment and oversight standards for material use cases.",
             "Delivered applied forecasting and document-processing systems with engineering teams.",
-            "Tools and methods: MLflow, AI evaluation, Cloud platforms."
+            "Tools and methods: Python, PyTorch."
           ],
           "environment": "Applied machine-learning team",
           "period": "2007 - 2017"
@@ -761,7 +761,7 @@
           "responsibilities": [
             "Worked with product, data and platform teams on adoption and monitoring.",
             "Built and tested prediction pipelines with product and domain specialists.",
-            "Tools and methods: MLflow, Docker, Evaluation datasets."
+            "Tools and methods: Python, PyTorch."
           ],
           "environment": "Applied research group",
           "period": "2012 - 2017"
@@ -877,7 +877,7 @@
           "responsibilities": [
             "Delivered reliable datasets for trading, investment, product or regulatory needs.",
             "Built reliable reporting datasets and reconciliations with finance and operations.",
-            "Tools and methods: dbt, Airflow, Snowflake."
+            "Tools and methods: SQL, Python."
           ],
           "environment": "Data engineering group",
           "period": "2011 - 2017"
@@ -993,7 +993,7 @@
           "responsibilities": [
             "Diagnosed drift, latency, reproducibility and operational failure modes.",
             "Developed training pipelines and integration tests with research teams.",
-            "Tools and methods: Kubernetes, MLflow, Feature pipelines."
+            "Tools and methods: Python, PyTorch."
           ],
           "environment": "Machine-learning engineering team",
           "period": "2013 - 2017"
@@ -1109,7 +1109,7 @@
           "responsibilities": [
             "Balanced platform scale, security, reliability and delivery discipline.",
             "Designed shared services and led migrations from tightly coupled legacy components.",
-            "Tools and methods: Python, Kubernetes, PostgreSQL."
+            "Tools and methods: Cloud architecture, Java."
           ],
           "environment": "Enterprise software engineering group",
           "period": "2006 - 2017"
@@ -1225,7 +1225,7 @@
           "responsibilities": [
             "Developed engineering leadership and a sustainable operating cadence.",
             "Led customer-facing services and developed senior engineers into team leads.",
-            "Tools and methods: Kubernetes, CI/CD, PostgreSQL."
+            "Tools and methods: Java, Python."
           ],
           "environment": "Software delivery team",
           "period": "2009 - 2017"
@@ -1341,7 +1341,7 @@
           "responsibilities": [
             "Worked with product and infrastructure teams on priorities and capacity.",
             "Built backend services, integration tests and deployment automation.",
-            "Tools and methods: PostgreSQL, CI/CD, Docker."
+            "Tools and methods: Java, TypeScript."
           ],
           "environment": "Product engineering team",
           "period": "2011 - 2017"
@@ -1457,7 +1457,7 @@
           "responsibilities": [
             "Directed incident readiness and communicating material risk to executives.",
             "Implemented identity, logging and security-testing controls with engineering teams.",
-            "Tools and methods: Cloud security, IAM, Threat modelling."
+            "Tools and methods: SIEM, Endpoint detection."
           ],
           "environment": "Security engineering team",
           "period": "2007 - 2017"
@@ -1573,7 +1573,7 @@
           "responsibilities": [
             "Reviewed pipeline quality, forecast discipline and commercial economics.",
             "Closed multi-stakeholder enterprise sales with product and implementation specialists.",
-            "Tools and methods: Revenue forecasting, SQL dashboards, Account planning."
+            "Tools and methods: HubSpot, Salesforce."
           ],
           "environment": "Enterprise sales organisation",
           "period": "2007 - 2017"
@@ -1689,7 +1689,7 @@
           "responsibilities": [
             "Aligned commercial commitments with product, risk and operating capacity.",
             "Built opportunity analysis and account plans for institutional market segments.",
-            "Tools and methods: Contract workflows, Power BI, Partner scorecards."
+            "Tools and methods: CRM platforms, Pricing analysis."
           ],
           "environment": "Business development team",
           "period": "2006 - 2017"
@@ -1805,7 +1805,7 @@
           "responsibilities": [
             "Developed repeatable sales execution for complex buying decisions.",
             "Developed customer value cases and negotiated enterprise software agreements.",
-            "Tools and methods: Sales forecasting, Mutual action plans, Account mapping."
+            "Tools and methods: Salesforce, HubSpot."
           ],
           "environment": "Enterprise account team",
           "period": "2010 - 2017"
@@ -1921,7 +1921,7 @@
           "responsibilities": [
             "Coordinated product, legal and operational stakeholders through execution.",
             "Researched customer segments and developed institutional partnership propositions.",
-            "Tools and methods: Contract review workflows, Excel, Market mapping."
+            "Tools and methods: CRM platforms, Partner economics."
           ],
           "environment": "Commercial partnerships team",
           "period": "2011 - 2017"
@@ -2037,7 +2037,7 @@
           "responsibilities": [
             "Aligned product, design, engineering and go-to-market leadership.",
             "Launched institutional features with explicit onboarding, adoption and support measures.",
-            "Tools and methods: Figma, Jira, Roadmap planning."
+            "Tools and methods: Product analytics, SQL."
           ],
           "environment": "Financial product delivery team",
           "period": "2008 - 2017"
@@ -2153,7 +2153,7 @@
           "responsibilities": [
             "Managed roadmap dependencies with engineering and commercial teams.",
             "Delivered onboarding and reporting features informed by customer research.",
-            "Tools and methods: Jira, Figma, Roadmap tools."
+            "Tools and methods: SQL, Product analytics."
           ],
           "environment": "Product management team",
           "period": "2010 - 2017"
@@ -2269,7 +2269,7 @@
           "responsibilities": [
             "Made explicit trade-offs across scope, risk and delivery capacity.",
             "Owned feature discovery, acceptance criteria and release feedback with engineering.",
-            "Tools and methods: Figma, Product analytics, API documentation."
+            "Tools and methods: SQL, Jira."
           ],
           "environment": "Product delivery group",
           "period": "2012 - 2017"
@@ -2385,7 +2385,7 @@
           "responsibilities": [
             "Translated chosen priorities into accountable programmes.",
             "Developed competitor analysis, customer research and financial scenarios.",
-            "Tools and methods: Scenario modelling, Market research, Board papers."
+            "Tools and methods: Excel, Power BI."
           ],
           "environment": "Corporate strategy team",
           "period": "2009 - 2017"
@@ -2501,7 +2501,7 @@
           "responsibilities": [
             "Provided independent challenge to executive and board decisions.",
             "Built risk analysis and monitoring for limits, liquidity and operational exceptions.",
-            "Tools and methods: SQL, Stress testing, Risk appetite frameworks."
+            "Tools and methods: Risk dashboards, Python."
           ],
           "environment": "Specialist risk team",
           "period": "2006 - 2017"
@@ -2617,7 +2617,7 @@
           "responsibilities": [
             "Engaged regulators and advising senior leaders on material obligations.",
             "Advised product and operations on policies, controls and regulatory obligations.",
-            "Tools and methods: Policy systems, Regulatory change tracking, Board reporting."
+            "Tools and methods: Compliance registers, Monitoring tools."
           ],
           "environment": "Compliance advisory team",
           "period": "2006 - 2017"
@@ -2733,7 +2733,7 @@
           "responsibilities": [
             "Advised business teams on applicable regulatory requirements.",
             "Completed control testing and advised operations on regulatory requirements.",
-            "Tools and methods: Policy libraries, Regulatory alerts, Excel."
+            "Tools and methods: Monitoring plans, Case management."
           ],
           "environment": "Compliance operations team",
           "period": "2010 - 2017"
@@ -2849,7 +2849,7 @@
           "responsibilities": [
             "Worked with compliance, operations and engineering on control effectiveness.",
             "Investigated monitoring alerts and maintained due-diligence evidence for review.",
-            "Tools and methods: Screening tools, SQL, Quality assurance."
+            "Tools and methods: Transaction monitoring, Case management."
           ],
           "environment": "Financial-crime operations team",
           "period": "2009 - 2017"
@@ -2965,7 +2965,7 @@
           "responsibilities": [
             "Coordinated business, technology, finance and control functions.",
             "Managed reconciliations, exception handling and service delivery with finance and technology.",
-            "Tools and methods: SQL reporting, Process mapping, Risk registers."
+            "Tools and methods: Operating dashboards, Workflow systems."
           ],
           "environment": "Operations delivery team",
           "period": "2006 - 2017"
@@ -3081,7 +3081,7 @@
           "responsibilities": [
             "Advised the board on capital allocation and business economics.",
             "Managed close, audit evidence and financial analysis for operating departments.",
-            "Tools and methods: Power BI, Financial planning tools, Treasury reporting."
+            "Tools and methods: ERP systems, Excel."
           ],
           "environment": "Financial control team",
           "period": "2005 - 2017"
@@ -3197,7 +3197,7 @@
           "responsibilities": [
             "Improved service performance while managing operational incidents.",
             "Resolved transaction breaks and maintained control evidence for operational reviews.",
-            "Tools and methods: SQL, Excel, Incident management."
+            "Tools and methods: Workflow platforms, Reconciliation tools."
           ],
           "environment": "Transaction operations team",
           "period": "2010 - 2017"
@@ -3313,7 +3313,7 @@
           "responsibilities": [
             "Strengthened controls and supporting operational business decisions.",
             "Built department budgets, variance analysis and operational finance reporting.",
-            "Tools and methods: Power BI, Planning tools, Accounting controls."
+            "Tools and methods: ERP systems, Excel."
           ],
           "environment": "Finance operations group",
           "period": "2008 - 2017"
@@ -3429,7 +3429,7 @@
           "responsibilities": [
             "Owned commercial performance, resource allocation and organisational direction.",
             "Built a functional leadership team and delivered cross-company growth initiatives.",
-            "Tools and methods: Financial dashboards, CRM analytics, Capital allocation."
+            "Tools and methods: Business planning, Board reporting."
           ],
           "environment": "Commercial and product organisation",
           "period": "2004 - 2017"
@@ -3545,7 +3545,7 @@
           "responsibilities": [
             "Managed senior stakeholder relationships and leadership accountability.",
             "Managed a functional team serving institutional customers and delivery partners.",
-            "Tools and methods: Operating dashboards, Board papers, Risk reviews."
+            "Tools and methods: Financial planning, CRM reporting."
           ],
           "environment": "Functional leadership team",
           "period": "2005 - 2017"
@@ -3661,7 +3661,7 @@
           "responsibilities": [
             "Managed budgets, priorities and performance against agreed targets.",
             "Managed departmental delivery, staffing and budget decisions.",
-            "Tools and methods: Budget planning, Service reporting, Process mapping."
+            "Tools and methods: Operating dashboards, CRM platforms."
           ],
           "environment": "Department management team",
           "period": "2008 - 2017"
@@ -3777,7 +3777,7 @@
           "responsibilities": [
             "Built management standards, workforce planning and employee relations.",
             "Partnered with business leaders on hiring, employee relations and team development.",
-            "Tools and methods: Compensation planning, Talent reviews, People dashboards."
+            "Tools and methods: HRIS, Workforce analytics."
           ],
           "environment": "HR business-partnering team",
           "period": "2005 - 2017"

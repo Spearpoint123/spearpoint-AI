@@ -56,7 +56,7 @@ $('#guide-back').addEventListener('click',()=>{guideStep=Math.max(0,guideStep-1)
 function blueprint(input,spec){
  const article=el('article','','blueprint candidate-cv');
  const top=el('div','','blueprint-top');top.append(el('span',spec.niche+' / '+input.location,'step'),el('span','Target profile','blueprint-label'));article.append(top);
- const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('h3',spec.role),el('p',spec.professionalSummary,'cv-summary'),el('p',spec.experienceYears+' years of example career experience','cv-experience'),el('p',spec.leadershipScope,'cv-scope'));
+ const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('h3',spec.role),el('p',spec.professionalSummary,'cv-summary'),el('p',spec.experienceYears+' years of relevant experience','cv-experience'),el('p',spec.leadershipScope,'cv-scope'));
  const chips=el('div','','chips');spec.focus.forEach(skill=>chips.append(el('span',skill)));story.append(chips,el('h4','Markets & specialisms','cv-sidebar-heading'),el('p',spec.markets.join(' · '),'cv-sector'),el('h4','Technology & methods','cv-sidebar-heading'));const tools=el('ul','','cv-tools');spec.technologies.forEach(tool=>tools.append(el('li',tool)));story.append(tools,el('p',spec.baseFocus,'target-salary'));
  const call=el('a','Discuss this profile ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(call);core.append(story);
  const history=el('div','','cv-history');history.append(el('h4','Career progression','cv-section-heading'));
