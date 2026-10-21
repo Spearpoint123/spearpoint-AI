@@ -1,9 +1,9 @@
 {
-  "version": "2026-10-21.1",
+  "version": "2026-10-21.2",
   "records": [
     {
       "id": "sp-head-of-trading",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Trading",
       "kind": "synthetic",
       "label": "search preview",
@@ -25,49 +25,101 @@
           "stage": "Recent leadership",
           "title": "Head of Trading",
           "responsibilities": [
-            "Led traders or systematic strategies across relevant products and venues."
+            "Led traders or systematic strategies across relevant products and venues.",
+            "Introduced desk-wide execution reviews covering slippage, fill quality, inventory and exception handling.",
+            "Tools and methods: Python, C++, SQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Multi-asset proprietary trading firm",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Senior Trader / Desk Lead",
           "responsibilities": [
-            "Reviewed execution costs, market impact and trading performance."
+            "Reviewed execution costs, market impact and trading performance.",
+            "Partnered with engineers to move an index-futures strategy from research into monitored production.",
+            "Tools and methods: C++, SQL, FIX connectivity."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional electronic trading business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Trader / Quantitative Analyst",
           "responsibilities": [
-            "Owned desk limits, escalation and operational controls."
+            "Owned desk limits, escalation and operational controls.",
+            "Built transaction-cost analysis and daily trading-risk reporting for the desk.",
+            "Tools and methods: SQL, FIX connectivity, kdb+."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Quantitative trading team",
+          "period": "2009 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Trading strategy",
           "example": "Introduced a consistent desk review covering execution quality, risk usage and strategy performance.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Desk size: 12 people",
+          "metricContext": "Example current remit: traders and quant developers."
         },
         {
           "area": "Execution quality",
           "example": "Aligned traders and engineering around execution monitoring and exception handling.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Execution cost: 8 to 6 bps",
+          "metricContext": "Example arrival-price shortfall, comparable orders over 12 months; excludes commissions."
         },
         {
           "area": "Desk risk",
           "example": "Established clear escalation paths for trading limits and operational incidents.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Incident recovery: 45 to 20 minutes",
+          "metricContext": "Example median recovery time for execution incidents over 12 months."
         }
       ],
-      "question": "Which strategies, products and risk budget will this desk own?"
+      "question": "Which strategies, products and risk budget will this desk own?",
+      "professionalSummary": "Trading leader with experience across systematic futures, listed options and electronic execution. Progressed from quantitative analysis into desk leadership, combining strategy oversight with execution engineering and day-to-day risk decisions.",
+      "experienceYears": 17,
+      "leadershipScope": "Led 12 traders and quant developers across two trading sessions.",
+      "markets": [
+        "Listed futures",
+        "Equity index options",
+        "Electronic execution"
+      ],
+      "technologies": [
+        "Python",
+        "C++",
+        "SQL",
+        "FIX connectivity",
+        "kdb+",
+        "Transaction-cost analysis"
+      ],
+      "metrics": [
+        {
+          "label": "Desk size",
+          "value": "12 people",
+          "context": "Example current remit: traders and quant developers.",
+          "hypothetical": true
+        },
+        {
+          "label": "Execution cost",
+          "value": "8 to 6 bps",
+          "context": "Example arrival-price shortfall, comparable orders over 12 months; excludes commissions.",
+          "hypothetical": true
+        },
+        {
+          "label": "Incident recovery",
+          "value": "45 to 20 minutes",
+          "context": "Example median recovery time for execution incidents over 12 months.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-market-making",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Market Making",
       "kind": "synthetic",
       "label": "search preview",
@@ -89,49 +141,101 @@
           "stage": "Recent leadership",
           "title": "Head of Market Making",
           "responsibilities": [
-            "Led an electronic market-making desk or systematic liquidity strategies."
+            "Led an electronic market-making desk or systematic liquidity strategies.",
+            "Built pricing and inventory reviews linking adverse selection, hedge cost and quote decisions.",
+            "Tools and methods: C++, Python, FIX connectivity."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Electronic market maker",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Market Making Desk Lead",
           "responsibilities": [
-            "Managed quote quality, spreads, inventory exposure and adverse selection."
+            "Managed quote quality, spreads, inventory exposure and adverse selection.",
+            "Owned options quoting and hedge execution with engineering support for venue onboarding.",
+            "Tools and methods: Python, FIX connectivity, kdb+."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Proprietary derivatives trading firm",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Quantitative Trader",
           "responsibilities": [
-            "Worked with quant research and engineering on venue connectivity, hedging and trading controls."
+            "Worked with quant research and engineering on venue connectivity, hedging and trading controls.",
+            "Developed market-data replay analysis to investigate fills and stale-quote exposure.",
+            "Tools and methods: FIX connectivity, kdb+, Linux."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Quantitative liquidity team",
+          "period": "2010 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Electronic market making",
           "example": "Built a pricing and inventory review process across quoting and hedging strategies.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Venue coverage: 6 venues",
+          "metricContext": "Example live connectivity remit; venue identities omitted."
         },
         {
           "area": "Pricing and inventory",
           "example": "Introduced adverse-selection monitoring to inform quote and spread decisions.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Quote uptime: 99.95%",
+          "metricContext": "Example quoting-service uptime during scheduled trading hours over 12 months."
         },
         {
           "area": "Liquidity risk",
           "example": "Coordinated venue onboarding with quant research, connectivity engineering and risk.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Stale-quote incidents: 18 to 7 per quarter",
+          "metricContext": "Example internally defined incidents before and after controls; comparable quarters."
         }
       ],
-      "question": "Which venues, instruments, inventory limits and liquidity obligations define this mandate?"
+      "question": "Which venues, instruments, inventory limits and liquidity obligations define this mandate?",
+      "professionalSummary": "Electronic market-making specialist with a background in quantitative trading, pricing and automated hedging. Built experience across quoting engines, exchange connectivity and inventory controls before taking responsibility for a multi-venue desk.",
+      "experienceYears": 16,
+      "leadershipScope": "Led 10 trading, research and connectivity specialists across six venues.",
+      "markets": [
+        "Exchange-traded futures",
+        "Listed options",
+        "Multi-venue liquidity provision"
+      ],
+      "technologies": [
+        "C++",
+        "Python",
+        "FIX connectivity",
+        "kdb+",
+        "Linux",
+        "Market-data replay"
+      ],
+      "metrics": [
+        {
+          "label": "Venue coverage",
+          "value": "6 venues",
+          "context": "Example live connectivity remit; venue identities omitted.",
+          "hypothetical": true
+        },
+        {
+          "label": "Quote uptime",
+          "value": "99.95%",
+          "context": "Example quoting-service uptime during scheduled trading hours over 12 months.",
+          "hypothetical": true
+        },
+        {
+          "label": "Stale-quote incidents",
+          "value": "18 to 7 per quarter",
+          "context": "Example internally defined incidents before and after controls; comparable quarters.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-quantitative-research",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Quantitative Research",
       "kind": "synthetic",
       "label": "search preview",
@@ -153,49 +257,101 @@
           "stage": "Recent leadership",
           "title": "Head of Quantitative Research",
           "responsibilities": [
-            "Led quantitative researchers through hypothesis design and empirical testing."
+            "Led quantitative researchers through hypothesis design and empirical testing.",
+            "Introduced independent strategy review, leakage checks and reproducibility standards across the research group.",
+            "Tools and methods: Python, SQL, NumPy."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Systematic investment manager",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Senior Quantitative Researcher",
           "responsibilities": [
-            "Controlled data leakage, overfitting and research reproducibility."
+            "Controlled data leakage, overfitting and research reproducibility.",
+            "Built a medium-frequency research pipeline with transaction-cost and capacity analysis.",
+            "Tools and methods: SQL, NumPy, pandas."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Quantitative trading firm",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Quantitative Researcher",
           "responsibilities": [
-            "Worked with trading and engineering to evaluate live behaviour against research assumptions."
+            "Worked with trading and engineering to evaluate live behaviour against research assumptions.",
+            "Researched cross-sectional signals and maintained clean experiment datasets.",
+            "Tools and methods: NumPy, pandas, Git."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial research group",
+          "period": "2011 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Signal research",
           "example": "Established a reproducible signal-research process with independent validation.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Research group: 8 researchers",
+          "metricContext": "Example current team; three research workstreams."
         },
         {
           "area": "Research validation",
           "example": "Strengthened checks for overfitting, transaction costs and changing market conditions.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Production hand-off: 12 to 7 weeks",
+          "metricContext": "Example median time from approved research to deployment over 12 months."
         },
         {
           "area": "Production hand-off",
           "example": "Created a structured hand-off from research experiments to production strategies.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Reproducibility: 60% to 95%",
+          "metricContext": "Example share of sampled experiments rerunnable from a pinned dataset and code version."
         }
       ],
-      "question": "Which research horizon, data advantage and deployment constraints matter most?"
+      "question": "Which research horizon, data advantage and deployment constraints matter most?",
+      "professionalSummary": "Quantitative researcher who progressed from signal development to ownership of a multi-strategy research programme. Experienced in robust validation, transaction-cost-aware portfolio research and production hand-off with trading and engineering teams.",
+      "experienceYears": 15,
+      "leadershipScope": "Led eight researchers across medium-frequency futures and equity signals.",
+      "markets": [
+        "Systematic futures",
+        "Equity signals",
+        "Research-to-production"
+      ],
+      "technologies": [
+        "Python",
+        "SQL",
+        "NumPy",
+        "pandas",
+        "Git",
+        "Experiment tracking"
+      ],
+      "metrics": [
+        {
+          "label": "Research group",
+          "value": "8 researchers",
+          "context": "Example current team; three research workstreams.",
+          "hypothetical": true
+        },
+        {
+          "label": "Production hand-off",
+          "value": "12 to 7 weeks",
+          "context": "Example median time from approved research to deployment over 12 months.",
+          "hypothetical": true
+        },
+        {
+          "label": "Reproducibility",
+          "value": "60% to 95%",
+          "context": "Example share of sampled experiments rerunnable from a pinned dataset and code version.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-portfolio-manager",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Portfolio Manager",
       "kind": "synthetic",
       "label": "search preview",
@@ -217,49 +373,117 @@
           "stage": "Recent leadership",
           "title": "Portfolio Manager",
           "responsibilities": [
-            "Managed a relevant investment strategy with explicit decision rights."
+            "Managed a relevant investment strategy with explicit decision rights.",
+            "Allocated risk across equity signals, reviewed factor exposures and governed strategy drawdown decisions.",
+            "Tools and methods: Python, SQL, Portfolio optimiser."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Multi-strategy hedge fund",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Deputy Portfolio Manager / Senior Analyst",
           "responsibilities": [
-            "Assessed position sizing, liquidity, drawdown and concentration risk."
+            "Assessed position sizing, liquidity, drawdown and concentration risk.",
+            "Managed a research sleeve with explicit turnover, liquidity and transaction-cost constraints.",
+            "Tools and methods: SQL, Portfolio optimiser, Risk attribution."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Systematic asset manager",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Investment Analyst",
           "responsibilities": [
-            "Explained attribution and portfolio decisions to investment and risk stakeholders."
+            "Explained attribution and portfolio decisions to investment and risk stakeholders.",
+            "Developed equity signal research and performance attribution for portfolio reviews.",
+            "Tools and methods: Portfolio optimiser, Risk attribution, Execution analytics."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Equity investment research team",
+          "period": "2010 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Portfolio construction",
           "example": "Defined a repeatable investment process and documented portfolio decision rules.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Annualised return: 14.0%",
+          "metricContext": "Hypothetical 36-month scenario, net of trading costs and fees; no observed track record."
         },
         {
           "area": "Risk allocation",
           "example": "Integrated liquidity, concentration and drawdown reviews into portfolio oversight.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Annualised volatility: 6.0%",
+          "metricContext": "Same hypothetical 36-month scenario; excess-return volatility assumes a constant risk-free rate."
         },
         {
           "area": "Investment discipline",
           "example": "Built an investment review linking research assumptions with realised outcomes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Sharpe ratio: 2.0",
+          "metricContext": "Scenario calculation: (14% return - 2% risk-free rate) / 6% volatility. Unitless; not 2%."
         }
       ],
-      "question": "What capital allocation, risk limits and investment horizon will apply?"
+      "question": "What capital allocation, risk limits and investment horizon will apply?",
+      "professionalSummary": "Systematic portfolio manager with experience in equity market-neutral strategies, risk allocation and execution-aware portfolio construction. Progressed through investment research and deputy portfolio ownership before taking responsibility for a dedicated strategy book.",
+      "experienceYears": 16,
+      "leadershipScope": "Owned an example US$250m strategy allocation with four researchers and a shared trading team.",
+      "markets": [
+        "Equity market-neutral",
+        "Portfolio construction",
+        "Liquidity and factor risk"
+      ],
+      "technologies": [
+        "Python",
+        "SQL",
+        "Portfolio optimiser",
+        "Risk attribution",
+        "Execution analytics",
+        "Research notebooks"
+      ],
+      "metrics": [
+        {
+          "label": "Annualised return",
+          "value": "14.0%",
+          "context": "Hypothetical 36-month scenario, net of trading costs and fees; no observed track record.",
+          "hypothetical": true
+        },
+        {
+          "label": "Annualised volatility",
+          "value": "6.0%",
+          "context": "Same hypothetical 36-month scenario; excess-return volatility assumes a constant risk-free rate.",
+          "hypothetical": true
+        },
+        {
+          "label": "Sharpe ratio",
+          "value": "2.0",
+          "context": "Scenario calculation: (14% return - 2% risk-free rate) / 6% volatility. Unitless; not 2%.",
+          "hypothetical": true
+        },
+        {
+          "label": "Maximum drawdown",
+          "value": "7.0%",
+          "context": "Largest hypothetical peak-to-trough loss within the same 36-month scenario.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results.",
+      "performanceScenario": {
+        "periodMonths": 36,
+        "annualisedReturn": 0.14,
+        "annualisedVolatility": 0.06,
+        "riskFreeRate": 0.02,
+        "sharpeRatio": 2.0,
+        "maximumDrawdown": 0.07,
+        "netOfCostsAndFees": true,
+        "hypothetical": true
+      }
     },
     {
       "id": "sp-principal-quantitative-engineer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Principal Quantitative Engineer",
       "kind": "synthetic",
       "label": "search preview",
@@ -281,49 +505,101 @@
           "stage": "Recent leadership",
           "title": "Principal Quantitative Engineer",
           "responsibilities": [
-            "Built research infrastructure, data pipelines or trading systems in relevant markets."
+            "Built research infrastructure, data pipelines or trading systems in relevant markets.",
+            "Redesigned a market-data ingestion path with deterministic replay, validation and service ownership.",
+            "Tools and methods: C++, Python, Linux."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Quantitative trading firm",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Senior Quantitative Engineer",
           "responsibilities": [
-            "Worked with researchers on simulation fidelity, testing and reproducibility."
+            "Worked with researchers on simulation fidelity, testing and reproducibility.",
+            "Built production adapters connecting research signals to risk-aware execution services.",
+            "Tools and methods: Python, Linux, SQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Electronic market infrastructure provider",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Quantitative Developer",
           "responsibilities": [
-            "Owned performance, observability and failure recovery for critical systems."
+            "Owned performance, observability and failure recovery for critical systems.",
+            "Implemented research data utilities and automated regression tests for trading components.",
+            "Tools and methods: Linux, SQL, Kafka."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Trading software team",
+          "period": "2012 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Quantitative systems",
           "example": "Reworked a research-to-production path with stronger testing and reproducibility.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Engineering remit: 7 engineers",
+          "metricContext": "Example technical leadership across data and execution services."
         },
         {
           "area": "Research tooling",
           "example": "Improved observability across data, strategy and execution components.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Processing latency: 180 to 110 microseconds",
+          "metricContext": "Example p99 internal message-processing latency under a fixed replay workload; excludes network transit."
         },
         {
           "area": "Production reliability",
           "example": "Partnered with traders to prioritise performance, reliability and delivery trade-offs.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Replay coverage: 40% to 90%",
+          "metricContext": "Example share of critical feed handlers covered by deterministic regression replay."
         }
       ],
-      "question": "Where does the role sit between research infrastructure and live trading?"
+      "question": "Where does the role sit between research infrastructure and live trading?",
+      "professionalSummary": "Senior quantitative engineer bridging research systems and production trading. Built experience in market-data processing, performance-sensitive services and research tooling, with responsibility for technical decisions across strategy delivery.",
+      "experienceYears": 14,
+      "leadershipScope": "Technical lead for seven engineers supporting research and trading systems.",
+      "markets": [
+        "Trading infrastructure",
+        "Research platforms",
+        "Performance-sensitive systems"
+      ],
+      "technologies": [
+        "C++",
+        "Python",
+        "Linux",
+        "SQL",
+        "Kafka",
+        "Profiling and replay tools"
+      ],
+      "metrics": [
+        {
+          "label": "Engineering remit",
+          "value": "7 engineers",
+          "context": "Example technical leadership across data and execution services.",
+          "hypothetical": true
+        },
+        {
+          "label": "Processing latency",
+          "value": "180 to 110 microseconds",
+          "context": "Example p99 internal message-processing latency under a fixed replay workload; excludes network transit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Replay coverage",
+          "value": "40% to 90%",
+          "context": "Example share of critical feed handlers covered by deterministic regression replay.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-ai-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief AI Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -345,49 +621,101 @@
           "stage": "Recent leadership",
           "title": "Chief AI Officer",
           "responsibilities": [
-            "Set an AI investment agenda across a complex organisation."
+            "Set an AI investment agenda across a complex organisation.",
+            "Prioritised an AI use-case portfolio with business owners, evaluation gates and deployment accountability.",
+            "Tools and methods: Python, PyTorch, MLflow."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Head of AI / Machine Learning",
           "responsibilities": [
-            "Built leadership across research, engineering, data and risk."
+            "Built leadership across research, engineering, data and risk.",
+            "Established a shared platform for monitored AI services and reproducible evaluation.",
+            "Tools and methods: PyTorch, MLflow, AI evaluation."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional financial services group",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Machine Learning Lead",
           "responsibilities": [
-            "Defined evaluation, deployment and oversight standards for material use cases."
+            "Defined evaluation, deployment and oversight standards for material use cases.",
+            "Delivered applied forecasting and document-processing systems with engineering teams.",
+            "Tools and methods: MLflow, AI evaluation, Cloud platforms."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Applied machine-learning team",
+          "period": "2007 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "AI strategy",
           "example": "Prioritised an AI investment roadmap against business value and delivery readiness.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Organisation: 35 people",
+          "metricContext": "Example AI, platform and governance remit."
         },
         {
           "area": "AI governance",
           "example": "Established executive accountability for AI evaluation, governance and deployment.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Production use cases: 9",
+          "metricContext": "Example services operating with named business owners and monitoring."
         },
         {
           "area": "Business adoption",
           "example": "Built collaboration between research, engineering, risk and business leadership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Evaluation compliance: 55% to 100%",
+          "metricContext": "Example share of production releases with a documented evaluation and approval record."
         }
       ],
-      "question": "Which business decisions should AI improve, and who owns the associated risk?"
+      "question": "Which business decisions should AI improve, and who owns the associated risk?",
+      "professionalSummary": "AI executive combining applied machine learning, platform delivery and enterprise governance. Progressed through technical and departmental leadership before owning an AI investment portfolio tied to commercial and operational outcomes.",
+      "experienceYears": 19,
+      "leadershipScope": "Led a 35-person AI organisation with product, research, platform and governance ownership.",
+      "markets": [
+        "Financial AI",
+        "Enterprise deployment",
+        "AI governance"
+      ],
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "MLflow",
+        "AI evaluation",
+        "Cloud platforms",
+        "AI risk registers"
+      ],
+      "metrics": [
+        {
+          "label": "Organisation",
+          "value": "35 people",
+          "context": "Example AI, platform and governance remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Production use cases",
+          "value": "9",
+          "context": "Example services operating with named business owners and monitoring.",
+          "hypothetical": true
+        },
+        {
+          "label": "Evaluation compliance",
+          "value": "55% to 100%",
+          "context": "Example share of production releases with a documented evaluation and approval record.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-ai",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of AI",
       "kind": "synthetic",
       "label": "search preview",
@@ -409,49 +737,101 @@
           "stage": "Recent leadership",
           "title": "Head of AI",
           "responsibilities": [
-            "Led applied AI or machine-learning teams on relevant business problems."
+            "Led applied AI or machine-learning teams on relevant business problems.",
+            "Established evaluation, release and monitoring standards for customer-facing AI services.",
+            "Tools and methods: Python, PyTorch, MLflow."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial AI software business",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Machine Learning Lead",
           "responsibilities": [
-            "Defined evaluation datasets, AI-quality thresholds and release criteria."
+            "Defined evaluation datasets, AI-quality thresholds and release criteria.",
+            "Led a team delivering classification and retrieval systems for operational workflows.",
+            "Tools and methods: PyTorch, MLflow, Docker."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial services analytics team",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Senior Machine Learning Engineer",
           "responsibilities": [
-            "Worked with product, data and platform teams on adoption and monitoring."
+            "Worked with product, data and platform teams on adoption and monitoring.",
+            "Built and tested prediction pipelines with product and domain specialists.",
+            "Tools and methods: MLflow, Docker, Evaluation datasets."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Applied research group",
+          "period": "2012 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "AI delivery",
           "example": "Established a use-case portfolio with clear evaluation and production-readiness criteria.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Team size: 14 people",
+          "metricContext": "Example mix of research and machine-learning engineering."
         },
         {
           "area": "Evaluation standards",
           "example": "Built a repeatable path from experiments to monitored production services.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Deployment cycle: 10 to 6 weeks",
+          "metricContext": "Example median time from approved experiment to monitored production release."
         },
         {
           "area": "Research leadership",
           "example": "Developed an AI team with explicit research, engineering and product ownership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Monitored services: 8",
+          "metricContext": "Example production services with quality, drift and incident ownership."
         }
       ],
-      "question": "Which use cases need research depth, and which need dependable execution?"
+      "question": "Which use cases need research depth, and which need dependable execution?",
+      "professionalSummary": "Applied AI leader with experience turning research prototypes into dependable financial-services products. Built teams across machine learning, evaluation and deployment, with a focus on measurable use cases and operational ownership.",
+      "experienceYears": 14,
+      "leadershipScope": "Managed 14 machine-learning researchers and engineers.",
+      "markets": [
+        "Applied machine learning",
+        "Financial workflows",
+        "Production AI"
+      ],
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "MLflow",
+        "Docker",
+        "Evaluation datasets",
+        "Monitoring dashboards"
+      ],
+      "metrics": [
+        {
+          "label": "Team size",
+          "value": "14 people",
+          "context": "Example mix of research and machine-learning engineering.",
+          "hypothetical": true
+        },
+        {
+          "label": "Deployment cycle",
+          "value": "10 to 6 weeks",
+          "context": "Example median time from approved experiment to monitored production release.",
+          "hypothetical": true
+        },
+        {
+          "label": "Monitored services",
+          "value": "8",
+          "context": "Example production services with quality, drift and incident ownership.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-data",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Data",
       "kind": "synthetic",
       "label": "search preview",
@@ -473,49 +853,101 @@
           "stage": "Recent leadership",
           "title": "Head of Data",
           "responsibilities": [
-            "Led data engineering, governance or analytics in a relevant environment."
+            "Led data engineering, governance or analytics in a relevant environment.",
+            "Established data ownership and service expectations for critical investment and customer datasets.",
+            "Tools and methods: SQL, Python, dbt."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial data platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Data Engineering / Analytics Lead",
           "responsibilities": [
-            "Established lineage, ownership, quality controls and access policies."
+            "Established lineage, ownership, quality controls and access policies.",
+            "Modernised ingestion and transformation pipelines with lineage and automated quality checks.",
+            "Tools and methods: Python, dbt, Airflow."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional investment business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Senior Data Engineer",
           "responsibilities": [
-            "Delivered reliable datasets for trading, investment, product or regulatory needs."
+            "Delivered reliable datasets for trading, investment, product or regulatory needs.",
+            "Built reliable reporting datasets and reconciliations with finance and operations.",
+            "Tools and methods: dbt, Airflow, Snowflake."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Data engineering group",
+          "period": "2011 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Data governance",
           "example": "Introduced data ownership, quality standards and incident escalation.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Data organisation: 18 people",
+          "metricContext": "Example shared data, analytics and governance team."
         },
         {
           "area": "Data platforms",
           "example": "Aligned platform investment with analytics, research and regulatory priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Pipeline freshness: 92% to 99%",
+          "metricContext": "Example share of critical datasets delivered within their agreed freshness windows."
         },
         {
           "area": "Data quality",
           "example": "Established governance for access, lineage and critical data definitions.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Quality incidents: 22 to 9 per quarter",
+          "metricContext": "Example business-impacting data issues, using the same incident definition."
         }
       ],
-      "question": "Which data products and control gaps must this person own?"
+      "question": "Which data products and control gaps must this person own?",
+      "professionalSummary": "Data leader with experience in financial data platforms, governance and analytics enablement. Progressed from data engineering into leadership of shared infrastructure, data quality and ownership across business-critical datasets.",
+      "experienceYears": 15,
+      "leadershipScope": "Led 18 data engineers, analysts and governance specialists.",
+      "markets": [
+        "Financial data",
+        "Research enablement",
+        "Data governance"
+      ],
+      "technologies": [
+        "SQL",
+        "Python",
+        "dbt",
+        "Airflow",
+        "Snowflake",
+        "Data lineage tools"
+      ],
+      "metrics": [
+        {
+          "label": "Data organisation",
+          "value": "18 people",
+          "context": "Example shared data, analytics and governance team.",
+          "hypothetical": true
+        },
+        {
+          "label": "Pipeline freshness",
+          "value": "92% to 99%",
+          "context": "Example share of critical datasets delivered within their agreed freshness windows.",
+          "hypothetical": true
+        },
+        {
+          "label": "Quality incidents",
+          "value": "22 to 9 per quarter",
+          "context": "Example business-impacting data issues, using the same incident definition.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-principal-machine-learning-engineer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Principal Machine Learning Engineer",
       "kind": "synthetic",
       "label": "search preview",
@@ -537,49 +969,101 @@
           "stage": "Recent leadership",
           "title": "Principal Machine Learning Engineer",
           "responsibilities": [
-            "Deployed models into consequential production workflows."
+            "Deployed models into consequential production workflows.",
+            "Built deployment and rollback components for monitored inference services.",
+            "Tools and methods: Python, PyTorch, Kubernetes."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial AI platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Senior Machine Learning Engineer",
           "responsibilities": [
-            "Built training, feature, serving and monitoring infrastructure."
+            "Built training, feature, serving and monitoring infrastructure.",
+            "Implemented evaluation datasets, quality gates and feature consistency checks.",
+            "Tools and methods: PyTorch, Kubernetes, MLflow."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Analytics software provider",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Machine Learning Engineer",
           "responsibilities": [
-            "Diagnosed drift, latency, reproducibility and operational failure modes."
+            "Diagnosed drift, latency, reproducibility and operational failure modes.",
+            "Developed training pipelines and integration tests with research teams.",
+            "Tools and methods: Kubernetes, MLflow, Feature pipelines."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Machine-learning engineering team",
+          "period": "2013 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "ML engineering",
           "example": "Built evaluation and release checks for a production machine-learning service.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Inference latency: 240 to 160 ms",
+          "metricContext": "Example p95 latency at a fixed request size and concurrency; excludes client network time."
         },
         {
           "area": "AI evaluation",
           "example": "Improved monitoring for data drift, quality and inference failures.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Serving availability: 99.9%",
+          "metricContext": "Example service SLO measured over 12 months."
         },
         {
           "area": "Production operations",
           "example": "Created reusable deployment components across research and engineering teams.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Release effort: 3 days to 1 day",
+          "metricContext": "Example median engineering effort for a routine release using reusable tooling."
         }
       ],
-      "question": "What evaluation, latency and reliability requirements must the system meet?"
+      "question": "What evaluation, latency and reliability requirements must the system meet?",
+      "professionalSummary": "Hands-on machine-learning engineer experienced in production pipelines, evaluation and operational reliability. Progressed from individual delivery to technical leadership of reusable inference and training infrastructure.",
+      "experienceYears": 13,
+      "leadershipScope": "Technical owner for five engineers and four production AI services.",
+      "markets": [
+        "ML infrastructure",
+        "Inference services",
+        "Evaluation and monitoring"
+      ],
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "Kubernetes",
+        "MLflow",
+        "Feature pipelines",
+        "Prometheus"
+      ],
+      "metrics": [
+        {
+          "label": "Inference latency",
+          "value": "240 to 160 ms",
+          "context": "Example p95 latency at a fixed request size and concurrency; excludes client network time.",
+          "hypothetical": true
+        },
+        {
+          "label": "Serving availability",
+          "value": "99.9%",
+          "context": "Example service SLO measured over 12 months.",
+          "hypothetical": true
+        },
+        {
+          "label": "Release effort",
+          "value": "3 days to 1 day",
+          "context": "Example median engineering effort for a routine release using reusable tooling.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-technology-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Technology Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -601,49 +1085,101 @@
           "stage": "Recent leadership",
           "title": "Chief Technology Officer",
           "responsibilities": [
-            "Set architecture and investment priorities against a commercial roadmap."
+            "Set architecture and investment priorities against a commercial roadmap.",
+            "Set a platform roadmap connecting customer requirements, resilience risks and investment priorities.",
+            "Tools and methods: Cloud architecture, Java, Python."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "VP Engineering / Head of Engineering",
           "responsibilities": [
-            "Built senior engineering leadership and clear technical ownership."
+            "Built senior engineering leadership and clear technical ownership.",
+            "Introduced architecture review and engineering management practices across growing teams.",
+            "Tools and methods: Java, Python, Kubernetes."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "High-growth fintech",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Engineering Lead / Architect",
           "responsibilities": [
-            "Balanced platform scale, security, reliability and delivery discipline."
+            "Balanced platform scale, security, reliability and delivery discipline.",
+            "Designed shared services and led migrations from tightly coupled legacy components.",
+            "Tools and methods: Python, Kubernetes, PostgreSQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Enterprise software engineering group",
+          "period": "2006 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Technology strategy",
           "example": "Set a technology roadmap linked to business priorities and platform risk.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Engineering organisation: 80 people",
+          "metricContext": "Example remit across four engineering disciplines."
         },
         {
           "area": "Engineering leadership",
           "example": "Strengthened technical leadership and architecture decision-making.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Critical-service availability: 99.95%",
+          "metricContext": "Example 12-month service target and measured outcome; planned exclusions documented."
         },
         {
           "area": "Platform resilience",
           "example": "Introduced service ownership and resilience reviews across critical systems.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Recovery time: 4 hours to 45 minutes",
+          "metricContext": "Example recovery time achieved in comparable disaster-recovery exercises."
         }
       ],
-      "question": "Which technical constraints are limiting the business today?"
+      "question": "Which technical constraints are limiting the business today?",
+      "professionalSummary": "Technology executive with experience scaling regulated financial platforms and engineering organisations. Progressed through architecture and engineering leadership to ownership of platform strategy, resilience and technology investment.",
+      "experienceYears": 20,
+      "leadershipScope": "Led 80 engineers across product engineering, infrastructure, data and security.",
+      "markets": [
+        "Financial platforms",
+        "Regulated infrastructure",
+        "Technology strategy"
+      ],
+      "technologies": [
+        "Cloud architecture",
+        "Java",
+        "Python",
+        "Kubernetes",
+        "PostgreSQL",
+        "Observability platforms"
+      ],
+      "metrics": [
+        {
+          "label": "Engineering organisation",
+          "value": "80 people",
+          "context": "Example remit across four engineering disciplines.",
+          "hypothetical": true
+        },
+        {
+          "label": "Critical-service availability",
+          "value": "99.95%",
+          "context": "Example 12-month service target and measured outcome; planned exclusions documented.",
+          "hypothetical": true
+        },
+        {
+          "label": "Recovery time",
+          "value": "4 hours to 45 minutes",
+          "context": "Example recovery time achieved in comparable disaster-recovery exercises.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-vp-engineering",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "VP Engineering",
       "kind": "synthetic",
       "label": "search preview",
@@ -665,49 +1201,101 @@
           "stage": "Recent leadership",
           "title": "VP Engineering",
           "responsibilities": [
-            "Led multiple engineering teams and managers."
+            "Led multiple engineering teams and managers.",
+            "Restructured teams around product and service ownership with clear engineering management accountability.",
+            "Tools and methods: Java, Python, Kubernetes."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology product company",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Engineering Director",
           "responsibilities": [
-            "Improved delivery planning, quality and cross-team dependency management."
+            "Improved delivery planning, quality and cross-team dependency management.",
+            "Introduced planning, incident learning and quality review across delivery teams.",
+            "Tools and methods: Python, Kubernetes, CI/CD."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "B2B software platform",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Engineering Manager",
           "responsibilities": [
-            "Developed engineering leadership and a sustainable operating cadence."
+            "Developed engineering leadership and a sustainable operating cadence.",
+            "Led customer-facing services and developed senior engineers into team leads.",
+            "Tools and methods: Kubernetes, CI/CD, PostgreSQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Software delivery team",
+          "period": "2009 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Engineering delivery",
           "example": "Established engineering delivery planning and measurable service ownership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Engineering span: 45 engineers",
+          "metricContext": "Example organisation led through six engineering managers."
         },
         {
           "area": "Team leadership",
           "example": "Developed engineering managers and clarified team boundaries.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Lead time: 18 to 10 days",
+          "metricContext": "Example median committed-change-to-production time over comparable quarters."
         },
         {
           "area": "Operating cadence",
           "example": "Balanced roadmap delivery with platform reliability and technical debt.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Change failure rate: 16% to 8%",
+          "metricContext": "Example deployments requiring rollback or urgent remediation; same measurement definition."
         }
       ],
-      "question": "Which teams, delivery commitments and management layers will this role own?"
+      "question": "Which teams, delivery commitments and management layers will this role own?",
+      "professionalSummary": "Engineering leader experienced in building managers, predictable delivery and ownership across multiple product teams. Combines a software engineering background with organisation design, platform investment and operational accountability.",
+      "experienceYears": 17,
+      "leadershipScope": "Managed six engineering managers and 45 engineers.",
+      "markets": [
+        "Engineering leadership",
+        "Platform delivery",
+        "Service reliability"
+      ],
+      "technologies": [
+        "Java",
+        "Python",
+        "Kubernetes",
+        "CI/CD",
+        "PostgreSQL",
+        "Service observability"
+      ],
+      "metrics": [
+        {
+          "label": "Engineering span",
+          "value": "45 engineers",
+          "context": "Example organisation led through six engineering managers.",
+          "hypothetical": true
+        },
+        {
+          "label": "Lead time",
+          "value": "18 to 10 days",
+          "context": "Example median committed-change-to-production time over comparable quarters.",
+          "hypothetical": true
+        },
+        {
+          "label": "Change failure rate",
+          "value": "16% to 8%",
+          "context": "Example deployments requiring rollback or urgent remediation; same measurement definition.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-engineering",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Engineering",
       "kind": "synthetic",
       "label": "search preview",
@@ -729,49 +1317,101 @@
           "stage": "Recent leadership",
           "title": "Head of Engineering",
           "responsibilities": [
-            "Managed engineers and technical leads across relevant systems."
+            "Managed engineers and technical leads across relevant systems.",
+            "Introduced service ownership, release checks and a shared incident-learning process.",
+            "Tools and methods: Java, TypeScript, PostgreSQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial software company",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Engineering Manager",
           "responsibilities": [
-            "Owned delivery commitments, incident learning and code-quality standards."
+            "Owned delivery commitments, incident learning and code-quality standards.",
+            "Led teams delivering API and workflow services with product and operations.",
+            "Tools and methods: TypeScript, PostgreSQL, CI/CD."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Payments technology provider",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Senior Software Engineer",
           "responsibilities": [
-            "Worked with product and infrastructure teams on priorities and capacity."
+            "Worked with product and infrastructure teams on priorities and capacity.",
+            "Built backend services, integration tests and deployment automation.",
+            "Tools and methods: PostgreSQL, CI/CD, Docker."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Product engineering team",
+          "period": "2011 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Technical delivery",
           "example": "Introduced a predictable delivery cadence and clearer engineering priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Delivery organisation: 24 engineers",
+          "metricContext": "Example three-team engineering remit."
         },
         {
           "area": "Engineering standards",
           "example": "Improved release controls, incident learning and service monitoring.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Release cadence: Monthly to weekly",
+          "metricContext": "Example routine release frequency after automation and quality changes."
         },
         {
           "area": "People development",
           "example": "Strengthened hiring, coaching and technical review practices.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Escaped defects: 14 to 6 per quarter",
+          "metricContext": "Example production defects requiring a customer-impacting fix; comparable quarters."
         }
       ],
-      "question": "What is the balance between hands-on technical leadership and people management?"
+      "question": "What is the balance between hands-on technical leadership and people management?",
+      "professionalSummary": "Engineering manager with experience delivering financial products and improving operational quality. Progressed from senior engineer to team leadership, with responsibility for hiring, delivery planning and reliable production services.",
+      "experienceYears": 15,
+      "leadershipScope": "Led 24 engineers across three delivery teams.",
+      "markets": [
+        "Product engineering",
+        "Delivery systems",
+        "Operational quality"
+      ],
+      "technologies": [
+        "Java",
+        "TypeScript",
+        "PostgreSQL",
+        "CI/CD",
+        "Docker",
+        "Monitoring and alerting"
+      ],
+      "metrics": [
+        {
+          "label": "Delivery organisation",
+          "value": "24 engineers",
+          "context": "Example three-team engineering remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Release cadence",
+          "value": "Monthly to weekly",
+          "context": "Example routine release frequency after automation and quality changes.",
+          "hypothetical": true
+        },
+        {
+          "label": "Escaped defects",
+          "value": "14 to 6 per quarter",
+          "context": "Example production defects requiring a customer-impacting fix; comparable quarters.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-information-security-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Information Security Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -793,49 +1433,101 @@
           "stage": "Recent leadership",
           "title": "Chief Information Security Officer",
           "responsibilities": [
-            "Led security programmes in environments with sensitive systems and data."
+            "Led security programmes in environments with sensitive systems and data.",
+            "Established a risk-based security programme with executive ownership of critical controls.",
+            "Tools and methods: SIEM, Endpoint detection, Cloud security."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Regulated financial platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Head of Information Security",
           "responsibilities": [
-            "Set security architecture, assurance and third-party risk priorities."
+            "Set security architecture, assurance and third-party risk priorities.",
+            "Led incident-response exercises, vulnerability remediation and supplier assurance reviews.",
+            "Tools and methods: Endpoint detection, Cloud security, IAM."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "International financial services group",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Security Engineering Lead",
           "responsibilities": [
-            "Directed incident readiness and communicating material risk to executives."
+            "Directed incident readiness and communicating material risk to executives.",
+            "Implemented identity, logging and security-testing controls with engineering teams.",
+            "Tools and methods: Cloud security, IAM, Threat modelling."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Security engineering team",
+          "period": "2007 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Security governance",
           "example": "Established a risk-based security roadmap and executive reporting cadence.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Security organisation: 16 people",
+          "metricContext": "Example engineering, operations and assurance remit."
         },
         {
           "area": "Cyber resilience",
           "example": "Strengthened incident response exercises and critical control ownership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Critical remediation: 28 to 12 days",
+          "metricContext": "Example median time to remediate validated critical findings; risk exceptions tracked separately."
         },
         {
           "area": "Incident leadership",
           "example": "Aligned security assurance with regulatory and customer requirements.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Exercise coverage: 4 scenarios annually",
+          "metricContext": "Example incident exercises covering identity compromise, ransomware, data loss and supplier disruption."
         }
       ],
-      "question": "Which threats and assurance obligations define the security mandate?"
+      "question": "Which threats and assurance obligations define the security mandate?",
+      "professionalSummary": "Security leader with experience in regulated financial services, assurance and incident readiness. Progressed from technical security into leadership of enterprise risk priorities, control programmes and executive reporting.",
+      "experienceYears": 19,
+      "leadershipScope": "Led 16 security specialists across engineering, operations and assurance.",
+      "markets": [
+        "Financial security",
+        "Enterprise assurance",
+        "Incident response"
+      ],
+      "technologies": [
+        "SIEM",
+        "Endpoint detection",
+        "Cloud security",
+        "IAM",
+        "Threat modelling",
+        "Control evidence platforms"
+      ],
+      "metrics": [
+        {
+          "label": "Security organisation",
+          "value": "16 people",
+          "context": "Example engineering, operations and assurance remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Critical remediation",
+          "value": "28 to 12 days",
+          "context": "Example median time to remediate validated critical findings; risk exceptions tracked separately.",
+          "hypothetical": true
+        },
+        {
+          "label": "Exercise coverage",
+          "value": "4 scenarios annually",
+          "context": "Example incident exercises covering identity compromise, ransomware, data loss and supplier disruption.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-revenue-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Revenue Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -857,49 +1549,101 @@
           "stage": "Recent leadership",
           "title": "Chief Revenue Officer",
           "responsibilities": [
-            "Led revenue teams with clear acquisition and expansion ownership."
+            "Led revenue teams with clear acquisition and expansion ownership.",
+            "Introduced shared pipeline, forecast and account ownership standards across regional teams.",
+            "Tools and methods: HubSpot, Salesforce, Revenue forecasting."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional fintech platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "VP Sales / Commercial Director",
           "responsibilities": [
-            "Aligned sales, partnerships and customer success around account priorities."
+            "Aligned sales, partnerships and customer success around account priorities.",
+            "Built an institutional sales team covering complex buying committees and expansion plans.",
+            "Tools and methods: Salesforce, Revenue forecasting, SQL dashboards."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "B2B financial software company",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Regional Sales Lead",
           "responsibilities": [
-            "Reviewed pipeline quality, forecast discipline and commercial economics."
+            "Reviewed pipeline quality, forecast discipline and commercial economics.",
+            "Closed multi-stakeholder enterprise sales with product and implementation specialists.",
+            "Tools and methods: Revenue forecasting, SQL dashboards, Account planning."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Enterprise sales organisation",
+          "period": "2007 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Revenue strategy",
           "example": "Introduced shared definitions for pipeline quality, forecasting and account ownership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Recurring revenue: US$18m to US$25m",
+          "metricContext": "Example annual recurring revenue movement over 24 months; constant-currency scenario."
         },
         {
           "area": "Commercial leadership",
           "example": "Aligned acquisition, expansion and retention priorities across commercial teams.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Net revenue retention: 112%",
+          "metricContext": "Example 12-month expansion and churn measure for the opening customer cohort."
         },
         {
           "area": "Revenue operations",
           "example": "Built a commercial leadership cadence linked to customer value and revenue quality.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Forecast error: 24% to 10%",
+          "metricContext": "Example absolute quarterly forecast error against recognised bookings; same methodology."
         }
       ],
-      "question": "Which revenue lines, regions and commercial teams report into this role?"
+      "question": "Which revenue lines, regions and commercial teams report into this role?",
+      "professionalSummary": "Commercial executive with experience building institutional sales and expansion teams for financial technology. Progressed through enterprise selling and regional leadership to ownership of acquisition, retention and revenue planning.",
+      "experienceYears": 19,
+      "leadershipScope": "Led a 30-person commercial organisation across sales, account management and revenue operations.",
+      "markets": [
+        "Institutional sales",
+        "Recurring revenue",
+        "Commercial leadership"
+      ],
+      "technologies": [
+        "HubSpot",
+        "Salesforce",
+        "Revenue forecasting",
+        "SQL dashboards",
+        "Account planning",
+        "Commercial analytics"
+      ],
+      "metrics": [
+        {
+          "label": "Recurring revenue",
+          "value": "US$18m to US$25m",
+          "context": "Example annual recurring revenue movement over 24 months; constant-currency scenario.",
+          "hypothetical": true
+        },
+        {
+          "label": "Net revenue retention",
+          "value": "112%",
+          "context": "Example 12-month expansion and churn measure for the opening customer cohort.",
+          "hypothetical": true
+        },
+        {
+          "label": "Forecast error",
+          "value": "24% to 10%",
+          "context": "Example absolute quarterly forecast error against recognised bookings; same methodology.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-commercial-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Commercial Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -921,49 +1665,101 @@
           "stage": "Recent leadership",
           "title": "Chief Commercial Officer",
           "responsibilities": [
-            "Owned commercial priorities, pricing or market-entry decisions."
+            "Owned commercial priorities, pricing or market-entry decisions.",
+            "Prioritised new markets and partnerships using commercial economics and delivery readiness.",
+            "Tools and methods: CRM platforms, Pricing analysis, Contract workflows."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure business",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Commercial Director",
           "responsibilities": [
-            "Built senior customer and strategic partner relationships."
+            "Built senior customer and strategic partner relationships.",
+            "Negotiated distribution and infrastructure partnerships with clear operating ownership.",
+            "Tools and methods: Pricing analysis, Contract workflows, Power BI."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "International fintech",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Business Development Lead",
           "responsibilities": [
-            "Aligned commercial commitments with product, risk and operating capacity."
+            "Aligned commercial commitments with product, risk and operating capacity.",
+            "Built opportunity analysis and account plans for institutional market segments.",
+            "Tools and methods: Contract workflows, Power BI, Partner scorecards."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Business development team",
+          "period": "2006 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Commercial strategy",
           "example": "Defined priority markets, partnership criteria and commercial investment choices.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Regional scope: 3 markets",
+          "metricContext": "Example market-entry and commercial leadership remit."
         },
         {
           "area": "Strategic relationships",
           "example": "Aligned sales, partnerships and product around institutional customer needs.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Partner-sourced bookings: 28%",
+          "metricContext": "Example share of signed annual bookings attributed under a documented partner-credit policy."
         },
         {
           "area": "Market expansion",
           "example": "Strengthened pricing, negotiation and contract review practices.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Contract cycle: 120 to 85 days",
+          "metricContext": "Example median qualified-opportunity-to-signature period over comparable annual cohorts."
         }
       ],
-      "question": "Where does this mandate differ from sales leadership alone?"
+      "question": "Where does this mandate differ from sales leadership alone?",
+      "professionalSummary": "Commercial leader experienced in market entry, strategic partnerships and institutional customer propositions. Combines business development and sales leadership with pricing, negotiation and cross-functional delivery accountability.",
+      "experienceYears": 20,
+      "leadershipScope": "Led 25 commercial and partnership staff across three regional markets.",
+      "markets": [
+        "Market entry",
+        "Strategic partnerships",
+        "Institutional propositions"
+      ],
+      "technologies": [
+        "CRM platforms",
+        "Pricing analysis",
+        "Contract workflows",
+        "Power BI",
+        "Partner scorecards",
+        "Account planning"
+      ],
+      "metrics": [
+        {
+          "label": "Regional scope",
+          "value": "3 markets",
+          "context": "Example market-entry and commercial leadership remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Partner-sourced bookings",
+          "value": "28%",
+          "context": "Example share of signed annual bookings attributed under a documented partner-credit policy.",
+          "hypothetical": true
+        },
+        {
+          "label": "Contract cycle",
+          "value": "120 to 85 days",
+          "context": "Example median qualified-opportunity-to-signature period over comparable annual cohorts.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-vp-sales",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "VP Sales",
       "kind": "synthetic",
       "label": "search preview",
@@ -985,49 +1781,101 @@
           "stage": "Recent leadership",
           "title": "VP Sales",
           "responsibilities": [
-            "Led sales managers or senior sellers in a relevant buying environment."
+            "Led sales managers or senior sellers in a relevant buying environment.",
+            "Built territory plans, qualification reviews and a consistent enterprise forecast cadence.",
+            "Tools and methods: Salesforce, HubSpot, Sales forecasting."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "B2B financial software vendor",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Sales Director",
           "responsibilities": [
-            "Built account plans, qualification standards and forecast discipline."
+            "Built account plans, qualification standards and forecast discipline.",
+            "Managed strategic accounts and coached sellers through legal, security and procurement reviews.",
+            "Tools and methods: HubSpot, Sales forecasting, Mutual action plans."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional data provider",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Enterprise Account Executive",
           "responsibilities": [
-            "Developed repeatable sales execution for complex buying decisions."
+            "Developed repeatable sales execution for complex buying decisions.",
+            "Developed customer value cases and negotiated enterprise software agreements.",
+            "Tools and methods: Sales forecasting, Mutual action plans, Account mapping."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Enterprise account team",
+          "period": "2010 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Sales leadership",
           "example": "Introduced a consistent enterprise sales process and forecast review.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Sales organisation: 18 people",
+          "metricContext": "Example 15 sellers and three managers."
         },
         {
           "area": "Pipeline discipline",
           "example": "Built account plans connecting buying committees, value cases and deal risks.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Annual quota attainment: 108%",
+          "metricContext": "Example team bookings against the annual approved quota; fictional scenario."
         },
         {
           "area": "Account strategy",
           "example": "Coached sales managers around qualification, execution and customer outcomes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Qualified win rate: 22% to 29%",
+          "metricContext": "Example closed-won share of qualified opportunities; comparable annual cohorts."
         }
       ],
-      "question": "Which customer segment, sales cycle and territory structure must this leader understand?"
+      "question": "Which customer segment, sales cycle and territory structure must this leader understand?",
+      "professionalSummary": "Enterprise sales leader with a background in complex financial-technology transactions. Progressed from individual account ownership into regional and team leadership, with a focus on qualification, coaching and predictable execution.",
+      "experienceYears": 16,
+      "leadershipScope": "Managed 15 sellers and three sales managers.",
+      "markets": [
+        "Enterprise software",
+        "Financial institutions",
+        "Sales execution"
+      ],
+      "technologies": [
+        "Salesforce",
+        "HubSpot",
+        "Sales forecasting",
+        "Mutual action plans",
+        "Account mapping",
+        "Commercial dashboards"
+      ],
+      "metrics": [
+        {
+          "label": "Sales organisation",
+          "value": "18 people",
+          "context": "Example 15 sellers and three managers.",
+          "hypothetical": true
+        },
+        {
+          "label": "Annual quota attainment",
+          "value": "108%",
+          "context": "Example team bookings against the annual approved quota; fictional scenario.",
+          "hypothetical": true
+        },
+        {
+          "label": "Qualified win rate",
+          "value": "22% to 29%",
+          "context": "Example closed-won share of qualified opportunities; comparable annual cohorts.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-business-development",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Business Development",
       "kind": "synthetic",
       "label": "search preview",
@@ -1049,49 +1897,101 @@
           "stage": "Recent leadership",
           "title": "Head of Business Development",
           "responsibilities": [
-            "Built relevant institutional or ecosystem relationships."
+            "Built relevant institutional or ecosystem relationships.",
+            "Built a prioritised partnership pipeline with explicit commercial and delivery criteria.",
+            "Tools and methods: CRM platforms, Partner economics, Contract review workflows."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure provider",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Business Development Director",
           "responsibilities": [
-            "Qualified opportunities and structuring partnership economics."
+            "Qualified opportunities and structuring partnership economics.",
+            "Negotiated integration and distribution arrangements with implementation owners.",
+            "Tools and methods: Partner economics, Contract review workflows, Excel."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Digital financial services business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Partnerships Manager",
           "responsibilities": [
-            "Coordinated product, legal and operational stakeholders through execution."
+            "Coordinated product, legal and operational stakeholders through execution.",
+            "Researched customer segments and developed institutional partnership propositions.",
+            "Tools and methods: Contract review workflows, Excel, Market mapping."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Commercial partnerships team",
+          "period": "2011 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Partnership development",
           "example": "Built a prioritised partnership pipeline and clear qualification criteria.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Partner portfolio: 12 active partnerships",
+          "metricContext": "Example partners with signed agreements and named operating owners."
         },
         {
           "area": "Commercial structuring",
           "example": "Negotiated partnerships with explicit commercial and delivery ownership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "New agreements: 5 in 12 months",
+          "metricContext": "Example signed partnerships; not all assumed revenue-producing at signature."
         },
         {
           "area": "Opportunity qualification",
           "example": "Established a hand-off between business development, product and implementation.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Activation time: 90 to 55 days",
+          "metricContext": "Example median signature-to-first-live-integration period for comparable partners."
         }
       ],
-      "question": "Is success defined by distribution, strategic partnerships or direct revenue?"
+      "question": "Is success defined by distribution, strategic partnerships or direct revenue?",
+      "professionalSummary": "Business development leader experienced in institutional partnerships and new commercial channels. Progressed from partnership development into ownership of market prioritisation, negotiation and execution with product and operations.",
+      "experienceYears": 15,
+      "leadershipScope": "Led eight partnership and business development professionals.",
+      "markets": [
+        "Institutional partnerships",
+        "Distribution channels",
+        "New markets"
+      ],
+      "technologies": [
+        "CRM platforms",
+        "Partner economics",
+        "Contract review workflows",
+        "Excel",
+        "Market mapping",
+        "Pipeline reporting"
+      ],
+      "metrics": [
+        {
+          "label": "Partner portfolio",
+          "value": "12 active partnerships",
+          "context": "Example partners with signed agreements and named operating owners.",
+          "hypothetical": true
+        },
+        {
+          "label": "New agreements",
+          "value": "5 in 12 months",
+          "context": "Example signed partnerships; not all assumed revenue-producing at signature.",
+          "hypothetical": true
+        },
+        {
+          "label": "Activation time",
+          "value": "90 to 55 days",
+          "context": "Example median signature-to-first-live-integration period for comparable partners.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-product-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Product Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -1113,49 +2013,101 @@
           "stage": "Recent leadership",
           "title": "Chief Product Officer",
           "responsibilities": [
-            "Led product organisations with multiple products or customer segments."
+            "Led product organisations with multiple products or customer segments.",
+            "Introduced a portfolio review connecting customer evidence, product investment and commercial outcomes.",
+            "Tools and methods: Product analytics, SQL, Figma."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial platform business",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "VP Product / Product Director",
           "responsibilities": [
-            "Made portfolio choices using customer evidence and commercial context."
+            "Made portfolio choices using customer evidence and commercial context.",
+            "Built product leadership and discovery practices across platform and workflow teams.",
+            "Tools and methods: SQL, Figma, Jira."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "B2B fintech",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Senior Product Manager",
           "responsibilities": [
-            "Aligned product, design, engineering and go-to-market leadership."
+            "Aligned product, design, engineering and go-to-market leadership.",
+            "Launched institutional features with explicit onboarding, adoption and support measures.",
+            "Tools and methods: Figma, Jira, Roadmap planning."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial product delivery team",
+          "period": "2008 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Product strategy",
           "example": "Defined a product portfolio and investment framework linked to market opportunity.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Product portfolio: 4 product lines",
+          "metricContext": "Example strategic ownership across platform and customer workflows."
         },
         {
           "area": "Portfolio decisions",
           "example": "Aligned product leadership, engineering and commercial teams around customer outcomes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Feature adoption: 30% to 48%",
+          "metricContext": "Example share of eligible active customers using a defined workflow within 90 days."
         },
         {
           "area": "Product leadership",
           "example": "Introduced structured discovery and evidence-based roadmap reviews.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Discovery coverage: 100%",
+          "metricContext": "Example major initiatives with documented customer evidence before investment approval."
         }
       ],
-      "question": "Which portfolio decisions and product outcomes belong to this role?"
+      "question": "Which portfolio decisions and product outcomes belong to this role?",
+      "professionalSummary": "Product executive experienced in financial platforms, institutional customer workflows and portfolio prioritisation. Progressed from product management into leadership across discovery, investment choices and cross-functional delivery.",
+      "experienceYears": 18,
+      "leadershipScope": "Led 22 product managers, designers and researchers across four product lines.",
+      "markets": [
+        "Institutional products",
+        "Portfolio strategy",
+        "Customer discovery"
+      ],
+      "technologies": [
+        "Product analytics",
+        "SQL",
+        "Figma",
+        "Jira",
+        "Roadmap planning",
+        "Customer research"
+      ],
+      "metrics": [
+        {
+          "label": "Product portfolio",
+          "value": "4 product lines",
+          "context": "Example strategic ownership across platform and customer workflows.",
+          "hypothetical": true
+        },
+        {
+          "label": "Feature adoption",
+          "value": "30% to 48%",
+          "context": "Example share of eligible active customers using a defined workflow within 90 days.",
+          "hypothetical": true
+        },
+        {
+          "label": "Discovery coverage",
+          "value": "100%",
+          "context": "Example major initiatives with documented customer evidence before investment approval.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-vp-product",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "VP Product",
       "kind": "synthetic",
       "label": "search preview",
@@ -1177,49 +2129,101 @@
           "stage": "Recent leadership",
           "title": "VP Product",
           "responsibilities": [
-            "Led product managers across complex products or domains."
+            "Led product managers across complex products or domains.",
+            "Established product-area ownership, prioritisation reviews and shared success measures.",
+            "Tools and methods: SQL, Product analytics, Jira."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial software platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Product Director",
           "responsibilities": [
-            "Set prioritisation, discovery and product-measurement standards."
+            "Set prioritisation, discovery and product-measurement standards.",
+            "Led a platform product group integrating customer workflows and commercial requirements.",
+            "Tools and methods: Product analytics, Jira, Figma."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional fintech",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Senior Product Manager",
           "responsibilities": [
-            "Managed roadmap dependencies with engineering and commercial teams."
+            "Managed roadmap dependencies with engineering and commercial teams.",
+            "Delivered onboarding and reporting features informed by customer research.",
+            "Tools and methods: Jira, Figma, Roadmap tools."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Product management team",
+          "period": "2010 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Roadmap ownership",
           "example": "Established product team priorities and ownership across a portfolio.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Product team: 12 managers",
+          "metricContext": "Example direct and indirect product management remit."
         },
         {
           "area": "Product management",
           "example": "Connected roadmap investment with customer evidence and commercial goals.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Time to first value: 21 to 12 days",
+          "metricContext": "Example median customer onboarding time to a defined first successful workflow."
         },
         {
           "area": "Customer evidence",
           "example": "Built a consistent product discovery and delivery review process.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Roadmap delivery: 62% to 82%",
+          "metricContext": "Example committed quarterly outcomes completed within the agreed period."
         }
       ],
-      "question": "What product domains and team scope sit within the mandate?"
+      "question": "What product domains and team scope sit within the mandate?",
+      "professionalSummary": "Product leader experienced in scaling teams and translating strategy into a coherent financial-product roadmap. Combines customer discovery, product analytics and commercial judgement with leadership of multiple product areas.",
+      "experienceYears": 16,
+      "leadershipScope": "Managed 12 product managers across three product areas.",
+      "markets": [
+        "Product leadership",
+        "Financial workflows",
+        "Portfolio delivery"
+      ],
+      "technologies": [
+        "SQL",
+        "Product analytics",
+        "Jira",
+        "Figma",
+        "Roadmap tools",
+        "Customer interviews"
+      ],
+      "metrics": [
+        {
+          "label": "Product team",
+          "value": "12 managers",
+          "context": "Example direct and indirect product management remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Time to first value",
+          "value": "21 to 12 days",
+          "context": "Example median customer onboarding time to a defined first successful workflow.",
+          "hypothetical": true
+        },
+        {
+          "label": "Roadmap delivery",
+          "value": "62% to 82%",
+          "context": "Example committed quarterly outcomes completed within the agreed period.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-product",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Product",
       "kind": "synthetic",
       "label": "search preview",
@@ -1241,49 +2245,101 @@
           "stage": "Recent leadership",
           "title": "Head of Product",
           "responsibilities": [
-            "Owned a product domain with relevant customer and workflow complexity."
+            "Owned a product domain with relevant customer and workflow complexity.",
+            "Created a prioritised roadmap with explicit customer problems and outcome measures.",
+            "Tools and methods: SQL, Jira, Figma."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology provider",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Group Product Manager",
           "responsibilities": [
-            "Validated requirements with users and commercial stakeholders."
+            "Validated requirements with users and commercial stakeholders.",
+            "Led a product squad improving institutional onboarding and account servicing.",
+            "Tools and methods: Jira, Figma, Product analytics."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Payments software company",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Product Manager",
           "responsibilities": [
-            "Made explicit trade-offs across scope, risk and delivery capacity."
+            "Made explicit trade-offs across scope, risk and delivery capacity.",
+            "Owned feature discovery, acceptance criteria and release feedback with engineering.",
+            "Tools and methods: Figma, Product analytics, API documentation."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Product delivery group",
+          "period": "2012 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Domain expertise",
           "example": "Translated customer and market requirements into a focused roadmap.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Product organisation: 6 managers",
+          "metricContext": "Example team ownership across two product groups."
         },
         {
           "area": "Product discovery",
           "example": "Clarified prioritisation decisions and success criteria with engineering.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Workflow completion: 68% to 84%",
+          "metricContext": "Example completion rate for a defined onboarding journey over comparable cohorts."
         },
         {
           "area": "Delivery alignment",
           "example": "Improved feedback loops between customers, commercial teams and product delivery.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Support demand: 18 to 11 tickets per 100 accounts",
+          "metricContext": "Example monthly workflow-related support volume after product changes."
         }
       ],
-      "question": "Which customer problem and product decisions will this person own?"
+      "question": "Which customer problem and product decisions will this person own?",
+      "professionalSummary": "Product manager and team leader with experience in financial workflows and platform development. Progressed from feature ownership into leading discovery, prioritisation and collaboration across engineering, commercial and operations.",
+      "experienceYears": 14,
+      "leadershipScope": "Led six product managers across two delivery groups.",
+      "markets": [
+        "Financial products",
+        "Customer workflows",
+        "Product discovery"
+      ],
+      "technologies": [
+        "SQL",
+        "Jira",
+        "Figma",
+        "Product analytics",
+        "API documentation",
+        "Customer research"
+      ],
+      "metrics": [
+        {
+          "label": "Product organisation",
+          "value": "6 managers",
+          "context": "Example team ownership across two product groups.",
+          "hypothetical": true
+        },
+        {
+          "label": "Workflow completion",
+          "value": "68% to 84%",
+          "context": "Example completion rate for a defined onboarding journey over comparable cohorts.",
+          "hypothetical": true
+        },
+        {
+          "label": "Support demand",
+          "value": "18 to 11 tickets per 100 accounts",
+          "context": "Example monthly workflow-related support volume after product changes.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-strategy",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Strategy",
       "kind": "synthetic",
       "label": "search preview",
@@ -1305,49 +2361,101 @@
           "stage": "Recent leadership",
           "title": "Head of Strategy",
           "responsibilities": [
-            "Led market, competitive and business strategy analysis."
+            "Led market, competitive and business strategy analysis.",
+            "Built a strategic planning process linking market choices, capital allocation and delivery owners.",
+            "Tools and methods: Excel, Power BI, Scenario modelling."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure group",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Strategy Director / Manager",
           "responsibilities": [
-            "Prepared investment or growth decisions for senior stakeholders."
+            "Prepared investment or growth decisions for senior stakeholders.",
+            "Led market-entry and acquisition-screening workstreams with finance and commercial teams.",
+            "Tools and methods: Power BI, Scenario modelling, Market research."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Strategy advisory firm",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Strategy Analyst",
           "responsibilities": [
-            "Translated chosen priorities into accountable programmes."
+            "Translated chosen priorities into accountable programmes.",
+            "Developed competitor analysis, customer research and financial scenarios.",
+            "Tools and methods: Scenario modelling, Market research, Board papers."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Corporate strategy team",
+          "period": "2009 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Strategic analysis",
           "example": "Created a strategic planning process with explicit choices and trade-offs.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Strategy team: 5 people",
+          "metricContext": "Example corporate strategy and business-unit support remit."
         },
         {
           "area": "Executive decisions",
           "example": "Evaluated market opportunities using competitive, customer and financial evidence.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Investment cases: 8 reviewed annually",
+          "metricContext": "Example proposals assessed through a documented investment committee process."
         },
         {
           "area": "Execution planning",
           "example": "Connected strategic initiatives with owners, milestones and executive decisions.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Decision cycle: 10 to 6 weeks",
+          "metricContext": "Example median time from complete proposal to executive investment decision."
         }
       ],
-      "question": "Does the role own corporate strategy, business development or transformation?"
+      "question": "Does the role own corporate strategy, business development or transformation?",
+      "professionalSummary": "Strategy leader with experience in market infrastructure, growth choices and investment prioritisation. Progressed from analysis and project leadership to advising executives and boards on market entry, partnerships and business direction.",
+      "experienceYears": 17,
+      "leadershipScope": "Led five strategy professionals supporting the executive team and business-unit leaders.",
+      "markets": [
+        "Market strategy",
+        "Investment cases",
+        "Competitive analysis"
+      ],
+      "technologies": [
+        "Excel",
+        "Power BI",
+        "Scenario modelling",
+        "Market research",
+        "Board papers",
+        "Financial analysis"
+      ],
+      "metrics": [
+        {
+          "label": "Strategy team",
+          "value": "5 people",
+          "context": "Example corporate strategy and business-unit support remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Investment cases",
+          "value": "8 reviewed annually",
+          "context": "Example proposals assessed through a documented investment committee process.",
+          "hypothetical": true
+        },
+        {
+          "label": "Decision cycle",
+          "value": "10 to 6 weeks",
+          "context": "Example median time from complete proposal to executive investment decision.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-risk-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Risk Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -1369,49 +2477,101 @@
           "stage": "Recent leadership",
           "title": "Chief Risk Officer",
           "responsibilities": [
-            "Led relevant financial, market, credit or operational risk functions."
+            "Led relevant financial, market, credit or operational risk functions.",
+            "Introduced a board-approved risk appetite framework with escalation and ownership of material exposures.",
+            "Tools and methods: Risk dashboards, Python, SQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Regulated financial institution",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Head of Risk",
           "responsibilities": [
-            "Defined appetite, limits, escalation and risk reporting."
+            "Defined appetite, limits, escalation and risk reporting.",
+            "Led stress-testing and risk reporting for trading and investment activities.",
+            "Tools and methods: Python, SQL, Stress testing."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Trading and investment business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Senior Risk Manager",
           "responsibilities": [
-            "Provided independent challenge to executive and board decisions."
+            "Provided independent challenge to executive and board decisions.",
+            "Built risk analysis and monitoring for limits, liquidity and operational exceptions.",
+            "Tools and methods: SQL, Stress testing, Risk appetite frameworks."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Specialist risk team",
+          "period": "2006 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Enterprise risk",
           "example": "Established a risk appetite framework and clear ownership of major exposures.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Risk organisation: 20 people",
+          "metricContext": "Example market, credit and operational risk remit."
         },
         {
           "area": "Risk appetite",
           "example": "Strengthened board reporting, escalation and stress-testing practices.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Limit-report coverage: 100%",
+          "metricContext": "Example material trading books included in daily limit reporting."
         },
         {
           "area": "Board oversight",
           "example": "Connected risk oversight with product, trading and business decisions.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Overdue actions: 34 to 12",
+          "metricContext": "Example open risk actions past their agreed remediation date across comparable quarters."
         }
       ],
-      "question": "Which risk types and regulated entities will fall within this remit?"
+      "question": "Which risk types and regulated entities will fall within this remit?",
+      "professionalSummary": "Risk executive with experience across market, operational and enterprise risk in financial businesses. Progressed from specialist risk management into board-level oversight, risk appetite and cross-functional decision frameworks.",
+      "experienceYears": 20,
+      "leadershipScope": "Led a 20-person risk organisation covering market, credit and operational risk.",
+      "markets": [
+        "Enterprise risk",
+        "Market exposure",
+        "Board oversight"
+      ],
+      "technologies": [
+        "Risk dashboards",
+        "Python",
+        "SQL",
+        "Stress testing",
+        "Risk appetite frameworks",
+        "Incident registers"
+      ],
+      "metrics": [
+        {
+          "label": "Risk organisation",
+          "value": "20 people",
+          "context": "Example market, credit and operational risk remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Limit-report coverage",
+          "value": "100%",
+          "context": "Example material trading books included in daily limit reporting.",
+          "hypothetical": true
+        },
+        {
+          "label": "Overdue actions",
+          "value": "34 to 12",
+          "context": "Example open risk actions past their agreed remediation date across comparable quarters.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-compliance-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Compliance Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -1433,49 +2593,101 @@
           "stage": "Recent leadership",
           "title": "Chief Compliance Officer",
           "responsibilities": [
-            "Led compliance in relevant regulated products and jurisdictions."
+            "Led compliance in relevant regulated products and jurisdictions.",
+            "Established a compliance operating framework with clear monitoring, advisory and remediation ownership.",
+            "Tools and methods: Compliance registers, Monitoring tools, Policy systems."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Regulated financial platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Head of Compliance",
           "responsibilities": [
-            "Designed governance, monitoring and regulatory-change programmes."
+            "Designed governance, monitoring and regulatory-change programmes.",
+            "Led regulatory change delivery and oversight reviews with legal and business teams.",
+            "Tools and methods: Monitoring tools, Policy systems, Regulatory change tracking."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "International financial services firm",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Compliance Manager",
           "responsibilities": [
-            "Engaged regulators and advising senior leaders on material obligations."
+            "Engaged regulators and advising senior leaders on material obligations.",
+            "Advised product and operations on policies, controls and regulatory obligations.",
+            "Tools and methods: Policy systems, Regulatory change tracking, Board reporting."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Compliance advisory team",
+          "period": "2006 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Regulatory leadership",
           "example": "Built a compliance framework aligned to the business and regulatory perimeter.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Compliance team: 18 people",
+          "metricContext": "Example advisory, monitoring and change remit."
         },
         {
           "area": "Compliance governance",
           "example": "Established executive reporting and ownership of remediation priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Remediation closure: 72% to 94%",
+          "metricContext": "Example agreed actions closed by their due date over comparable annual periods."
         },
         {
           "area": "Regulatory engagement",
           "example": "Strengthened coordination between compliance, legal, operations and commercial teams.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Review programme: 24 reviews annually",
+          "metricContext": "Example risk-based compliance reviews with documented findings and owners."
         }
       ],
-      "question": "Which jurisdictions, licences and accountable responsibilities must be covered?"
+      "question": "Which jurisdictions, licences and accountable responsibilities must be covered?",
+      "professionalSummary": "Compliance executive with experience building proportionate oversight for regulated financial businesses. Progressed through advisory and monitoring leadership into ownership of regulatory engagement, governance and executive reporting.",
+      "experienceYears": 20,
+      "leadershipScope": "Led 18 compliance professionals across advisory, monitoring and regulatory change.",
+      "markets": [
+        "Regulatory compliance",
+        "Governance",
+        "Regulatory engagement"
+      ],
+      "technologies": [
+        "Compliance registers",
+        "Monitoring tools",
+        "Policy systems",
+        "Regulatory change tracking",
+        "Board reporting",
+        "Case management"
+      ],
+      "metrics": [
+        {
+          "label": "Compliance team",
+          "value": "18 people",
+          "context": "Example advisory, monitoring and change remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Remediation closure",
+          "value": "72% to 94%",
+          "context": "Example agreed actions closed by their due date over comparable annual periods.",
+          "hypothetical": true
+        },
+        {
+          "label": "Review programme",
+          "value": "24 reviews annually",
+          "context": "Example risk-based compliance reviews with documented findings and owners.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-compliance",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Compliance",
       "kind": "synthetic",
       "label": "search preview",
@@ -1497,49 +2709,101 @@
           "stage": "Recent leadership",
           "title": "Head of Compliance",
           "responsibilities": [
-            "Managed compliance teams and practical control programmes."
+            "Managed compliance teams and practical control programmes.",
+            "Built a monitoring programme prioritised against the business risk assessment.",
+            "Tools and methods: Monitoring plans, Case management, Policy libraries."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Regulated fintech",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Senior Compliance Manager",
           "responsibilities": [
-            "Owned monitoring, policy implementation and issue remediation."
+            "Owned monitoring, policy implementation and issue remediation.",
+            "Led policy implementation and thematic reviews with accountable remediation owners.",
+            "Tools and methods: Case management, Policy libraries, Regulatory alerts."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial services provider",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Compliance Officer",
           "responsibilities": [
-            "Advised business teams on applicable regulatory requirements."
+            "Advised business teams on applicable regulatory requirements.",
+            "Completed control testing and advised operations on regulatory requirements.",
+            "Tools and methods: Policy libraries, Regulatory alerts, Excel."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Compliance operations team",
+          "period": "2010 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Compliance operations",
           "example": "Introduced a risk-based monitoring programme and clear issue tracking.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Compliance team: 9 people",
+          "metricContext": "Example officers and monitoring specialists."
         },
         {
           "area": "Monitoring frameworks",
           "example": "Improved policy implementation and staff guidance for relevant obligations.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Monitoring delivery: 95%",
+          "metricContext": "Example scheduled reviews completed within the annual programme window."
         },
         {
           "area": "Regulatory change",
           "example": "Established evidence and escalation standards for compliance reviews.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Action ageing: 54 to 29 days",
+          "metricContext": "Example median age of open remediation actions over comparable quarters."
         }
       ],
-      "question": "Which compliance responsibilities remain with the CCO or other accountable officers?"
+      "question": "Which compliance responsibilities remain with the CCO or other accountable officers?",
+      "professionalSummary": "Compliance leader experienced in practical monitoring, regulatory interpretation and business advice. Progressed from compliance delivery into management of review programmes, policy implementation and remediation tracking.",
+      "experienceYears": 16,
+      "leadershipScope": "Managed nine compliance officers and monitoring specialists.",
+      "markets": [
+        "Compliance monitoring",
+        "Business advisory",
+        "Policy implementation"
+      ],
+      "technologies": [
+        "Monitoring plans",
+        "Case management",
+        "Policy libraries",
+        "Regulatory alerts",
+        "Excel",
+        "Compliance dashboards"
+      ],
+      "metrics": [
+        {
+          "label": "Compliance team",
+          "value": "9 people",
+          "context": "Example officers and monitoring specialists.",
+          "hypothetical": true
+        },
+        {
+          "label": "Monitoring delivery",
+          "value": "95%",
+          "context": "Example scheduled reviews completed within the annual programme window.",
+          "hypothetical": true
+        },
+        {
+          "label": "Action ageing",
+          "value": "54 to 29 days",
+          "context": "Example median age of open remediation actions over comparable quarters.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-financial-crime",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Financial Crime",
       "kind": "synthetic",
       "label": "search preview",
@@ -1561,49 +2825,101 @@
           "stage": "Recent leadership",
           "title": "Head of Financial Crime",
           "responsibilities": [
-            "Led relevant AML, sanctions or financial-crime programmes."
+            "Led relevant AML, sanctions or financial-crime programmes.",
+            "Redesigned customer-risk escalation, investigation quality assurance and control ownership.",
+            "Tools and methods: Transaction monitoring, Case management, Screening tools."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Regulated financial services platform",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Financial Crime Manager / MLRO",
           "responsibilities": [
-            "Oversaw customer-risk assessment, monitoring and case escalation."
+            "Oversaw customer-risk assessment, monitoring and case escalation.",
+            "Managed a financial-crime operations team with documented case and alert standards.",
+            "Tools and methods: Case management, Screening tools, SQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Payments business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Financial Crime Specialist",
           "responsibilities": [
-            "Worked with compliance, operations and engineering on control effectiveness."
+            "Worked with compliance, operations and engineering on control effectiveness.",
+            "Investigated monitoring alerts and maintained due-diligence evidence for review.",
+            "Tools and methods: Screening tools, SQL, Quality assurance."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial-crime operations team",
+          "period": "2009 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "AML and sanctions",
           "example": "Strengthened customer due-diligence and financial-crime escalation processes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Financial-crime team: 22 people",
+          "metricContext": "Example monitoring, due-diligence and investigations remit."
         },
         {
           "area": "Financial-crime controls",
           "example": "Reviewed monitoring coverage and governance for financial-crime controls.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Case turnaround: 12 to 7 days",
+          "metricContext": "Example median alert-to-disposition time; risk-based exceptions tracked separately."
         },
         {
           "area": "Investigation governance",
           "example": "Introduced management reporting on investigations, exceptions and remediation.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Quality assurance: 88% to 96%",
+          "metricContext": "Example sampled cases meeting the documented internal quality rubric."
         }
       ],
-      "question": "Does this role include a formally appointed reporting-officer responsibility?"
+      "question": "Does this role include a formally appointed reporting-officer responsibility?",
+      "professionalSummary": "Financial-crime leader with experience in customer due diligence, transaction monitoring and investigation governance. Progressed from specialist case work into ownership of teams, control quality and management reporting.",
+      "experienceYears": 17,
+      "leadershipScope": "Led 22 analysts and managers across due diligence, monitoring and investigations.",
+      "markets": [
+        "AML controls",
+        "Customer due diligence",
+        "Investigations"
+      ],
+      "technologies": [
+        "Transaction monitoring",
+        "Case management",
+        "Screening tools",
+        "SQL",
+        "Quality assurance",
+        "Risk assessment registers"
+      ],
+      "metrics": [
+        {
+          "label": "Financial-crime team",
+          "value": "22 people",
+          "context": "Example monitoring, due-diligence and investigations remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Case turnaround",
+          "value": "12 to 7 days",
+          "context": "Example median alert-to-disposition time; risk-based exceptions tracked separately.",
+          "hypothetical": true
+        },
+        {
+          "label": "Quality assurance",
+          "value": "88% to 96%",
+          "context": "Example sampled cases meeting the documented internal quality rubric.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-operating-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Operating Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -1625,49 +2941,101 @@
           "stage": "Recent leadership",
           "title": "Chief Operating Officer",
           "responsibilities": [
-            "Led complex operations across relevant products or locations."
+            "Led complex operations across relevant products or locations.",
+            "Established operating ownership, service reviews and escalation across client and transaction workflows.",
+            "Tools and methods: Operating dashboards, Workflow systems, SQL reporting."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure company",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Operations Director",
           "responsibilities": [
-            "Set decision rights, service standards and resilience priorities."
+            "Set decision rights, service standards and resilience priorities.",
+            "Led process redesign and operational readiness for new products and markets.",
+            "Tools and methods: Workflow systems, SQL reporting, Process mapping."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "International financial services group",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Operations Manager",
           "responsibilities": [
-            "Coordinated business, technology, finance and control functions."
+            "Coordinated business, technology, finance and control functions.",
+            "Managed reconciliations, exception handling and service delivery with finance and technology.",
+            "Tools and methods: SQL reporting, Process mapping, Risk registers."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Operations delivery team",
+          "period": "2006 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Operating structure",
           "example": "Clarified operating ownership and cross-functional decision rights.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Operating organisation: 70 people",
+          "metricContext": "Example operations, client service and change remit."
         },
         {
           "area": "Operational resilience",
           "example": "Introduced planning and performance reviews across core business processes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Straight-through processing: 82% to 94%",
+          "metricContext": "Example eligible transactions completed without manual intervention over 12 months."
         },
         {
           "area": "Cross-functional execution",
           "example": "Strengthened service resilience and execution during organisational growth.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Service recovery: 3 hours to 50 minutes",
+          "metricContext": "Example median recovery time across comparable business-critical incidents."
         }
       ],
-      "question": "Which functions and operating outcomes are directly accountable to the COO?"
+      "question": "Which functions and operating outcomes are directly accountable to the COO?",
+      "professionalSummary": "Operations executive with experience scaling financial businesses and improving control across complex workflows. Progressed through operational management into ownership of service delivery, organisational execution and cross-functional planning.",
+      "experienceYears": 20,
+      "leadershipScope": "Led a 70-person organisation spanning operations, client service and business change.",
+      "markets": [
+        "Financial operations",
+        "Service resilience",
+        "Business execution"
+      ],
+      "technologies": [
+        "Operating dashboards",
+        "Workflow systems",
+        "SQL reporting",
+        "Process mapping",
+        "Risk registers",
+        "Planning tools"
+      ],
+      "metrics": [
+        {
+          "label": "Operating organisation",
+          "value": "70 people",
+          "context": "Example operations, client service and change remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Straight-through processing",
+          "value": "82% to 94%",
+          "context": "Example eligible transactions completed without manual intervention over 12 months.",
+          "hypothetical": true
+        },
+        {
+          "label": "Service recovery",
+          "value": "3 hours to 50 minutes",
+          "context": "Example median recovery time across comparable business-critical incidents.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-financial-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Financial Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -1689,49 +3057,101 @@
           "stage": "Recent leadership",
           "title": "Chief Financial Officer",
           "responsibilities": [
-            "Led finance through relevant growth, funding or organisational complexity."
+            "Led finance through relevant growth, funding or organisational complexity.",
+            "Connected financial planning, funding decisions and board reporting with business priorities.",
+            "Tools and methods: ERP systems, Excel, Power BI."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology group",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Finance Director",
           "responsibilities": [
-            "Owned planning, reporting, treasury and financial control priorities."
+            "Owned planning, reporting, treasury and financial control priorities.",
+            "Led controllership and planning teams through growth and reporting complexity.",
+            "Tools and methods: Excel, Power BI, Financial planning tools."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Regulated financial services company",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Financial Controller",
           "responsibilities": [
-            "Advised the board on capital allocation and business economics."
+            "Advised the board on capital allocation and business economics.",
+            "Managed close, audit evidence and financial analysis for operating departments.",
+            "Tools and methods: Power BI, Financial planning tools, Treasury reporting."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial control team",
+          "period": "2005 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Financial stewardship",
           "example": "Connected financial planning and capital allocation with strategic priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Finance organisation: 24 people",
+          "metricContext": "Example controllership, planning, treasury and reporting remit."
         },
         {
           "area": "Capital planning",
           "example": "Strengthened financial controls, reporting and board-level decision support.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Monthly close: 10 to 6 business days",
+          "metricContext": "Example close calendar from month-end to management reporting sign-off."
         },
         {
           "area": "Executive finance",
           "example": "Built a finance leadership structure suited to the business stage.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Forecast variance: 15% to 7%",
+          "metricContext": "Example absolute operating-expense forecast variance over comparable quarters."
         }
       ],
-      "question": "Which capital, reporting and control priorities define the first year?"
+      "question": "Which capital, reporting and control priorities define the first year?",
+      "professionalSummary": "Finance executive with experience in financial planning, controllership and capital allocation for financial businesses. Progressed through accounting and finance leadership into ownership of board reporting, funding readiness and commercial decision support.",
+      "experienceYears": 21,
+      "leadershipScope": "Led 24 finance professionals across controllership, planning, treasury and reporting.",
+      "markets": [
+        "Corporate finance",
+        "Financial control",
+        "Capital allocation"
+      ],
+      "technologies": [
+        "ERP systems",
+        "Excel",
+        "Power BI",
+        "Financial planning tools",
+        "Treasury reporting",
+        "Scenario analysis"
+      ],
+      "metrics": [
+        {
+          "label": "Finance organisation",
+          "value": "24 people",
+          "context": "Example controllership, planning, treasury and reporting remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Monthly close",
+          "value": "10 to 6 business days",
+          "context": "Example close calendar from month-end to management reporting sign-off.",
+          "hypothetical": true
+        },
+        {
+          "label": "Forecast variance",
+          "value": "15% to 7%",
+          "context": "Example absolute operating-expense forecast variance over comparable quarters.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-head-of-operations",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Head of Operations",
       "kind": "synthetic",
       "label": "search preview",
@@ -1753,49 +3173,101 @@
           "stage": "Recent leadership",
           "title": "Head of Operations",
           "responsibilities": [
-            "Managed operational teams in relevant transaction or service workflows."
+            "Managed operational teams in relevant transaction or service workflows.",
+            "Introduced standard workflows, exception ownership and service-level reporting.",
+            "Tools and methods: Workflow platforms, Reconciliation tools, SQL."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure provider",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Operations Manager",
           "responsibilities": [
-            "Strengthened reconciliation, exception management and control ownership."
+            "Strengthened reconciliation, exception management and control ownership.",
+            "Managed daily processing and reconciliation teams through product and volume growth.",
+            "Tools and methods: Reconciliation tools, SQL, Excel."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional financial services business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Operations Specialist",
           "responsibilities": [
-            "Improved service performance while managing operational incidents."
+            "Improved service performance while managing operational incidents.",
+            "Resolved transaction breaks and maintained control evidence for operational reviews.",
+            "Tools and methods: SQL, Excel, Incident management."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Transaction operations team",
+          "period": "2010 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Operational delivery",
           "example": "Standardised operational workflows, controls and exception handling.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Operations organisation: 33 people",
+          "metricContext": "Example 30 specialists and three team leaders."
         },
         {
           "area": "Process controls",
           "example": "Introduced service reporting and ownership of recurring operational issues.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Aged breaks: 120 to 45",
+          "metricContext": "Example unresolved reconciliation items older than two business days."
         },
         {
           "area": "Service resilience",
           "example": "Coordinated process improvements with technology, finance and risk teams.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Service completion: 98.5%",
+          "metricContext": "Example eligible requests completed within the agreed service window over 12 months."
         }
       ],
-      "question": "Which workflows, service commitments and failure risks require ownership?"
+      "question": "Which workflows, service commitments and failure risks require ownership?",
+      "professionalSummary": "Operations leader with experience in financial transaction workflows, reconciliations and service quality. Progressed from specialist delivery into team leadership, control ownership and collaboration with technology and client teams.",
+      "experienceYears": 16,
+      "leadershipScope": "Managed 30 operations specialists and three team leaders.",
+      "markets": [
+        "Transaction operations",
+        "Reconciliations",
+        "Service delivery"
+      ],
+      "technologies": [
+        "Workflow platforms",
+        "Reconciliation tools",
+        "SQL",
+        "Excel",
+        "Incident management",
+        "Service dashboards"
+      ],
+      "metrics": [
+        {
+          "label": "Operations organisation",
+          "value": "33 people",
+          "context": "Example 30 specialists and three team leaders.",
+          "hypothetical": true
+        },
+        {
+          "label": "Aged breaks",
+          "value": "120 to 45",
+          "context": "Example unresolved reconciliation items older than two business days.",
+          "hypothetical": true
+        },
+        {
+          "label": "Service completion",
+          "value": "98.5%",
+          "context": "Example eligible requests completed within the agreed service window over 12 months.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-finance-director",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Finance Director",
       "kind": "synthetic",
       "label": "search preview",
@@ -1817,49 +3289,101 @@
           "stage": "Recent leadership",
           "title": "Finance Director",
           "responsibilities": [
-            "Led accounting, reporting or finance teams at a comparable level."
+            "Led accounting, reporting or finance teams at a comparable level.",
+            "Improved financial reporting, planning ownership and management decision support.",
+            "Tools and methods: ERP systems, Excel, Power BI."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial services company",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Financial Controller",
           "responsibilities": [
-            "Managed budgeting, close processes and management information."
+            "Managed budgeting, close processes and management information.",
+            "Led accounting control, audit preparation and financial close activities.",
+            "Tools and methods: Excel, Power BI, Planning tools."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "B2B fintech",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Finance Manager",
           "responsibilities": [
-            "Strengthened controls and supporting operational business decisions."
+            "Strengthened controls and supporting operational business decisions.",
+            "Built department budgets, variance analysis and operational finance reporting.",
+            "Tools and methods: Power BI, Planning tools, Accounting controls."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Finance operations group",
+          "period": "2008 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Financial reporting",
           "example": "Improved reporting discipline and financial planning processes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Finance team: 12 people",
+          "metricContext": "Example reporting, control and business-partnering remit."
         },
         {
           "area": "Planning and analysis",
           "example": "Strengthened controllership and ownership of financial close activities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Reporting delivery: 12 to 7 business days",
+          "metricContext": "Example month-end to management information pack completion."
         },
         {
           "area": "Finance operations",
           "example": "Built decision support connecting budgets, performance and business priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Reconciliation coverage: 100%",
+          "metricContext": "Example key balance-sheet accounts reconciled and reviewed each month."
         }
       ],
-      "question": "Which statutory, management-reporting and commercial-finance responsibilities apply?"
+      "question": "Which statutory, management-reporting and commercial-finance responsibilities apply?",
+      "professionalSummary": "Finance leader experienced in reporting discipline, controllership and commercial planning. Progressed from finance management into ownership of the close process, management information and decision support for financial businesses.",
+      "experienceYears": 18,
+      "leadershipScope": "Led 12 finance professionals across reporting, control and business partnering.",
+      "markets": [
+        "Financial reporting",
+        "Controllership",
+        "Business planning"
+      ],
+      "technologies": [
+        "ERP systems",
+        "Excel",
+        "Power BI",
+        "Planning tools",
+        "Accounting controls",
+        "Management reporting"
+      ],
+      "metrics": [
+        {
+          "label": "Finance team",
+          "value": "12 people",
+          "context": "Example reporting, control and business-partnering remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Reporting delivery",
+          "value": "12 to 7 business days",
+          "context": "Example month-end to management information pack completion.",
+          "hypothetical": true
+        },
+        {
+          "label": "Reconciliation coverage",
+          "value": "100%",
+          "context": "Example key balance-sheet accounts reconciled and reviewed each month.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-executive-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief Executive Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -1881,49 +3405,101 @@
           "stage": "Recent leadership",
           "title": "Chief Executive Officer",
           "responsibilities": [
-            "Led a business with relevant market and operating complexity."
+            "Led a business with relevant market and operating complexity.",
+            "Defined strategic priorities, executive ownership and investment choices for the next business stage.",
+            "Tools and methods: Business planning, Board reporting, Financial dashboards."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology company",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Managing Director / Business Unit Leader",
           "responsibilities": [
-            "Aligned the board, shareholders and leadership team on priorities."
+            "Aligned the board, shareholders and leadership team on priorities.",
+            "Led a business unit with commercial, product and operating accountability.",
+            "Tools and methods: Board reporting, Financial dashboards, CRM analytics."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure business unit",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Functional Director",
           "responsibilities": [
-            "Owned commercial performance, resource allocation and organisational direction."
+            "Owned commercial performance, resource allocation and organisational direction.",
+            "Built a functional leadership team and delivered cross-company growth initiatives.",
+            "Tools and methods: Financial dashboards, CRM analytics, Capital allocation."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Commercial and product organisation",
+          "period": "2004 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Business strategy",
           "example": "Defined a strategic direction and explicit leadership accountability.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Organisation: 150 people",
+          "metricContext": "Example company-wide leadership remit."
         },
         {
           "area": "Executive leadership",
           "example": "Aligned investment priorities, operating plans and board expectations.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Recurring revenue: US$24m to US$34m",
+          "metricContext": "Example annual recurring revenue movement over 24 months; constant-currency scenario."
         },
         {
           "area": "Board alignment",
           "example": "Built a senior team capable of delivering the next business stage.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Operating plan delivery: 85%",
+          "metricContext": "Example board-agreed annual strategic milestones achieved within the planning period."
         }
       ],
-      "question": "What authority, ownership context and first-year outcomes define the CEO mandate?"
+      "question": "What authority, ownership context and first-year outcomes define the CEO mandate?",
+      "professionalSummary": "Business leader with experience in financial technology strategy, institutional customers and organisational growth. Progressed through functional and business-unit leadership into ownership of company direction, leadership development and board accountability.",
+      "experienceYears": 22,
+      "leadershipScope": "Led a 150-person financial technology business with board and investor reporting responsibilities.",
+      "markets": [
+        "Company strategy",
+        "Institutional markets",
+        "Business leadership"
+      ],
+      "technologies": [
+        "Business planning",
+        "Board reporting",
+        "Financial dashboards",
+        "CRM analytics",
+        "Capital allocation",
+        "Operating reviews"
+      ],
+      "metrics": [
+        {
+          "label": "Organisation",
+          "value": "150 people",
+          "context": "Example company-wide leadership remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Recurring revenue",
+          "value": "US$24m to US$34m",
+          "context": "Example annual recurring revenue movement over 24 months; constant-currency scenario.",
+          "hypothetical": true
+        },
+        {
+          "label": "Operating plan delivery",
+          "value": "85%",
+          "context": "Example board-agreed annual strategic milestones achieved within the planning period.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-managing-director",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Managing Director",
       "kind": "synthetic",
       "label": "search preview",
@@ -1945,49 +3521,101 @@
           "stage": "Recent leadership",
           "title": "Managing Director",
           "responsibilities": [
-            "Led a relevant division, region or business unit."
+            "Led a relevant division, region or business unit.",
+            "Established a business-unit strategy, leadership accountability and performance review cadence.",
+            "Tools and methods: Financial planning, CRM reporting, Operating dashboards."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial infrastructure group",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Business Unit Director",
           "responsibilities": [
-            "Owned commercial priorities and cross-functional operating performance."
+            "Owned commercial priorities and cross-functional operating performance.",
+            "Led regional growth and operating improvement with finance, product and risk teams.",
+            "Tools and methods: CRM reporting, Operating dashboards, Board papers."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Institutional financial services business",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Functional Head",
           "responsibilities": [
-            "Managed senior stakeholder relationships and leadership accountability."
+            "Managed senior stakeholder relationships and leadership accountability.",
+            "Managed a functional team serving institutional customers and delivery partners.",
+            "Tools and methods: Operating dashboards, Board papers, Risk reviews."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Functional leadership team",
+          "period": "2005 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Business leadership",
           "example": "Established a business-unit plan with clear commercial and operating priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Business unit: 90 people",
+          "metricContext": "Example direct and indirect leadership remit."
         },
         {
           "area": "Commercial ownership",
           "example": "Strengthened accountability across functional leadership.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Annual revenue: US$42m",
+          "metricContext": "Example business-unit revenue in the current fictional scenario."
         },
         {
           "area": "Organisational execution",
           "example": "Connected resource decisions with market opportunity and business performance.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Operating margin: 16% to 21%",
+          "metricContext": "Example operating profit as a share of revenue over 24 months; consistent allocation basis."
         }
       ],
-      "question": "Is the remit a legal entity, region, division or product business?"
+      "question": "Is the remit a legal entity, region, division or product business?",
+      "professionalSummary": "Senior business leader experienced in institutional financial markets and business-unit performance. Progressed through functional and commercial leadership into responsibility for strategy, investment choices and cross-functional execution.",
+      "experienceYears": 21,
+      "leadershipScope": "Led a 90-person business unit spanning commercial, product and operations.",
+      "markets": [
+        "Business-unit leadership",
+        "Institutional financial markets",
+        "Commercial performance"
+      ],
+      "technologies": [
+        "Financial planning",
+        "CRM reporting",
+        "Operating dashboards",
+        "Board papers",
+        "Risk reviews",
+        "Resource planning"
+      ],
+      "metrics": [
+        {
+          "label": "Business unit",
+          "value": "90 people",
+          "context": "Example direct and indirect leadership remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Annual revenue",
+          "value": "US$42m",
+          "context": "Example business-unit revenue in the current fictional scenario.",
+          "hypothetical": true
+        },
+        {
+          "label": "Operating margin",
+          "value": "16% to 21%",
+          "context": "Example operating profit as a share of revenue over 24 months; consistent allocation basis.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-general-manager",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "General Manager",
       "kind": "synthetic",
       "label": "search preview",
@@ -2009,49 +3637,101 @@
           "stage": "Recent leadership",
           "title": "General Manager",
           "responsibilities": [
-            "Ran a relevant business unit with a defined customer and operating remit."
+            "Ran a relevant business unit with a defined customer and operating remit.",
+            "Clarified business-unit priorities, decision rights and cross-functional ownership.",
+            "Tools and methods: Operating dashboards, CRM platforms, Budget planning."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology business unit",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "Operations / Commercial Director",
           "responsibilities": [
-            "Coordinated commercial, product and operational teams."
+            "Coordinated commercial, product and operational teams.",
+            "Led product and service improvements tied to customer and operating outcomes.",
+            "Tools and methods: CRM platforms, Budget planning, Service reporting."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial services operations group",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "Department Manager",
           "responsibilities": [
-            "Managed budgets, priorities and performance against agreed targets."
+            "Managed budgets, priorities and performance against agreed targets.",
+            "Managed departmental delivery, staffing and budget decisions.",
+            "Tools and methods: Budget planning, Service reporting, Process mapping."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Department management team",
+          "period": "2008 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "Business-unit delivery",
           "example": "Clarified the business-unit remit, decision rights and performance priorities.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Business unit: 55 people",
+          "metricContext": "Example commercial, product and operations remit."
         },
         {
           "area": "Operational coordination",
           "example": "Aligned commercial, product and operations around a shared operating plan.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Customer retention: 90% to 95%",
+          "metricContext": "Example retained opening-cohort customers across comparable 12-month periods."
         },
         {
           "area": "Commercial performance",
           "example": "Introduced a review cadence covering customer, financial and delivery outcomes.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Budget variance: Within 5%",
+          "metricContext": "Example absolute actual-versus-approved operating budget variance over 12 months."
         }
       ],
-      "question": "Which decisions, resources and results sit within the business-unit boundary?"
+      "question": "Which decisions, resources and results sit within the business-unit boundary?",
+      "professionalSummary": "General management leader with experience coordinating commercial, product and operational teams. Progressed through departmental leadership into ownership of a defined business unit, resource decisions and customer outcomes.",
+      "experienceYears": 18,
+      "leadershipScope": "Led a 55-person business unit with responsibility for its operating plan.",
+      "markets": [
+        "Business operations",
+        "Customer delivery",
+        "Unit economics"
+      ],
+      "technologies": [
+        "Operating dashboards",
+        "CRM platforms",
+        "Budget planning",
+        "Service reporting",
+        "Process mapping",
+        "Performance reviews"
+      ],
+      "metrics": [
+        {
+          "label": "Business unit",
+          "value": "55 people",
+          "context": "Example commercial, product and operations remit.",
+          "hypothetical": true
+        },
+        {
+          "label": "Customer retention",
+          "value": "90% to 95%",
+          "context": "Example retained opening-cohort customers across comparable 12-month periods.",
+          "hypothetical": true
+        },
+        {
+          "label": "Budget variance",
+          "value": "Within 5%",
+          "context": "Example absolute actual-versus-approved operating budget variance over 12 months.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     },
     {
       "id": "sp-chief-people-officer",
-      "version": "2026-10-21.1",
+      "version": "2026-10-21.2",
       "role": "Chief People Officer",
       "kind": "synthetic",
       "label": "search preview",
@@ -2073,45 +3753,97 @@
           "stage": "Recent leadership",
           "title": "Chief People Officer",
           "responsibilities": [
-            "Led people functions through relevant growth or organisational change."
+            "Led people functions through relevant growth or organisational change.",
+            "Aligned organisation design, leadership planning and reward governance with the business strategy.",
+            "Tools and methods: HRIS, Workforce analytics, Compensation planning."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial technology group",
+          "period": "2022 - present"
         },
         {
           "stage": "Previous role",
           "title": "People / HR Director",
           "responsibilities": [
-            "Advised executives on organisation design, succession and reward."
+            "Advised executives on organisation design, succession and reward.",
+            "Led people operations, management development and workforce planning through organisational change.",
+            "Tools and methods: Workforce analytics, Compensation planning, Talent reviews."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "Financial services organisation",
+          "period": "2017 - 2022"
         },
         {
           "stage": "Earlier specialism",
           "title": "HR Business Partner / People Lead",
           "responsibilities": [
-            "Built management standards, workforce planning and employee relations."
+            "Built management standards, workforce planning and employee relations.",
+            "Partnered with business leaders on hiring, employee relations and team development.",
+            "Tools and methods: Compensation planning, Talent reviews, People dashboards."
           ],
-          "environment": "Capital markets or a relevant adjacent business"
+          "environment": "HR business-partnering team",
+          "period": "2005 - 2017"
         }
       ],
       "achievementExamples": [
         {
           "area": "People strategy",
           "example": "Aligned organisation design and leadership planning with business strategy.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Organisation supported: 600 people",
+          "metricContext": "Example workforce scope with a 15-person people function."
         },
         {
           "area": "Leadership development",
           "example": "Introduced succession, management development and workforce planning practices.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Critical succession coverage: 45% to 80%",
+          "metricContext": "Example critical leadership roles with a documented ready-now or ready-later successor."
         },
         {
           "area": "Organisation design",
           "example": "Strengthened reward governance and executive decision support.",
-          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing."
+          "evidenceToValidate": "Agree the baseline, measurable outcome and personal contribution during a briefing.",
+          "supportingMetric": "Voluntary turnover: 18% to 13%",
+          "metricContext": "Example annual voluntary departures divided by average headcount; comparable periods."
         }
       ],
-      "question": "Which organisational changes and leadership gaps must this role address?"
+      "question": "Which organisational changes and leadership gaps must this role address?",
+      "professionalSummary": "People executive experienced in leadership development, organisation design and workforce planning for financial businesses. Progressed from business partnering into leadership of people strategy, management standards and executive succession.",
+      "experienceYears": 21,
+      "leadershipScope": "Led 15 people professionals supporting a 600-person organisation.",
+      "markets": [
+        "People strategy",
+        "Organisation design",
+        "Leadership development"
+      ],
+      "technologies": [
+        "HRIS",
+        "Workforce analytics",
+        "Compensation planning",
+        "Talent reviews",
+        "People dashboards",
+        "Learning platforms"
+      ],
+      "metrics": [
+        {
+          "label": "Organisation supported",
+          "value": "600 people",
+          "context": "Example workforce scope with a 15-person people function.",
+          "hypothetical": true
+        },
+        {
+          "label": "Critical succession coverage",
+          "value": "45% to 80%",
+          "context": "Example critical leadership roles with a documented ready-now or ready-later successor.",
+          "hypothetical": true
+        },
+        {
+          "label": "Voluntary turnover",
+          "value": "18% to 13%",
+          "context": "Example annual voluntary departures divided by average headcount; comparable periods.",
+          "hypothetical": true
+        }
+      ],
+      "metricsDisclosure": "All figures are fictional scenario examples, not verified candidate results."
     }
   ]
 }
