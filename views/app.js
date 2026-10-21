@@ -55,8 +55,8 @@ function drawGuide(){
 $('#guide-back').addEventListener('click',()=>{guideStep=Math.max(0,guideStep-1);$('#results').hidden=true;drawGuide();});
 function blueprint(input){
  const spec=targetArchetype(input.role,selection.niche,input.location);const article=el('article','','blueprint');
- const top=el('div','','blueprint-top');top.append(el('span',selection.niche+' / '+input.location,'step'),el('span','Model CV','blueprint-label'));article.append(top);
- const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('span','Model CV','step'),el('h3',input.role),el('p',spec.mandate,'mandate'));
+ const top=el('div','','blueprint-top');top.append(el('span',selection.niche+' / '+input.location,'step'),el('span','search preview','blueprint-label'));article.append(top);
+ const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('span','search preview','step'),el('h3',input.role),el('p',spec.mandate,'mandate'));
  const chips=el('div','','chips');[input.location,...spec.focus].forEach(skill=>chips.append(el('span',skill)));const call=el('a','Discuss this search ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(chips,el('p',spec.baseFocus,'target-salary'),call,el('p','A role-based model, not an individual candidate. Experience and capabilities are search criteria, not a verified career history.','blueprint-disclosure'));core.append(story);
  const pillars=el('div','','capabilities');spec.pillars.forEach(([title,description],index)=>{const row=el('div','','capability');row.append(el('span','0'+(index+1),'capability-number'));const text=el('div');text.append(el('h4',title),el('p',description));row.append(text);pillars.append(row);});core.append(pillars);article.append(core);
  const question=el('div','','brief-question');question.append(el('span','The first-year mandate','step'),el('p',spec.question));article.append(question);return article;
@@ -67,10 +67,10 @@ $('#search-form').addEventListener('submit',async event=>{
  try{
   const roleTarget=targetArchetype(selection.role,selection.niche,selection.location);const input={role:selection.role,location:selection.location,skills:roleTarget.focus.join(', ')};
   const data=await post('/api/search',input);currentSearch=input;if(data.crmDiagnostic)console.warn('Recruit CRM connection:',data.crmDiagnostic);const grid=$('#profile-grid');grid.replaceChildren();
-  $('#result-tag').textContent='Role-based model CV';
-  $('#result-message').textContent=data.crmStatus==='searched'?'Your confidential CRM search has been checked privately. This model CV describes the target for your brief. A consultant can confirm candidate fit, interest and availability.':data.crmStatus==='unavailable'?'Your model CV is ready. The private CRM check could not complete; discuss the brief with us to validate candidate fit.':'Your model CV describes the target for your brief. Discuss it with us to begin a confidential candidate search.';
+  $('#result-tag').textContent='Role-based search preview';
+  $('#result-message').textContent=data.crmStatus==='searched'?'Your confidential CRM search has been checked privately. This search preview describes the target for your brief. A consultant can confirm candidate fit, interest and availability.':data.crmStatus==='unavailable'?'Your search preview is ready. The private CRM check could not complete; discuss the brief with us to validate candidate fit.':'Your search preview describes the target for your brief. Discuss it with us to begin a confidential candidate search.';
   grid.append(blueprint(input));
-  buildMarketBrief(input,data.crmStatus);grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your model CV is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
+  buildMarketBrief(input,data.crmStatus);grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your search preview is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(error){$('#search-status').textContent=error.message;}finally{button.disabled=false;}
 });
 drawGuide();

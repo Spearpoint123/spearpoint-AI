@@ -1,4 +1,4 @@
-// Curated illustrative search targets. These never describe actual candidates.
+// Curated role-based search targets. These never describe actual candidates.
 export const roleArchetypes={
   "Head of Trading": {
     "mandate": "Lead a trading desk with clear strategy ownership, execution standards and risk accountability.",
@@ -465,5 +465,5 @@ export const roleArchetypes={
 };
 export function targetArchetype(role,niche,location){
  const profile=roleArchetypes[role];if(!profile)throw Error('Unsupported target role');
- return {...profile,role,niche,location,kind:'synthetic',label:'Model CV',baseFocus:'Mandate focus: US$150,000+ annual base. A tailored benchmark is still required.',pillars:profile.focus.map((title,index)=>[title,profile.experience[index]])};
+ return {...profile,role,niche,location,kind:'synthetic',label:'search preview',baseFocus:'Mandate focus: US$150,000+ annual base. A tailored benchmark is still required.',pillars:profile.focus.map((title,index)=>[title,profile.experience[index]])};
 }
