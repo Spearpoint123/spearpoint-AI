@@ -3,6 +3,7 @@ import {timingSafeEqual} from 'node:crypto';
 import {searchInput,briefInput,archetypes,BOOKING_URL} from '../lib/domain.mjs';
 import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
+import {originAllowed} from '../lib/origin.mjs';
 const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8']};
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
 export function authorized(req){
@@ -22,7 +23,7 @@ export default async function handler(req,res){
  if(req.method==='GET'&&path==='/style.css')return asset('style.css','text/css');
  if(path==='/api/login'){
   if(req.method!=='POST')return json(405,{error:'POST required'});
-  if(!process.env.APP_ORIGIN||req.headers.origin!==process.env.APP_ORIGIN)return json(403,{error:'Request origin rejected'});
+  if(!originAllowed(req.headers.origin))return json(403,{error:'Request origin rejected. Please use the main staging address.'});
   if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'JSON required'});
   try{
    let body=req.body;
@@ -45,7 +46,7 @@ export default async function handler(req,res){
  if(path==='/robots.txt'){res.setHeader('Content-Type','text/plain');return res.end('User-agent: *\nDisallow: /\n');}
  if(!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});
  if(req.method!=='POST'){res.setHeader('Allow','POST');return json(405,{error:'Method not allowed'});}
- if(!process.env.APP_ORIGIN||req.headers.origin!==process.env.APP_ORIGIN)return json(403,{error:'Request origin rejected'});
+ if(!originAllowed(req.headers.origin))return json(403,{error:'Request origin rejected. Please use the main staging address.'});
  if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'JSON required'});
  let body;
  try{if(req.body){if(Buffer.byteLength(JSON.stringify(req.body))>12000)return json(413,{error:'Request too large'});body=typeof req.body==='string'?JSON.parse(req.body):req.body;}else{let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>12000)return json(413,{error:'Request too large'});}body=JSON.parse(raw);}if(!body||Array.isArray(body)||typeof body!=='object')throw Error();}catch{return json(400,{error:'Invalid request'});}
