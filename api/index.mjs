@@ -56,10 +56,10 @@ export default async function handler(req,res){
   const input=path==='/api/search'?searchInput(body):briefInput(body);
   if(!await rateLimit(req,path==='/api/search'?'search':'brief')){res.setHeader('Retry-After','3600');return json(429,{error:'Hourly limit reached. Please try later or book a briefing.'});}
   if(path==='/api/search'){
-   let result;try{result=await realSearch(input);}catch{result={profiles:[],status:'unavailable'};}
+   let result;try{result=await realSearch(input);}catch(error){const code=/^(crm_http_[0-9]{3}|crm_contract|crm_rate_limited|storage_unavailable)$/.test(error.message)?error.message:['TimeoutError','AbortError'].includes(error.name)?'crm_timeout':'crm_internal';result={profiles:[],status:'unavailable',diagnostic:code};console.warn('Recruit CRM connection:',code);}
    const synthetic=result.profiles.length===0;
    const message=!synthetic?'These consented, redacted profiles meet at least 80% of the scored search criteria. Review their experience, supporting evidence and gaps with a consultant.':result.status==='not_connected'?'Live candidate search is not available in this preview. These are synthetic planning profiles, not CRM results or available candidates.':result.status==='unavailable'?"We couldn't complete the live candidate check. These synthetic examples can help shape your briefing; they are not real or available candidates.":'No externally shareable profile met the 80% criteria threshold in this search. These synthetic examples show the profile a real search could target; they are not available candidates.';
-   return json(200,{profiles:synthetic?archetypes(input):result.profiles,synthetic,crmStatus:result.status,message,bookingUrl:BOOKING_URL});
+   return json(200,{profiles:synthetic?archetypes(input):result.profiles,synthetic,crmStatus:result.status,...(result.diagnostic?{crmDiagnostic:result.diagnostic}:{}),message,bookingUrl:BOOKING_URL});
   }
   if(process.env.RETENTION_JOB_CONFIRMED!=='true')throw Error('storage_unavailable');
   const saved=await saveBrief(input);return json(201,{reference:saved.id,bookingUrl:BOOKING_URL,message:'Your briefing request has been saved securely. Book a time to discuss your search.'});
