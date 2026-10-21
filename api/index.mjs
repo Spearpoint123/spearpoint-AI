@@ -5,7 +5,7 @@ import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
 import {findArchetype,catalogueVersion} from '../lib/archetype-store.mjs';
-const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/GT-Canon-VF.ttf':['GT-Canon-VF.ttf','font/ttf'],'/GT-Standard-VF.ttf':['GT-Standard-VF.ttf','font/ttf'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
+const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/search-journey.js':['search-journey.js','text/javascript'],'/GT-Canon-VF.ttf':['GT-Canon-VF.ttf','font/ttf'],'/GT-Standard-VF.ttf':['GT-Standard-VF.ttf','font/ttf'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
 export const PUBLIC_HOST='ai.spearpointsearch.com';
 export const isPublicRequest=req=>process.env.VERCEL==='1'&&req.headers.host===PUBLIC_HOST;
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
