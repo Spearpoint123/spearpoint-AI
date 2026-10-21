@@ -4,6 +4,7 @@ import {searchInput,briefInput,BOOKING_URL} from '../lib/domain.mjs';
 import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
+import {generatedArchetype} from '../lib/generated-archetypes.mjs';
 import {findArchetype,catalogueVersion} from '../lib/archetype-store.mjs';
 const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/search-journey.js':['search-journey.js','text/javascript'],'/GT-Canon-VF.ttf':['GT-Canon-VF.ttf','font/ttf'],'/GT-Standard-VF.ttf':['GT-Standard-VF.ttf','font/ttf'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
 export const PUBLIC_HOST='ai.spearpointsearch.com';
@@ -67,8 +68,10 @@ export default async function handler(req,res){
   const input=path==='/api/search'?searchInput(body):briefInput(body);
   if(!await rateLimit(req,path==='/api/search'?'search':'brief')){res.setHeader('Retry-After','3600');return json(429,{error:'Hourly limit reached. Please try later or book a briefing.'});}
   if(path==='/api/search'){
-   const archetype=findArchetype(input);
-   let result;try{result=await realSearch({...input,skills:archetype.focus.join(', ')},{modelOnly:true});}catch(error){const code=/^(crm_http_[0-9]{3}|crm_contract(?:_[a-z_]{1,140})?|crm_access_denied|crm_auth_rejected|crm_rate_limited|storage_unavailable)$/.test(error.message)?error.message:['TimeoutError','AbortError'].includes(error.name)?'crm_timeout':'crm_internal';result={profiles:[],status:'unavailable',diagnostic:code};console.warn('Recruit CRM connection:',code);}
+   const profileTask=(async()=>{try{if(input.jobDescription)return await generatedArchetype(input);try{return findArchetype(input);}catch{return await generatedArchetype(input);}}catch(error){console.warn('CV generation:',/^(generation_unavailable|generation_budget|invalid_generation|storage_unavailable)$/.test(error.message)?error.message:'generation_failed');return null;}})();
+   const crmTask=realSearch(input,{modelOnly:true}).catch(error=>{const code=/^(crm_http_[0-9]{3}|crm_contract(?:_[a-z_]{1,140})?|crm_access_denied|crm_auth_rejected|crm_rate_limited|storage_unavailable)$/.test(error.message)?error.message:['TimeoutError','AbortError'].includes(error.name)?'crm_timeout':'crm_internal';console.warn('Recruit CRM connection:',code);return {profiles:[],status:'unavailable',diagnostic:code};});
+   const [archetype,result]=await Promise.all([profileTask,crmTask]);
+   if(!archetype)return json(200,{profiles:[],synthetic:true,crmStatus:result.status,message:'The private CRM check '+(result.status==='searched'?'completed.':'could not complete.')+' A tailored example CV is unavailable right now. Book a briefing to discuss this exact role.',bookingUrl:BOOKING_URL});
    const synthetic=true;
    const message=result.status==='searched'?'The confidential CRM search completed privately. This search preview is a role-based target, not an individual candidate.':result.status==='unavailable'?'The search preview is ready. The private CRM check could not complete.':'This search preview is a role-based target. A briefing can begin a confidential candidate search.';
    return json(200,{profiles:[archetype],synthetic,archetypeVersion:catalogueVersion,archetypeStatus:'matched',crmStatus:result.status,...(result.diagnostic?{crmDiagnostic:result.diagnostic}:{}),message,bookingUrl:BOOKING_URL});
