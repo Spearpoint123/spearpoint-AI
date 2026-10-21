@@ -71,10 +71,10 @@ export const roleArchetypes={
     "question": "Where does the role sit between research infrastructure and live trading?"
   },
   "Chief AI Officer": {
-    "mandate": "Set an AI strategy tied to business outcomes, model governance and delivery accountability.",
+    "mandate": "Set an AI strategy tied to business outcomes, AI governance and delivery accountability.",
     "focus": [
       "AI strategy",
-      "Model governance",
+      "AI governance",
       "Business adoption"
     ],
     "experience": [
@@ -93,7 +93,7 @@ export const roleArchetypes={
     ],
     "experience": [
       "Leading applied AI or machine-learning teams on relevant business problems.",
-      "Defining evaluation datasets, model-quality thresholds and release criteria.",
+      "Defining evaluation datasets, AI-quality thresholds and release criteria.",
       "Working with product, data and platform teams on adoption and monitoring."
     ],
     "question": "Which use cases need research depth, and which need dependable execution?"
@@ -116,7 +116,7 @@ export const roleArchetypes={
     "mandate": "Build and operate machine-learning systems with rigorous evaluation and reliable serving.",
     "focus": [
       "ML engineering",
-      "Model evaluation",
+      "AI evaluation",
       "Production operations"
     ],
     "experience": [
@@ -169,7 +169,7 @@ export const roleArchetypes={
     "question": "What is the balance between hands-on technical leadership and people management?"
   },
   "Chief Information Security Officer": {
-    "mandate": "Own security strategy, assurance and incident readiness against the business threat model.",
+    "mandate": "Own security strategy, assurance and incident readiness against the business threat assessment.",
     "focus": [
       "Security governance",
       "Cyber resilience",
@@ -222,7 +222,7 @@ export const roleArchetypes={
       "Building account plans, qualification standards and forecast discipline.",
       "Developing repeatable sales execution for complex buying decisions."
     ],
-    "question": "Which customer segment, sales cycle and territory model must this leader understand?"
+    "question": "Which customer segment, sales cycle and territory structure must this leader understand?"
   },
   "Head of Business Development": {
     "mandate": "Develop partnerships and new commercial opportunities with a clear route to value.",
@@ -288,7 +288,7 @@ export const roleArchetypes={
       "Execution planning"
     ],
     "experience": [
-      "Leading market, competitive and business-model analysis.",
+      "Leading market, competitive and business strategy analysis.",
       "Preparing investment or growth decisions for senior stakeholders.",
       "Translating chosen priorities into accountable programmes."
     ],
@@ -351,9 +351,9 @@ export const roleArchetypes={
     "question": "Does this role include a formally appointed reporting-officer responsibility?"
   },
   "Chief Operating Officer": {
-    "mandate": "Own the operating model and execution discipline needed to support the business.",
+    "mandate": "Own the operating structure and execution discipline needed to support the business.",
     "focus": [
-      "Operating model",
+      "Operating structure",
       "Operational resilience",
       "Cross-functional execution"
     ],
