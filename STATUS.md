@@ -1,5 +1,14 @@
 # Delivery status
 
+## CRM-first matching and consistent profile cards
+
+- Connected read-only Recruit CRM search verified in this chat on the user's Spearpoint Search account. This does not automatically provision a hosted API credential.
+- Public REST API contract checked in the official documentation: GET /v1/candidates/search, position filter, marked_as_off_limit=false, data[].position and data[].skill. The earlier unverified job_title/current_job_title mapping has been replaced.
+- Implemented an 80% criteria-coverage gate (role 40 / requested experience 40 / location evidence 20) using approved shareable copy. Role alignment and current external-sharing consent are also mandatory. No hiring-success probability is asserted.
+- Real and synthetic cards share Experience, Why it could fit and Gaps to discuss sections with the same booking CTA. Synthetic examples have no numeric match score.
+- Fifteen local tests passed, including CRM GET-only requests, consent/off-limit exclusion, private-field suppression, threshold boundaries and honest disabled-connector behaviour.
+- Vercel still has no RECRUIT_CRM_API_KEY. The Recruit CRM browser session is signed out. Live hosted CRM matching remains disabled until secure key setup and an account-specific smoke test. No candidate records or consent approvals were exported or created.
+
 ## Employer curiosity and booking showcase
 
 - Added a prominent synthetic CTO/financial-technology showcase before the search form, with a target-experience narrative, potential impact and direct booking CTA.

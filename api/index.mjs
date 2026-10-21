@@ -56,7 +56,8 @@ export default async function handler(req,res){
   if(path==='/api/search'){
    let result;try{result=await realSearch(input);}catch{result={profiles:[],status:'unavailable'};}
    const synthetic=result.profiles.length===0;
-   return json(200,{profiles:synthetic?archetypes(input):result.profiles,synthetic,crmStatus:result.status,message:synthetic?'No shareable real profiles are shown. These synthetic archetypes are planning examples, not available candidates.':'Consented redacted profiles. Interest and availability have not been confirmed.',bookingUrl:BOOKING_URL});
+   const message=!synthetic?'These consented, redacted profiles meet at least 80% of the scored search criteria. Review their experience, supporting evidence and gaps with a consultant.':result.status==='not_connected'?'Live candidate search is not available in this preview. These are synthetic planning profiles, not CRM results or available candidates.':result.status==='unavailable'?"We couldn't complete the live candidate check. These synthetic examples can help shape your briefing; they are not real or available candidates.":'No externally shareable profile met the 80% criteria threshold in this search. These synthetic examples show the profile a real search could target; they are not available candidates.';
+   return json(200,{profiles:synthetic?archetypes(input):result.profiles,synthetic,crmStatus:result.status,message,bookingUrl:BOOKING_URL});
   }
   if(process.env.RETENTION_JOB_CONFIRMED!=='true')throw Error('storage_unavailable');
   const saved=await saveBrief(input);return json(201,{reference:saved.id,bookingUrl:BOOKING_URL,message:'Your briefing request has been saved securely. Book a time to discuss your search.'});
