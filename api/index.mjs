@@ -23,6 +23,14 @@ export default async function handler(req,res){
  const json=(status,body)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));};
  const path=new URL(req.url,'http://localhost').pathname;
  const publicSite=isPublicRequest(req);
+ // Analytics linker decorations are not part of the shareable product URL.
+ // Clean only known tracking keys on the public landing page; keep functional parameters.
+ if(publicSite&&req.method==='GET'&&path==='/'){
+  const landing=new URL(req.url,'https://'+PUBLIC_HOST);let decorated=false;
+  for(const key of [...landing.searchParams.keys()])if(/^(?:_gl|_ga|_gac|gclid|dclid|fbclid|msclkid|utm_.+)$/i.test(key)){landing.searchParams.delete(key);decorated=true;}
+  if(decorated){res.statusCode=302;res.setHeader('Location','/'+landing.search);return res.end();}
+ }
+
  if(publicSite&&['/api/login','/login.js','/login'].includes(path))return json(404,{error:'Not found'});
  const asset=async(file,type)=>{res.setHeader('Content-Type',type);res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));};
  if(req.method==='GET'&&path==='/login.js')return asset('login.js','text/javascript');
