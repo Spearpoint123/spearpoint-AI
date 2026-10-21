@@ -1,1 +1,1 @@
-{"functions": {"api/index.mjs": {"includeFiles": "{views,data}/**", "maxDuration": 30}}, "rewrites": [{"source": "/(.*)", "destination": "/api/index"}], "headers": [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive"}]}]}
+{"functions": {"api/index.mjs": {"includeFiles": "{views,data}/**", "maxDuration": 60}}, "rewrites": [{"source": "/(.*)", "destination": "/api/index"}], "headers": [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive"}]}]}

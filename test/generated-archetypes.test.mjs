@@ -30,3 +30,8 @@ test('budget denial stops inference without transmitting requirements',async()=>
  const calls=[];global.fetch=async(url)=>{calls.push(String(url));return new Response(JSON.stringify(String(url).includes('/rpc/')?false:[]),{status:200});};
  try{await assert.rejects(generatedArchetype({role:'Derivatives Sales',location:'London'}),/generation_budget/);assert.equal(calls.length,2);assert.ok(calls.every(x=>x.startsWith(process.env.SUPABASE_URL)));}finally{global.fetch=old;process.env=env;}
 });
+test('validated cached CV is reused without an AI call and cache key separates requirements',async()=>{
+ const old=global.fetch,env={...process.env};process.env.SUPABASE_URL='https://pcezdsdhmjxpjakxtdhz.supabase.co';process.env.SUPABASE_SERVICE_ROLE_KEY='test';process.env.RATE_LIMIT_HMAC_KEY='x'.repeat(32);
+ const paths=[];global.fetch=async(url)=>{paths.push(String(url));return new Response(JSON.stringify([{profile:savedArchetypes[0]}]),{status:200});};
+ try{const result=await generatedArchetype({role:'Derivatives Sales',location:'London',jobDescription:'Equity options'});assert.equal(result.role,'Derivatives Sales');assert.equal(result.kind,'synthetic');assert.equal(paths.length,1);await generatedArchetype({role:'Derivatives Sales',location:'London',jobDescription:'Credit derivatives'});assert.notEqual(paths[0],paths[1]);assert.ok(paths.every(x=>x.startsWith(process.env.SUPABASE_URL)));assert.ok(paths.every(x=>!x.includes('derivatives')&&!x.includes('Equity')));}finally{global.fetch=old;process.env=env;}
+});
