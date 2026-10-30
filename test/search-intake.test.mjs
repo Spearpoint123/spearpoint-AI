@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {searchIntake,professionalMandate,applyIntakeCriteria} from '../lib/search-intake.mjs';
 import {professionalSignals,crmSignals,discoveryExplanation} from '../lib/discovery-evidence.mjs';
 import {pendingDiscovery,instantSearch} from '../lib/instant-search.mjs';
-import {groundMandate} from '../lib/talent-search.mjs';
+import {groundMandate,modelMandate} from '../lib/talent-search.mjs';
 import {candidateEligible} from '../lib/services.mjs';
 const criteria={role:'Chief Technology Officer',family:'technology',location:'Any location',niches:['Digital assets'],requirements:[],customRequirements:['DeFi experience'],otherRequirements:'None'};
 test('DeFi survives interpretation as its own requirement and does not become generic crypto experience',()=>{const c=groundMandate({...criteria,customRequirements:[]},'Find a CTO with DeFi experience');assert.equal(c.role,'Chief Technology Officer');assert.ok(c.customRequirements.includes('DeFi experience'));assert.ok(!professionalSignals('Crypto exchange technology experience.').some(s=>s.criterion==='defi'));assert.deepEqual(professionalSignals('No DeFi experience. Interested in DeFi. Has never worked in DeFi.'),[]);});
@@ -27,4 +27,13 @@ test('full uploaded job descriptions preserve the final requirements through int
  const prompt=professionalMandate('CCO',jd,intake);
  assert.ok(prompt.includes(jd));assert.ok(prompt.endsWith('Must-have 3: Compliance leadership'));
  assert.throws(()=>professionalMandate('CCO','A'.repeat(20001),intake),/validation/);
+});
+
+test('oversized model requirement arrays become eight visible priorities without weakening label checks',()=>{
+ const customRequirements=['Active Series 3','NFA registration',...Array.from({length:30},(_,i)=>'Professional requirement '+i)];
+ const result=modelMandate({...criteria,customRequirements});assert.equal(result.requirementsCondensed,true);
+ assert.deepEqual(result.criteria.customRequirements,customRequirements.slice(0,8));
+ assert.equal(modelMandate(criteria).requirementsCondensed,false);
+ assert.throws(()=>modelMandate({...criteria,customRequirements:[...customRequirements,'private@example.com']}),/validation/);
+ const explicit=applyIntakeCriteria(result.criteria,searchIntake({mustHaves:['Must have requirement']}));assert.equal(explicit.customRequirements[0],'Must have requirement');
 });
