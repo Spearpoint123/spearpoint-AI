@@ -31,3 +31,9 @@ test('mixed catalogue projects only approved public evidence and returns actual 
  globalThis.fetch=async url=>{assert.ok(!String(url).includes('profile_family=eq.compliance'));return new Response(JSON.stringify([row,{...row,crm_slug:'REVOKED_PRIVATE_RECORD',revoked_at:new Date().toISOString()}]));};
  try{const profiles=await reviewedProfiles();assert.equal(profiles.length,1);assert.equal(profiles[0].family,'technology');const data=JSON.stringify(profiles);assert.ok(!data.includes('PRIVATE'));assert.ok(!data.includes('crm_slug'));const coverage=await reviewedCoverage();assert.equal(coverage.total,1);assert.equal(coverage.niches.find(n=>n.niche==='Exchanges').count,1);assert.equal(coverage.niches.find(n=>n.niche==='Hedge funds').count,0);assert.equal(coverage.families.find(f=>f.key==='technology').count,1);}finally{globalThis.fetch=fetch;process.env=env;}
 });
+test('explicit requested titles cannot be broadened by model extraction and selected sector remains mandatory',async()=>{
+ const {groundMandate}=await import('../lib/talent-search.mjs');
+ const c=groundMandate(criteria({role:'Trading leadership',family:'trading',niches:['Fintech'],nicheMode:'any'}),'Head of Trading with quantitative research. Required sector: Hedge funds.');assert.equal(c.role,'Head of Trading');assert.equal(c.family,'trading');assert.equal(c.nicheMode,'all');assert.ok(c.niches.includes('Hedge funds'));
+ assert.equal(groundMandate(criteria({role:'Technology leadership'}),'CTO who has built exchange infrastructure.').role,'Chief Technology Officer');
+ assert.equal(groundMandate(criteria({role:'Head of Engineering'}),'Head of Engineering, not a CTO.').role,'Head of Engineering');
+});
