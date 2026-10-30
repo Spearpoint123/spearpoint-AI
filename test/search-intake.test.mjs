@@ -20,3 +20,11 @@ test('commercial impact, deadline rationale and budget stay out of model and mar
 });
 
 test('explicit location and the three must-haves cannot be dropped or reprioritised by AI interpretation',()=>{const intake=searchIntake({location:'London, hybrid',mustHaves:['DeFi experience','Led a production launch','Built a team']});const c=applyIntakeCriteria({...criteria,location:'Any location',customRequirements:['Solidity']},intake);assert.equal(c.location,'London, hybrid');assert.deepEqual(c.customRequirements.slice(0,3),intake.mustHaves);assert.deepEqual(c.essential,['custom_0','custom_1','custom_2']);assert.equal(c.weights.custom_0,5);});
+
+test('full uploaded job descriptions preserve the final requirements through interpretation intake',()=>{
+ const jd='A'.repeat(19965)+' Required final skill: Series 3.';
+ const intake=searchIntake({location:'London',mustHaves:['NFA registration','Series 3','Compliance leadership']});
+ const prompt=professionalMandate('CCO',jd,intake);
+ assert.ok(prompt.includes(jd));assert.ok(prompt.endsWith('Must-have 3: Compliance leadership'));
+ assert.throws(()=>professionalMandate('CCO','A'.repeat(20001),intake),/validation/);
+});
