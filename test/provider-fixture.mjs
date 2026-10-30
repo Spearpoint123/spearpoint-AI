@@ -1,0 +1,2 @@
+// Native Gateway fixture preserves independently supplied source parts.
+export const gatewayFixture=payload=>({content:[{type:'text',text:payload.choices[0].message.content},...(payload.citations||[]).map((url,i)=>({type:'source',sourceType:'url',id:String(i),url}))],finishReason:{unified:'stop',raw:'stop'},usage:{inputTokens:{total:1,noCache:1,cacheRead:0,cacheWrite:0},outputTokens:{total:1,text:1,reasoning:0}},warnings:[]});
