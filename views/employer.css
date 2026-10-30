@@ -7,3 +7,5 @@
 .consultant-link{display:inline-block;font-size:13px;color:#244d32;text-decoration:underline}.candidate-table .consultant-link{margin-top:14px}.app-topbar>.consultant-link{margin-left:auto}#intro-status{padding:8px 0;font-weight:600;overflow-wrap:anywhere}#intro-dialog[open] [hidden]{display:none!important}@media(max-width:600px){.app-topbar{flex-wrap:wrap}.app-topbar>.consultant-link{margin-left:0}}
 
 .hiring-app .app-main{width:100%;max-width:none;margin:0}.hiring-app .app-sidebar{min-width:0}
+
+.must-haves{border:0;padding:0;margin:20px 0}.must-haves legend{font-size:14px}#instant-context>summary{font-size:17px;font-weight:600;cursor:pointer}#instant-jd-preview textarea{width:100%}#instant-results .candidate-table td:first-child>ul{font-size:13px;padding-left:18px}
