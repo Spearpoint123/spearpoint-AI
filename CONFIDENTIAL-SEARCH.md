@@ -9,11 +9,11 @@
 - Introduction requests use the existing private employer briefing form. A selected reference is included for specialist follow-up; no candidate outreach occurs automatically.
 - Empty results contain no substitute profiles. Connector/provider/approval-store failures produce a service-unavailable response, distinct from a successful empty search.
 - Updated website copy and both privacy notices. Existing host restrictions, staging authentication, CSRF/origin checks, shared rate limits and brief retention remain in force.
-- Added an internal reference-resolution utility. No new public identity-retrieval route or database migration.
+- Added an internal reference-resolution utility. No new public identity-retrieval route. An additive migration records approval basis and approver.
 
 ## Verification
 
-- 28 automated tests passed, including real approved match projection, no raw identity/slug/consent-evidence leakage, expired/revoked/unconsented records, off-limits flags, hard requirement checks, no-match responses, CRM/approval-store failures, no generation calls, staging access and existing brief storage.
+- 29 automated tests passed, including real approved match projection, no raw identity/slug/consent-evidence leakage, expired/revoked/unconsented records, off-limits flags, hard requirement checks, no-match responses, CRM/approval-store failures, no generation calls, staging access and existing brief storage.
 - JavaScript syntax and Git whitespace checks passed.
 - Local browser test through the actual interface and API with an isolated, explicitly marked TEST DATA fixture: sector → specialism → CTO → London → essential Python skill → approved match rendered; introduction button carried opaque reference into form; explicit test submission acknowledged by local fixture storage.
 - Editing the search cleared the previous result and introduction context. Searching for unsupported Rust returned no shareable matches; the hiring brief remained available.
@@ -21,9 +21,9 @@
 
 ## Live dependencies still pending
 
-Supabase and Vercel access have been restored and verified. The existing approval table contains zero records. No production deployment or live candidate match is claimed yet. The owner authorised publishing the code and reviewing candidate-profile approvals; each profile still needs recorded permission and manually reviewed anonymised copy before external display.
+Supabase and Vercel access have been restored and verified. The existing approval table contains zero records. No production deployment or live candidate match is claimed yet. The owner authorised publishing the code and reviewing candidate-profile approvals; The owner subsequently authorised release of anonymised professional summaries. The new approval_basis field distinguishes that owner approval from candidate permission. Each released summary still requires manual redaction review.
 
-Before release, verify live CRM and approval-table access, current approved-record coverage, an explicitly consented/redacted match and no-match/error paths on a protected deployment. Existing approvals must cover the intended external presentation; neither general CRM inclusion nor openness to opportunities is a substitute. Do not broaden table grants or approve records just to make a demo return results.
+Before release, verify live CRM and approval-table access, current approved-record coverage, an approved/redacted match and no-match/error paths on a protected deployment. Release approvals must cover the intended anonymised presentation; neither general CRM inclusion nor openness to opportunities is a substitute. Owner authorisation does not establish candidate consent or permission to reveal identity. Do not broaden table grants or approve records just to make a demo return results.
 
 ## Current limits
 

@@ -40,3 +40,10 @@ test('search criteria are bounded and brief notes cannot become arbitrary databa
  assert.throws(()=>searchInput({...input,skills:'x'.repeat(241)}));assert.throws(()=>searchInput({...input,jobDescription:'x'.repeat(4001)}));
  const saved=briefInput({...input,name:'Test User',company:'Example',email:'test@example.com',consent:true,crm_slug:'must-not-be-saved'});assert.equal(saved.jobDescription,undefined);assert.equal(saved.crm_slug,undefined);
 });
+test('owner approval is explicitly distinguished from candidate permission and needs an approver',()=>{
+ const row={...approved,approval_basis:'owner_approved_anonymised_summary',approved_by:'Spearpoint owner',consent_evidence:'Owner authorisation for anonymised professional summary only; not candidate consent.'};
+ assert.ok(publicProfile(row,new Set(['private-slug']),now));
+ assert.equal(publicProfile({...row,approved_by:''},new Set(['private-slug']),now),null);
+ assert.equal(publicProfile({...row,approval_basis:'unverified'},new Set(['private-slug']),now),null);
+ const output=JSON.stringify(publicProfile(row,new Set(['private-slug']),now));assert.ok(!output.includes('Owner authorisation'));assert.ok(!output.includes('Spearpoint owner'));
+});
