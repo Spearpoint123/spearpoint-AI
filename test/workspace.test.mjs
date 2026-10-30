@@ -56,3 +56,8 @@ test('confirmed outcomes are deduplicated, and unconfirmed or unrelated profile 
  for(const body of [{event_type:'shortlist_accepted',shortlist_id:item,confirmed:false},{event_type:'introduction_accepted',shortlist_id:item,confirmed:true,profile_ref:'SP-FFFFFFFFFFFFFFFF'}]){const r=res();await handler(req('/api/workspace/outcome',body),r);assert.equal(r.statusCode,400);}
  const r=res();await handler(req('/api/workspace/outcome',{event_type:'shortlist_accepted',shortlist_id:item,confirmed:true}),r);assert.equal(r.statusCode,200);assert.equal(JSON.parse(r.body).alreadyRecorded,true);assert.equal(writes,0);
 }));
+test('out-of-coverage mandates avoid unrelated catalogue results and missing requirements are rejected',()=>fixture(async()=>{
+ const {searchMandate}=await import('../lib/talent-search.mjs');globalThis.fetch=async()=>assert.fail('Out-of-scope mandate should not query candidates');
+ const result=await searchMandate({...criteria,inScope:false});assert.deepEqual(result.profiles,[]);assert.match(result.message,/outside/);
+ assert.throws(()=>mandateCriteria({...criteria,otherRequirements:{malformed:true}}));
+}));
