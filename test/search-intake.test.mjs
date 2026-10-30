@@ -6,10 +6,10 @@ import {groundMandate,modelMandate} from '../lib/talent-search.mjs';
 import {candidateEligible} from '../lib/services.mjs';
 const criteria={role:'Chief Technology Officer',family:'technology',location:'Any location',niches:['Digital assets'],requirements:[],customRequirements:['DeFi experience'],otherRequirements:'None'};
 test('DeFi survives interpretation as its own requirement and does not become generic crypto experience',()=>{const c=groundMandate({...criteria,customRequirements:[]},'Find a CTO with DeFi experience');assert.equal(c.role,'Chief Technology Officer');assert.ok(c.customRequirements.includes('DeFi experience'));assert.ok(!professionalSignals('Crypto exchange technology experience.').some(s=>s.criterion==='defi'));assert.deepEqual(professionalSignals('No DeFi experience. Interested in DeFi. Has never worked in DeFi.'),[]);});
-test('two possible-fit reasons require corresponding professional source evidence and never include identity',()=>{
+test('possible-fit reasons require professional evidence and never count a title or expose identity',()=>{
  const signals=crmSignals({position:'Founder & CTO',summary:'PRIVATE_NAME led DeFi protocol development at PRIVATE_EMPLOYER. Email private@example.com.',skill:'Solidity'});
  const row={source:'internal',reported_title:'Founder & CTO',sources:signals,person_name:'PRIVATE_NAME',reported_company:'PRIVATE_EMPLOYER',canonical_url:'https://private.company.com/person'};
- const p=pendingDiscovery(criteria,row);assert.equal(p.fitReasons.length,2);assert.match(p.fitReasons[0],/DeFi/);assert.equal(p.canRequestIntro,false);assert.equal(p.reviewStatus,'pending');assert.ok(!/PRIVATE_|private@example|https:/.test(JSON.stringify(p)));
+ const p=pendingDiscovery(criteria,row);assert.equal(p.fitReasons.length,1);assert.match(p.fitReasons[0],/DeFi/);assert.equal(p.canRequestIntro,false);assert.equal(p.reviewStatus,'pending');assert.ok(!/PRIVATE_|private@example|https:/.test(JSON.stringify(p)));
  const absent=discoveryExplanation(criteria,{source:'public',reported_title:'CTO',source_excerpt:'Built crypto exchange platforms.'});assert.ok(!absent.fitReasons.some(s=>s.includes('DeFi')));assert.ok(absent.gaps.some(s=>s.startsWith('DeFi: not evidenced')));
  assert.ok(candidateEligible({slug:'fixture',position:'Founder and CTO'},'Chief Technology Officer'));assert.ok(!candidateEligible({slug:'fixture',position:'Assistant CTO'},'Chief Technology Officer'));
 });

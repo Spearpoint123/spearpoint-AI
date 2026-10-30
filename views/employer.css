@@ -11,3 +11,7 @@
 .must-haves{border:0;padding:0;margin:20px 0}.must-haves legend{font-size:14px}#instant-context>summary{font-size:17px;font-weight:600;cursor:pointer}#instant-jd-preview textarea{width:100%}#instant-results .candidate-table td:first-child>ul{font-size:13px;padding-left:18px}
 
 .candidate-table .profile-cta{display:inline-block;margin-top:12px;text-decoration:none;white-space:normal}
+
+.must-have-evidence{padding-left:20px}.must-have-evidence li{margin:14px 0}.must-have-evidence li>strong,.must-have-evidence li>small{display:block}.must-have-evidence li>small{margin:5px 0;color:#52634f}.must-have-evidence li>p{margin:5px 0}
+
+.requirement-clarification:empty{display:none}.requirement-clarification{margin:-8px 0 18px}.requirement-clarification button{margin:4px 6px 4px 0}
