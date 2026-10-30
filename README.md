@@ -77,3 +77,7 @@ The Node suite covers owner isolation, private pending discoveries, trusted oper
 ### Simplified employer onboarding
 
 One `/signup` page serves all employers. It asks only for work email, password and privacy acknowledgement; verified email is still required. Company setup requires only a name, with website optional and richer context behind an optional disclosure. Employers describe a role in plain language, review the brief, and search. Sector/niche selection is absent from this workflow; any professional sector context is inferred from the description. Detailed role classification and capability refinement are optional. Public catalogue totals and the older coverage-count display have been removed; individual search results still show their evidence and limits.
+
+### Live signup test (30 October 2026)
+
+The authorised owner mailbox signup was tested through the production endpoint. Auth created an unconfirmed account, the confirmation email arrived, and following it verified the account. The Supabase Site URL was still `http://localhost:3000`, causing a broken post-confirmation return; it has been corrected to `https://ai.spearpointsearch.com/signin` and checked after reloading the settings. Confirmation remains enabled. The default Supabase email sender is still in use, so general employer email delivery requires custom SMTP before public onboarding. The sign-in screen now initialises its mode before the account check completes.
