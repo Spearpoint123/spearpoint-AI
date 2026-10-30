@@ -1,4 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
+import {groundMandate} from '../lib/talent-search.mjs';
 import {instantSearch,instantResults,pendingDiscovery} from '../lib/instant-search.mjs';
 const user={id:'12345678-1234-4123-8123-123456789abc'},criteria={role:'Portfolio Manager',family:'trading',location:'Any location',niches:[],requirements:[],otherRequirements:'None'};
 test('natural-language search queries both sources, creates no vacancy, and never returns unreviewed identity or source URLs',async()=>{
@@ -7,3 +8,5 @@ test('natural-language search queries both sources, creates no vacancy, and neve
  try{const result=await instantSearch(user,{query:'Find portfolio manahers',confirmed:true},()=>null);assert.ok(queriedCRM&&queriedMarket);assert.equal(result.candidates.length,2);assert.equal(result.candidates[0].focus[0],'Quantitative investment');assert.equal(result.candidates[1].focus[0],'Equity investment');assert.ok(!/PRIVATE_|private-person|private-crm-id/.test(JSON.stringify(result)));assert.ok(result.candidates.every(c=>!c.canRequestIntro&&c.reviewStatus==='pending'));assert.match(result.message,/No role or vacancy/);}finally{globalThis.fetch=original;process.env=env;}
 });
 test('pending descriptors are finite professional categories and exclude arbitrary identifying text',()=>{const p=pendingDiscovery(criteria,{id:'id',reference:'SP-reference',source:'internal',reported_title:'Equity Portfolio Manager at PRIVATE_EMPLOYER with private@example.com',source_excerpt:'PRIVATE_CLAIM',person_name:'PRIVATE_PERSON'});assert.deepEqual(p.focus,['Equity investment']);assert.ok(!JSON.stringify(p).includes('PRIVATE_'));assert.ok(!JSON.stringify(p).includes('@'));});
+
+test('a short plural portfolio manager request cannot be rejected for missing sector or rewritten as an invented leadership title',()=>{const c=groundMandate({...criteria,role:'Portfolio leadership',inScope:false},'Find portfolio managers');assert.equal(c.role,'Portfolio Manager');assert.equal(c.inScope,undefined);assert.equal(c.family,'trading');assert.deepEqual(c.niches,[]);});
