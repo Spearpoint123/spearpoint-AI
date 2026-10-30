@@ -1,6 +1,5 @@
 import {canVisitStep,selectSearchOption} from './search-journey.js';
 let searchRevision=0;
-let currentArchetype;
 let currentSearch;
 let currentReport;
 let guideStep=0;
@@ -36,7 +35,8 @@ const functions={
 const markets=['London','United Kingdom','Europe','New York','Chicago','United States','Dubai','Abu Dhabi','Singapore','Hong Kong','Global / location flexible'];
 function optionButton(title,hint,handler,selected=false){const button=el('button','','choice');button.type='button';button.setAttribute('aria-pressed',String(selected));button.append(el('strong',title));if(hint)button.append(el('small',hint));button.addEventListener('click',()=>{button.setAttribute('aria-pressed','true');handler();});return button;}
 function invalidateSearch(){
- searchRevision++;currentSearch=null;currentReport=null;currentArchetype=null;
+ searchRevision++;currentSearch=null;currentReport=null;
+ $('#brief-form [name=notes]').value='';$('#brief-status').textContent='';$('#brief-details').open=false;
  $('#results').hidden=true;$('#market-brief').hidden=true;$('#search-status').textContent='';$('#search-submit').disabled=false;
 }
 function jumpToStep(step){
@@ -68,40 +68,46 @@ function drawGuide(){
  if(guideStep===2){
   const label=el('label','Find a role in the suggested list');const filter=el('input');filter.type='search';filter.placeholder='Search titles, e.g. CTO or Head of Product';label.append(filter);panel.append(label);
   const populate=()=>{choices.replaceChildren();const query=filter.value.toLowerCase().trim();const roles=query?Object.values(functions).flatMap(value=>value.roles).filter(role=>(role.split(' ').map(w=>w[0]).join('').toLowerCase()===query||role.toLowerCase().split(/\s+/).some((_,i,words)=>words.slice(i).join(' ').startsWith(query)))):functions[selection.function].roles;
-   roles.forEach(role=>choices.append(optionButton(role,'Explore this target profile ',()=>advance('role',role),selection.role===role)));if(!roles.length)choices.append(el('p','No listed title matches. Enter your exact role below.'));};
+   roles.forEach(role=>choices.append(optionButton(role,'Search confidential candidates',()=>advance('role',role),selection.role===role)));if(!roles.length)choices.append(el('p','No listed title matches. Enter your exact role below.'));};
   filter.addEventListener('input',populate);populate();
   const customLabel=el('label','Enter another role');const custom=el('input');custom.maxLength=100;custom.placeholder='e.g. Director of Derivatives Sales';custom.value=selection.customRole?selection.role:'';customLabel.append(custom);const use=el('button','Use this role','text-button');use.type='button';use.addEventListener('click',()=>{if(custom.value.trim().length<3){custom.setCustomValidity('Enter a role with at least three characters.');custom.reportValidity();return;}advance('customRole',custom.value);});custom.addEventListener('input',()=>custom.setCustomValidity(''));panel.append(customLabel,use);
  }
  if(guideStep===3)markets.forEach(market=>{const button=optionButton(market,'',()=>advance('location',market));button.setAttribute('aria-pressed',String(selection.location===market));choices.append(button);});
  panel.append(choices);
- if(guideStep===3&&selection.location){const label=el('label','Job description or key requirements (optional)');const jd=el('textarea');jd.maxLength=4000;jd.rows=5;jd.placeholder='Products, client types, skills, seniority and what success looks like. Remove names, contact details and confidential information.';jd.value=selection.jobDescription||'';jd.addEventListener('input',()=>{selection.jobDescription=jd.value;invalidateSearch();$('#search-submit').textContent='Review requirements';$('#requirements-review').hidden=true;});label.append(jd);panel.append(label,el('p','Role requirements may be processed by our AI service to create a fictional example CV. Do not paste personal or confidential information.','guide-note'));}
+ if(guideStep===3&&selection.location){
+  const skillLabel=el('label','Essential skills (optional, separate with commas)');const skills=el('input');skills.maxLength=240;skills.placeholder='e.g. Python, low latency';skills.value=selection.essentialSkills||'';skills.addEventListener('input',()=>{selection.essentialSkills=skills.value;invalidateSearch();$('#search-submit').textContent='Review requirements';$('#requirements-review').hidden=true;});skillLabel.append(skills);panel.append(skillLabel);
+  const label=el('label','Additional brief notes for a consultant (optional)');const jd=el('textarea');jd.maxLength=4000;jd.rows=5;jd.placeholder='Describe scope, priorities and what success looks like. Remove names, contact details and confidential information.';jd.value=selection.jobDescription||'';jd.addEventListener('input',()=>{selection.jobDescription=jd.value;invalidateSearch();$('#search-submit').textContent='Review requirements';$('#requirements-review').hidden=true;});label.append(jd);panel.append(label,el('p','Search checks role, sector, location and each essential skill against approved profile information. Additional notes are for consultant review. Do not paste personal or confidential information.','guide-note'));
+ }
  $('#requirements-review').hidden=true;$('#search-submit').textContent='Review requirements';$('#guide-back').hidden=guideStep===0;$('#guide-context').textContent=[selection.niche,guideStep>1?selection.function:null,guideStep>2?selection.role:null].filter(Boolean).join(' / ');$('#search-submit').hidden=guideStep!==3||!selection.location;
 }
 $('#guide-back').addEventListener('click',()=>jumpToStep(Math.max(0,guideStep-1)));
 document.querySelectorAll('.journey button').forEach(button=>button.addEventListener('click',()=>jumpToStep(Number(button.dataset.step))));
-function blueprint(input,spec){
- const article=el('article','','blueprint candidate-cv');
- const top=el('div','','blueprint-top');top.append(el('span',spec.niche+' / '+input.location,'step'),el('span','Target profile','blueprint-label'));article.append(top);
- const core=el('div','','blueprint-core');const story=el('div','','blueprint-story');story.append(el('h3',spec.role),el('p',spec.professionalSummary,'cv-summary'),el('p',spec.experienceYears+' years of relevant experience','cv-experience'),el('p',spec.leadershipScope,'cv-scope'));
- const chips=el('div','','chips');spec.focus.forEach(skill=>chips.append(el('span',skill)));story.append(chips,el('h4','Markets & specialisms','cv-sidebar-heading'),el('p',spec.markets.join(' · '),'cv-sector'),el('h4','Technology & methods','cv-sidebar-heading'));const tools=el('ul','','cv-tools');spec.technologies.forEach(tool=>tools.append(el('li',tool)));story.append(tools,el('p',spec.baseFocus,'target-salary'));
- const call=el('a','Discuss this profile ','button');call.href='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';call.target='_blank';call.rel='noopener noreferrer';story.append(call);core.append(story);
- const history=el('div','','cv-history');history.append(el('h4','Career progression','cv-section-heading'));
- spec.careerHistory.forEach(stage=>{const item=el('section','','cv-role');item.append(el('span',stage.period+' / '+stage.stage,'step'),el('h4',stage.title),el('p',stage.environment,'cv-environment'));const list=el('ul','','profile-highlights');stage.responsibilities.forEach(line=>list.append(el('li',line)));item.append(list);history.append(item);});
- const figures=el('section','','cv-figures');figures.append(el('h4','Example results & scope','cv-section-heading'),el('p',spec.metricsDisclosure,'cv-metrics-note'));const metrics=el('div','','cv-metrics');spec.metrics.forEach(metric=>{const card=el('article','','cv-metric');card.append(el('h5',metric.label),el('p',metric.value,'cv-metric-value'),el('p',metric.context,'cv-metric-context'));metrics.append(card);});figures.append(metrics);history.append(figures);history.append(el('h4','Achievement examples','cv-section-heading'));spec.achievementExamples.forEach(item=>{const row=el('div','','capability');const text=el('div');text.append(el('h4',item.area),el('p',item.example));row.append(text);history.append(row);});core.append(history);article.append(core);
- const question=el('div','','brief-question');question.append(el('span','Your first-year mandate','step'),el('p',spec.question));article.append(question);return article;
+function confidentialProfile(profile){
+ const article=el('article','','confidential-profile');
+ article.append(el('p',profile.reference,'step'),el('h3',profile.title),el('p',profile.summary,'profile-summary'));
+ const chips=el('div','','chips');profile.focus.forEach(skill=>chips.append(el('span',skill)));article.append(chips);
+ section(article,'Evidence for your requirements',profile.fitReasons);
+ section(article,'To confirm with a specialist',profile.gaps);
+ article.append(el('p',`Profile sharing review: ${profile.reviewedAt}. Current availability has not been confirmed.`,'guide-note'));
+ const request=el('button','Request a confidential introduction','outline-button');request.type='button';request.addEventListener('click',()=>{
+  $('#brief-details').open=true;$('#brief-form [name=notes]').value=`Please review ${profile.reference} (${profile.title}) for this mandate and confirm fit, current interest and permission for an introduction.`;$('#brief-details').scrollIntoView({behavior:'smooth',block:'start'});$('#brief-form [name=name]').focus({preventScroll:true});
+ });article.append(request);return article;
 }
 $('#search-form').addEventListener('submit',async event=>{
  event.preventDefault();if(guideStep!==3||!selection.location||!canVisitStep(selection,3,functions))return;
- const review=$('#requirements-review');if(review.hidden){review.replaceChildren(el('h3','Confirm your search'),el('p',[selection.niche,selection.function,selection.role,selection.location].join(' / ')),el('p',selection.jobDescription||'No additional requirements.'),el('p','Senior mandate: US$150,000+ annual base. The preview is a fictional example CV; actual candidate interest and availability need confirmation.'));review.hidden=false;$('#search-submit').textContent='Confirm and search';return;}
+ const review=$('#requirements-review');if(review.hidden){review.replaceChildren(el('h3','Confirm your search'),el('p',[selection.niche,selection.function,selection.role,selection.location].join(' / ')),el('p',selection.essentialSkills?`Essential skills: ${selection.essentialSkills}`:'No additional essential skills.'),el('p',selection.jobDescription||'No additional brief notes.'),el('p','We show only approved, anonymised database profiles with evidence for your structured requirements. A specialist confirms fit, interest and any introduction.'));review.hidden=false;$('#search-submit').textContent='Confirm and search';return;}
  const revision=++searchRevision;
- const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Building your target profile and checking relevant, shareable CRM profiles…';$('#results').hidden=true;$('#market-brief').hidden=true;currentSearch=null;currentReport=null;currentArchetype=null;
+ const button=$('#search-submit');button.disabled=true;$('#search-status').textContent='Searching confidential candidate records and checking sharing permissions…';$('#results').hidden=true;$('#market-brief').hidden=true;currentSearch=null;currentReport=null;
  try{
-  const input={role:selection.role,location:selection.location,niche:selection.niche,function:selection.function,skills:niches[selection.niche].skills.join(', '),jobDescription:selection.jobDescription||''};
-  const data=await post('/api/search',input);if(revision!==searchRevision)return;currentArchetype=data.profiles?.[0];if(!currentArchetype){$('#search-status').textContent=data.message;return;}if(!currentArchetype||currentArchetype.kind!=='synthetic'||!Array.isArray(currentArchetype.careerHistory))throw Error('The saved profile is unavailable. Please book a briefing.');currentSearch={...input,skills:currentArchetype.focus.join(', ')};if(data.crmDiagnostic)console.warn('Recruit CRM connection:',data.crmDiagnostic);const grid=$('#profile-grid');grid.replaceChildren();
-  $('#result-tag').textContent='Example CV · Hypothetical career history';
-  $('#result-message').textContent=data.crmStatus==='searched'?'Your brief has been checked against our confidential CRM. Speak with us to confirm candidate fit, availability and interest.':data.crmStatus==='unavailable'?'Your example CV is ready. The private CRM check is temporarily unavailable.':'Your example CV is ready. A briefing can begin a confidential candidate search.';
-  grid.append(blueprint(input,currentArchetype));
-  buildMarketBrief(input,data.crmStatus,currentArchetype);grid.classList.toggle('blueprint-grid',data.synthetic);$('#results').hidden=false;$('#search-status').textContent='Your search preview is ready.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
+  const input={role:selection.role,location:selection.location,niche:selection.niche,function:selection.function,skills:selection.essentialSkills||'',jobDescription:selection.jobDescription||''};
+  const data=await post('/api/search',input);if(revision!==searchRevision)return;
+  if(data.synthetic!==false||!Array.isArray(data.profiles)||data.profiles.some(p=>p.kind!=='real'||!/^SP-[A-F0-9]{16}$/.test(p.reference)||!Array.isArray(p.focus)||!Array.isArray(p.fitReasons)||!Array.isArray(p.gaps)))throw Error('The confidential search could not be verified. Please book a briefing.');
+  currentSearch=input;const grid=$('#profile-grid');grid.replaceChildren();
+  $('#result-tag').textContent=data.profiles.length?'Approved · Anonymised':'No shareable matches';
+  $('#results-title').textContent=data.profiles.length?`${data.profiles.length} confidential candidate ${data.profiles.length===1?'match':'matches'}.`:'No shareable matches for this brief.';
+  $('#result-message').textContent=[data.message,data.coverage,data.requirementsNote].filter(Boolean).join(' ');
+  data.profiles.forEach(profile=>grid.append(confidentialProfile(profile)));
+  buildMarketBrief(input,data.crmStatus,functions[selection.function]);grid.classList.remove('blueprint-grid');$('#results').hidden=false;$('#search-status').textContent=data.profiles.length?'Your confidential search is ready.':'Search completed. You can refine the brief or request a specialist review.';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(error){if(revision===searchRevision)$('#search-status').textContent=error.message;}finally{if(revision===searchRevision)button.disabled=false;}
 });
 drawGuide();
@@ -151,5 +157,5 @@ $('#request-report').addEventListener('click',()=>{
 });
 $('#brief-form').addEventListener('submit',async event=>{
  event.preventDefault();if(!currentSearch)return;const button=event.target.querySelector('button');button.disabled=true;$('#brief-status').textContent='Saving your briefing request…';
- try{const data=Object.fromEntries(new FormData(event.target));const result=await post('/api/brief',{...currentSearch,...data,notes:`${data.notes||'Hiring briefing request'}\nSearch context: ${currentReport?.niche||selection.niche}; ${currentReport?.function||selection.function}. Report version: 2026-10-21.`,consent:data.consent==='on'});$('#brief-status').textContent=`${result.message} Reference: ${result.reference}`;event.target.reset();}catch(error){$('#brief-status').textContent=error.message;}finally{button.disabled=false;}
+ try{const data=Object.fromEntries(new FormData(event.target));const result=await post('/api/brief',{...currentSearch,...data,notes:`${data.notes||'Hiring briefing request'}\nSearch context: ${currentReport?.niche||selection.niche}; ${currentReport?.function||selection.function}.\nAdditional brief notes: ${currentSearch.jobDescription||'None'}. Report version: 2026-10-30.`,consent:data.consent==='on'});$('#brief-status').textContent=`${result.message} Reference: ${result.reference}`;event.target.reset();}catch(error){$('#brief-status').textContent=error.message;}finally{button.disabled=false;}
 });
