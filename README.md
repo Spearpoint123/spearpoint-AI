@@ -73,3 +73,7 @@ The reviewed catalogue contains 35 anonymised summaries at release. Coverage cou
 ### Verification scope
 
 The Node suite covers owner isolation, private pending discoveries, trusted operator authority, citation grounding, research input boundaries, stale versions, paused roles and introduction consent transitions. An isolated local browser fixture verifies company → brief → internal table → saved candidate → introduction request, then a masked public discovery. It makes no production calls and writes no fabricated outcomes. Production email delivery, an intended verified employer account, operator provisioning and an authenticated live Sonar discovery remain operational checks; fixture results must not be represented as live provider verification.
+
+### Simplified employer onboarding
+
+One `/signup` page serves all employers. It asks only for work email, password and privacy acknowledgement; verified email is still required. Company setup requires only a name, with website optional and richer context behind an optional disclosure. Employers describe a role in plain language, review the brief, and search. Sector/niche selection is absent from this workflow; any professional sector context is inferred from the description. Detailed role classification and capability refinement are optional. Public catalogue totals and the older coverage-count display have been removed; individual search results still show their evidence and limits.
