@@ -4,7 +4,9 @@ import {searchInput,briefInput,BOOKING_URL} from '../lib/domain.mjs';
 import {rateLimit,realSearch,saveBrief} from '../lib/services.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
-const files={'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/search-journey.js':['search-journey.js','text/javascript'],'/GT-Canon-VF.ttf':['GT-Canon-VF.ttf','font/ttf'],'/GT-Standard-VF.ttf':['GT-Standard-VF.ttf','font/ttf'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
+import {workspaceApi,recordActivity} from '../lib/workspace.mjs';
+import {workspaceUser} from '../lib/workspace-auth.mjs';
+const files={'/workspace':['workspace.html','text/html; charset=utf-8'],'/workspace.js':['workspace.js','text/javascript'],'/talent.js':['talent.js','text/javascript'],'/shortlist':['shared.html','text/html; charset=utf-8'],'/shared.js':['shared.js','text/javascript'],'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/search-journey.js':['search-journey.js','text/javascript'],'/GT-Canon-VF.ttf':['GT-Canon-VF.ttf','font/ttf'],'/GT-Standard-VF.ttf':['GT-Standard-VF.ttf','font/ttf'],'/style.css':['style.css','text/css'],'/hero-knight.png':['hero-knight.png','image/png'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
 export const PUBLIC_HOST='ai.spearpointsearch.com';
 export const isPublicRequest=req=>process.env.VERCEL==='1'&&req.headers.host===PUBLIC_HOST;
 const same=(a,b)=>{const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y);};
@@ -59,18 +61,21 @@ export default async function handler(req,res){
   if(req.method==='GET'&&(path==='/'||path==='/login'))return asset('login.html','text/html; charset=utf-8');
   return json(401,{error:'Please sign in to the private staging site.'});
  }
+ if(req.method==='GET'&&/^\/shortlist\/[a-zA-Z0-9_-]{43}$/.test(path))return asset('shared.html','text/html; charset=utf-8');
  if(req.method==='GET'&&files[path]){const [file,type]=files[path];res.setHeader('Content-Type',type);
   if(publicSite&&path==='/privacy')return asset('privacy-public.html',type);
   if(publicSite&&path==='/'){let html=await readFile(new URL('../views/index.html',import.meta.url),'utf8');html=html.replace(/<div class=\"staging\">.*?<\/div>/,'').replace(' Please use test data in staging.','');return res.end(html);}
   return res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));}
  if(path==='/robots.txt'){res.setHeader('Content-Type','text/plain');return res.end('User-agent: *\nDisallow: /\n');}
- if(!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});
+ const workspaceRoute=path.startsWith('/api/workspace/')||path.startsWith('/api/mandate/')||path==='/api/shortlist/shared';
+ if(!workspaceRoute&&!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});
  if(req.method!=='POST'){res.setHeader('Allow','POST');return json(405,{error:'Method not allowed'});}
  if(!originAllowed(req.headers.origin))return json(403,{error:'Request origin rejected. Please use the main staging address.'});
  if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'JSON required'});
  let body;
  try{if(req.body){if(Buffer.byteLength(JSON.stringify(req.body))>12000)return json(413,{error:'Request too large'});body=typeof req.body==='string'?JSON.parse(req.body):req.body;}else{let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>12000)return json(413,{error:'Request too large'});}body=JSON.parse(raw);}if(!body||Array.isArray(body)||typeof body!=='object')throw Error();}catch{return json(400,{error:'Invalid request'});}
  try{
+  if(workspaceRoute)return json(200,await workspaceApi(path,body,req,res));
   const input=path==='/api/search'?searchInput(body):briefInput(body);
   if(!await rateLimit(req,path==='/api/search'?'search':'brief')){res.setHeader('Retry-After','3600');return json(429,{error:'Hourly limit reached. Please try later or book a briefing.'});}
   if(path==='/api/search'){
@@ -80,10 +85,14 @@ export default async function handler(req,res){
     console.warn('Confidential search:',code);result={profiles:[],status:'unavailable'};
    }
    if(result.status!=='searched')return json(503,{profiles:[],synthetic:false,crmStatus:result.status,error:'Confidential search is temporarily unavailable. Book a briefing and we can check the mandate directly.',bookingUrl:BOOKING_URL});
+   await recordActivity(await workspaceUser(req,res,false),{event_type:'search'});
    const message=result.profiles.length?'These profiles match your structured requirements using approved information. Names and CVs remain private. A specialist must confirm fit, current interest and permission for an introduction.':'No approved, shareable profiles matched your structured requirements in this search. This does not mean the wider database or market has no suitable candidates. Refine the requirements or request a confidential search.';
    return json(200,{profiles:result.profiles,synthetic:false,crmStatus:result.status,outcome:result.profiles.length?'matches':'no_shareable_matches',message,coverage:'Results cover the records checked for this brief and may not include every suitable candidate.',requirementsNote:'Matching uses role, sector, location and the essential skills entered separately. Additional brief notes are for consultant review and are not automatically assessed.',bookingUrl:BOOKING_URL});
   }
   if(process.env.RETENTION_JOB_CONFIRMED!=='true')throw Error('storage_unavailable');
   const saved=await saveBrief(input);return json(201,{reference:saved.id,bookingUrl:BOOKING_URL,message:'Your briefing request has been saved securely. Book a time to discuss your search.'});
- }catch(e){if(e.message==='validation')return json(400,{error:'Please check your details and privacy consent.'});return json(503,{error:'This service is temporarily unavailable. Please use the booking link.'});}
+ }catch(e){
+  const errors={unauthorized:[401,'Sign in to your private workspace first.'],not_found:[404,'This item or link is unavailable.'],rate_limited:[429,'Please wait before trying again.'],signin_failed:[401,'Sign-in failed. Check your details and confirm your email.'],signup_unavailable:[503,'Account registration is unavailable. Please contact Spearpoint for workspace access.'],interpretation_unavailable:[503,'Mandate interpretation is unavailable. Please use the guided search or try again shortly.'],profile_unavailable:[409,'One of these profiles is no longer approved for sharing. Refresh the search.'],workspace_limit:[409,'Your workspace is full. Delete an older item first.']};
+  if(errors[e.message])return json(...[errors[e.message][0],{error:errors[e.message][1]}]);
+  if(e.message==='validation')return json(400,{error:'Please check your details and privacy consent.'});return json(503,{error:'This service is temporarily unavailable. Please use the booking link.'});}
 }

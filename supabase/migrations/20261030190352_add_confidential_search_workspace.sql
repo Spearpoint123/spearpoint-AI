@@ -1,0 +1,12 @@
+alter table public.sp_profile_approvals add column if not exists public_evidence jsonb not null default '[]', add column if not exists public_locations text[] not null default '{}', add column if not exists sector_tags text[] not null default '{}', add column if not exists profile_family text;
+create table public.sp_saved_searches(id uuid primary key,owner_id uuid not null references auth.users(id) on delete cascade, title text not null check(length(title)<=120), mandate text not null check(length(mandate)<=1500), criteria jsonb not null, seen_refs text[] not null default '{}', created_at timestamptz not null default now(), expires_at timestamptz not null default now()+interval '180 days');
+create table public.sp_shortlists(id uuid primary key,owner_id uuid not null references auth.users(id) on delete cascade,title text not null check(length(title)<=120), profile_refs text[] not null check(cardinality(profile_refs)<=25),share_hash text unique,share_expires_at timestamptz,created_at timestamptz not null default now(),expires_at timestamptz not null default now()+interval '180 days');
+create table public.sp_activity(id uuid primary key,owner_id uuid not null references auth.users(id) on delete cascade,event_type text not null check(event_type in ('search','shortlist_accepted','introduction_requested','introduction_accepted','delivery_recorded')),shortlist_id uuid references public.sp_shortlists(id) on delete set null,profile_ref text,minutes_saved numeric check(minutes_saved between 0 and 10000),delivery_minutes numeric check(delivery_minutes between 0 and 10000),hourly_cost_gbp numeric check(hourly_cost_gbp between 0 and 10000),ai_cost_usd numeric,created_at timestamptz not null default now(),expires_at timestamptz not null default now()+interval '180 days');
+create index on public.sp_saved_searches(owner_id);
+create index on public.sp_shortlists(owner_id);
+create index on public.sp_activity(owner_id,created_at);
+alter table public.sp_saved_searches enable row level security;
+alter table public.sp_shortlists enable row level security;
+alter table public.sp_activity enable row level security;
+revoke all on public.sp_saved_searches,public.sp_shortlists,public.sp_activity from anon,authenticated;
+grant all on public.sp_saved_searches,public.sp_shortlists,public.sp_activity to service_role;

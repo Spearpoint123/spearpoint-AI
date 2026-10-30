@@ -1,30 +1,15 @@
-# Confidential search implementation — 30 October 2026
+# Confidential search — 30 October 2026
 
-## Implemented
+The previous production release replaced generated CVs with approved anonymised CRM summaries. This iteration expands reviewed coverage to 14 compliance profiles across capital markets, payments and digital assets. Owner approval is recorded separately from candidate permission. No identity, employer, contact data, private notes or raw CRM identifier is published.
 
-- Removed the generated CV route, generation/cache modules, fictional catalogue and their obsolete tests.
-- Search now calls the existing CRM-first matching path and requires current, evidenced sharing approval.
-- Every essential structured requirement must match approved information. Additional notes are explicitly for consultant review.
-- Results show approved anonymised summaries, evidence, sharing-review date and opaque profile references. No invented history, performance figures, suitability score or availability claim.
-- Introduction requests use the existing private employer briefing form. A selected reference is included for specialist follow-up; no candidate outreach occurs automatically.
-- Empty results contain no substitute profiles. Connector/provider/approval-store failures produce a service-unavailable response, distinct from a successful empty search.
-- Updated website copy and both privacy notices. Existing host restrictions, staging authentication, CSRF/origin checks, shared rate limits and brief retention remain in force.
-- Added an internal reference-resolution utility. No new public identity-retrieval route. An additive migration records approval basis and approver.
+## New flow
+
+Mandate → AI interpretation → employer review → reviewed evidence matching → full / partial evidence cards → private saved search or shortlist → revocable read-only link → manually confirmed outcome. Guided CRM search remains available. The natural-language catalogue is a reviewed snapshot; it does not claim live availability or complete market coverage. No reviewed record currently establishes a completed digital asset market entry, so that requirement remains an explicit gap.
 
 ## Verification
 
-- 29 automated tests passed, including real approved match projection, no raw identity/slug/consent-evidence leakage, expired/revoked/unconsented records, off-limits flags, hard requirement checks, no-match responses, CRM/approval-store failures, no generation calls, staging access and existing brief storage.
-- JavaScript syntax and Git whitespace checks passed.
-- Local browser test through the actual interface and API with an isolated, explicitly marked TEST DATA fixture: sector → specialism → CTO → London → essential Python skill → approved match rendered; introduction button carried opaque reference into form; explicit test submission acknowledged by local fixture storage.
-- Editing the search cleared the previous result and introduction context. Searching for unsupported Rust returned no shareable matches; the hiring brief remained available.
-- Fixture server has no production credentials, no live candidate records and performs no external writes. Fixture verification is not live integration verification.
+Automated checks cover existing CRM search, privacy, origin/staging protection, encrypted sessions, workspace ownership, token hashing and rotation, current approval rechecks on shared links, constrained AI extraction/budget, missing evidence, confirmation requirements and outcome deduplication. A disposable confirmed QA account is used for live integration testing without candidate outreach. See the delivered verification report for exact deployment and live results.
 
-## Live dependencies still pending
+## Limits
 
-Supabase and Vercel access have been restored and verified. The existing approval table contains zero records. No production deployment or live candidate match is claimed yet. The owner authorised publishing the code and reviewing candidate-profile approvals; The owner subsequently authorised release of anonymised professional summaries. The new approval_basis field distinguishes that owner approval from candidate permission. Each released summary still requires manual redaction review.
-
-Before release, verify live CRM and approval-table access, current approved-record coverage, an approved/redacted match and no-match/error paths on a protected deployment. Release approvals must cover the intended anonymised presentation; neither general CRM inclusion nor openness to opportunities is a substitute. Owner authorisation does not establish candidate consent or permission to reveal identity. Do not broaden table grants or approve records just to make a demo return results.
-
-## Current limits
-
-Matching is deterministic and deliberately strict. It relies on approved text/skill tags and can miss candidates with incomplete tags or alternative wording. CRM pagination remains bounded to two pages per role variant, so this is not an exhaustive search across all records. Private candidate onboarding/consent management, semantic ranking, saved employer workspaces and ATS integrations remain future work, rather than claims of this release.
+Updates are in-app only. First five saved mandates refresh on opening the workspace; others can be checked explicitly. Individual accounts own records; shared shortlists are read-only links rather than a multi-user organisation. Outcome acceptance and time/cost estimates are owner reported. AI billing cost is not reconciled. A larger verified niche, repeated paid pilot use and validated delivery economics remain business validation work.

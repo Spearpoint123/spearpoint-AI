@@ -1,3 +1,4 @@
+import {addButton} from '/talent.js';
 import {canVisitStep,selectSearchOption} from './search-journey.js';
 let searchRevision=0;
 let currentSearch;
@@ -91,7 +92,7 @@ function confidentialProfile(profile){
  article.append(el('p',`Profile sharing review: ${profile.reviewedAt}. Current availability has not been confirmed.`,'guide-note'));
  const request=el('button','Request a confidential introduction','outline-button');request.type='button';request.addEventListener('click',()=>{
   $('#brief-details').open=true;$('#brief-form [name=notes]').value=`Please review ${profile.reference} (${profile.title}) for this mandate and confirm fit, current interest and permission for an introduction.`;$('#brief-details').scrollIntoView({behavior:'smooth',block:'start'});$('#brief-form [name=name]').focus({preventScroll:true});
- });article.append(request);return article;
+ });article.append(request,addButton(profile.reference));return article;
 }
 $('#search-form').addEventListener('submit',async event=>{
  event.preventDefault();if(guideStep!==3||!selection.location||!canVisitStep(selection,3,functions))return;
