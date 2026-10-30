@@ -14,6 +14,10 @@ Enter location, work arrangement and experience level. Paste hiring notes or upl
 
 Adjust each requirement’s importance with a five-step bar and mark essential requirements. These priorities order recorded evidence; missing or unverified experience remains a specialist review check.
 
+## Speak to a consultant
+
+Use the consultant link from a role or candidate row to open booking and email options. Paused roles explain that activation is needed for a candidate review. Request validation and service errors appear inside the request dialog.
+
 ## Development
 
 Requires Node.js 22 or newer.
