@@ -61,3 +61,6 @@ test('out-of-coverage mandates avoid unrelated catalogue results and missing req
  const result=await searchMandate({...criteria,inScope:false});assert.deepEqual(result.profiles,[]);assert.match(result.message,/outside/);
  assert.throws(()=>mandateCriteria({...criteria,otherRequirements:{malformed:true}}));
 }));
+test('sign-out revokes the provider refresh session and clears the encrypted cookie',()=>fixture(async()=>{
+ let revoked=false;globalThis.fetch=async(url,opts)=>{if(String(url).includes('sp_take_rate_limit'))return response(true);assert.ok(String(url).endsWith('/auth/v1/logout?scope=local'));assert.equal(opts.method,'POST');assert.equal(opts.headers.Authorization,'Bearer ACCESS');revoked=true;return new Response(null,{status:204});};const r=res();await handler(req('/api/workspace/auth',{action:'logout'}),r);assert.equal(r.statusCode,200);assert.equal(revoked,true);assert.match(r.headers['Set-Cookie'],/Max-Age=0/);
+}));
