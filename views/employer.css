@@ -9,3 +9,5 @@
 .hiring-app .app-main{width:100%;max-width:none;margin:0}.hiring-app .app-sidebar{min-width:0}
 
 .must-haves{border:0;padding:0;margin:20px 0}.must-haves legend{font-size:14px}#instant-context>summary{font-size:17px;font-weight:600;cursor:pointer}#instant-jd-preview textarea{width:100%}#instant-results .candidate-table td:first-child>ul{font-size:13px;padding-left:18px}
+
+.candidate-table .profile-cta{display:inline-block;margin-top:12px;text-decoration:none;white-space:normal}
