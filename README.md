@@ -1,8 +1,8 @@
 # Spearpoint AI — confidential candidate search
 
-Employer mandate → live, read-only Recruit CRM lookup → current sharing approvals → evidence checks → anonymised profiles → specialist introduction request.
+Employer signup → private company context → AI-drafted, employer-approved brief → evidence table of reviewed CRM summaries and public discoveries → saved candidates → specialist introduction pipeline. The earlier live Recruit CRM guided search remains at `/explore`.
 
-This version removes the generated CV experience entirely. It never substitutes invented profiles for missing candidates. The existing brand, four-step journey, hiring market brief and HubSpot booking link are preserved.
+The employer workflow uses Spearpoint branding and its existing server infrastructure. It does not use or claim access to a competitor’s proprietary technology. Generated candidate biographies and invented profiles are never substituted for missing candidates.
 
 ## Run and check
 
@@ -56,3 +56,20 @@ Apply workspace and outcome migrations before deployment. The extended nightly r
 Natural-language search now covers all eight sectors and eight role groups defined in views/talent-taxonomy.js. The model extracts a role, family, explicitly requested sectors, all/any sector semantics, location, supported capabilities and unmapped requirements. Sector and role filters are mandatory: a profile in another sector or at another role level is excluded rather than presented as a partial match. Missing capability evidence is an explicit gap; at least one requested capability must be evidenced before a partial result can appear. No sector implies an unrequested capability.
 
 The reviewed catalogue contains 35 anonymised summaries at release. Coverage counts are computed from currently valid approvals, broken down by sector and role group. Counts overlap between sectors and do not represent market size or current availability. Legacy compliance saved searches are normalised on read; their criteria and owner isolation are retained. Shared shortlists can resolve any currently approved niche profile. Candidate data stays outside the interpretation model.
+
+## Employer hiring workflow (30 October 2026)
+
+- `/signup` and `/signin` use verified Supabase email/password accounts; confirmation is required. No Google login or automatic organisation membership is configured. Company records and roles belong to the verified account, with service-side owner checks.
+- `/hiring` supports company setup, optional citation-backed public company research, AI brief interpretation, manual calibration, versioned brief approval, internal candidate comparison, private notes, saved/passed candidates and introduction requests. Editing a brief creates a new comparison version. Search is on demand, not continuous monitoring.
+- All eight supported sectors and eight role groups share the same workflow. Internal comparisons use the current reviewed CRM summary catalogue. They do not scan every raw CRM record. The existing `/explore` guided search retains its bounded live CRM lookup.
+- `google/gemini-2.5-flash-lite` through AI Gateway interprets the employer-entered role description and compensation. The employer explicitly reviews the result before activation.
+- `perplexity/sonar` through the existing AI Gateway connection researches publicly indexed professional pages, including available LinkedIn `/in/` pages. This is not a direct LinkedIn API, authenticated LinkedIn access, or an exhaustive public-profile index. Provider citations must support each stored URL. Failures preserve internal results. Global allowance is 10 public searches/day, with 3 per owner/day, maximum five discoveries per call. Company research has a separate 10/day global and 2/day owner allowance. These limits bound traffic, not a guaranteed billing cap.
+- Public candidate research receives only the approved structured role, sector, location and professional capability labels. Company names, raw job descriptions, compensation, private notes and CRM records are excluded from that request. Company research separately sends only the explicitly approved company name and website.
+- Raw public names, employers, citations and excerpts remain in a service-only review queue. Employers see opaque pending rows. A trusted specialist must review the source and manually enter an anonymised summary with release authority evidence. Approved summaries expire within 30 days. URL deduplication is per role/brief version; cross-source CRM deduplication remains future work.
+- Operator authority comes exclusively from the verified Auth `app_metadata.spearpoint_role=operator` claim. No operator has been silently provisioned. Client payloads and user metadata cannot grant this role. An intended verified operator account must be separately authorised before live specialist review can run.
+- Introduction requests are private records. Nothing is sent and no identity is automatically released. The state machine requires documented candidate agreement before completion can be recorded. Revocable shared shortlist links include only currently approved anonymised summaries.
+- The additive migration `20261030200804_add_employer_role_workspace_and_reviewed_public_discovery.sql` creates five private tables with RLS and no anon/authenticated table grants. Employer, role, pipeline and introduction access expires after 180 days; public discoveries after 30 days. Physical deletion of these new/workspace tables is not yet part of the existing nightly cleanup job; the pending retention extension requires separate approval.
+
+### Verification scope
+
+The Node suite covers owner isolation, private pending discoveries, trusted operator authority, citation grounding, research input boundaries, stale versions, paused roles and introduction consent transitions. An isolated local browser fixture verifies company → brief → internal table → saved candidate → introduction request, then a masked public discovery. It makes no production calls and writes no fabricated outcomes. Production email delivery, an intended verified employer account, operator provisioning and an authenticated live Sonar discovery remain operational checks; fixture results must not be represented as live provider verification.

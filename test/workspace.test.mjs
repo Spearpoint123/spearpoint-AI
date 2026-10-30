@@ -36,7 +36,7 @@ test('a foreign shortlist cannot be shared or used to record an outcome',()=>fix
  for(const path of ['/api/workspace/share','/api/workspace/outcome']){const r=res();await handler(req(path,{id:item,shortlist_id:item,event_type:'shortlist_accepted',confirmed:true,owner_id:foreign}),r);assert.equal(r.statusCode,404);}
 }));
 test('shared link resolution checks link expiry and rechecks current profile approval',()=>fixture(async()=>{
- globalThis.fetch=async(url)=>{url=String(url);if(url.includes('sp_take_rate_limit'))return response(true);if(url.includes('sp_shortlists?')){assert.match(url,/share_hash=eq\.[a-f0-9]{64}/);assert.match(url,/share_expires_at=gt/);return response([{title:'Private shortlist',profile_refs:[profile.reference]}]);}if(url.includes('sp_profile_approvals?'))return response([{crm_slug:'PRIVATE_SLUG',revoked_at:new Date().toISOString()}]);assert.fail('Unexpected read');};
+ globalThis.fetch=async(url)=>{url=String(url);if(url.includes('sp_take_rate_limit'))return response(true);if(url.includes('sp_shortlists?')){assert.match(url,/share_hash=eq\.[a-f0-9]{64}/);assert.match(url,/share_expires_at=gt/);return response([{title:'Private shortlist',profile_refs:[profile.reference],owner_id:owner}]);}if(url.includes('sp_public_discoveries?'))return response([]);if(url.includes('sp_profile_approvals?'))return response([{crm_slug:'PRIVATE_SLUG',revoked_at:new Date().toISOString()}]);assert.fail('Unexpected read');};
  const r=res();await handler(req('/api/shortlist/shared',{token:'a'.repeat(43)},false),r);assert.equal(r.statusCode,200);assert.deepEqual(JSON.parse(r.body).profiles,[]);assert.ok(!r.body.includes('PRIVATE_SLUG'));
 }));
 test('share rotation stores only a token hash and revoke removes access',()=>fixture(async()=>{

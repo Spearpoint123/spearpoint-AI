@@ -7,7 +7,7 @@ test('public access requires the exact custom hostname on Vercel',async()=>{
  process.env.VERCEL='1';
  try{for(const host of ['ai.spearpointsearch.com','ai.spearpointsearch.com.attacker.example','spearpoint-ai-staging-psi.vercel.app']){
   const r=response();await handler({url:'/',method:'GET',headers:{host}},r);
-  assert.equal(r.body.toString().includes('search-form'),host==='ai.spearpointsearch.com');
+  assert.equal(r.body.toString().includes('href="/signup"'),host==='ai.spearpointsearch.com');
   if(host==='ai.spearpointsearch.com')assert.doesNotMatch(r.body.toString(),/Private staging|Please use test data/);
  }}finally{delete process.env.VERCEL;}
  const r=response();await handler({url:'/',method:'GET',headers:{host:'ai.spearpointsearch.com'}},r);assert.match(r.body.toString(),/login-form/);

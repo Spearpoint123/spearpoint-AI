@@ -29,7 +29,7 @@ test('login issues secure session only after rate limit and credential checks',a
  try{const req=password=>({url:'/api/login',method:'POST',headers:{origin:process.env.APP_ORIGIN,'content-type':'application/json'},socket:{remoteAddress:'127.0.0.1'},body:{username:'tester',password}});
  let res=response();await handler(req('incorrect'),res);assert.equal(res.statusCode,401);assert.equal(res.headers['Set-Cookie'],undefined);
  res=response();await handler(req(process.env.STAGING_PASSWORD),res);assert.equal(res.statusCode,200);assert.ok(sessionValid(res.headers['Set-Cookie']));
- const page=response();await handler({url:'/',method:'GET',headers:{cookie:res.headers['Set-Cookie']}},page);assert.match(page.body.toString(),/search-form/);
+ const page=response();await handler({url:'/',method:'GET',headers:{cookie:res.headers['Set-Cookie']}},page);assert.match(page.body.toString(),/href="\/signup"/);
  allowed=false;res=response();await handler(req(process.env.STAGING_PASSWORD),res);assert.equal(res.statusCode,429);assert.equal(res.headers['Set-Cookie'],undefined);
  }finally{globalThis.fetch=original;delete process.env.SUPABASE_SERVICE_ROLE_KEY;delete process.env.RATE_LIMIT_HMAC_KEY;}
 });
