@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {externalQuery,externalDiscovery,discoverExternal} from '../lib/external-profiles.mjs';
 import {roleMatches,roleQueries} from '../lib/matching.mjs';
-import {researchPassages,requirementsKey,RESEARCH_VERSION} from '../lib/profile-research.mjs';
+import {researchPassages,requirementsKey,RESEARCH_VERSION,quotationSupportsRequirement} from '../lib/profile-research.mjs';
 import {pendingDiscovery} from '../lib/instant-search.mjs';
 const c={role:'RIA Sales person',location:'Chicago',mustHaves:['Network in RIA','10 years sales','Chicago'],requirements:[]};
 const person={id:123,name:'PRIVATE PERSON',current_title:'Regional Director - RIA Division',current_employer:'PRIVATE EMPLOYER',location:'Chicago',status:'complete',emails:[{email:'private@example.com'}],phones:[{number:'+12345678900'}],birth_year:1980,job_history:[{title:'Regional Director - RIA Division',company_name:'PRIVATE EMPLOYER',start_date:'2010-06-01',end_date:null,description:'Built and managed advisor distribution relationships across a regional territory, supporting institutional investment sales.'}],skills:['Sales']};
@@ -12,3 +12,8 @@ test('search and detailed lookups use server-only headers and fixed provider URL
 test('lookup allowance blocks paid enrichment but retains discovery previews',async()=>{const old=process.env.ROCKETREACH_API_KEY;process.env.ROCKETREACH_API_KEY='fixture';try{const r=await discoverExternal(c,'owner',{take:async k=>!k.includes('lookups'),fetcher:async(_url,opts)=>{assert.equal(opts.method,'POST');return Response.json({profiles:[person]});}});assert.equal(r.status,'lookup_daily_limit');assert.equal(r.lookups,0);assert.equal(r.records[0]._professionalRecord,null);}finally{if(old===undefined)delete process.env.ROCKETREACH_API_KEY;else process.env.ROCKETREACH_API_KEY=old;}});
 test('pending enrichment is polled after a delay, with strict identity checks',async()=>{const old=process.env.ROCKETREACH_API_KEY;process.env.ROCKETREACH_API_KEY='fixture';let paused=false;try{const r=await discoverExternal(c,'owner',{take:async()=>true,pause:async ms=>{assert.equal(ms,3000);paused=true;},fetcher:async(url,opts)=>opts.method==='POST'?Response.json({profiles:[person]}):url.includes('checkStatus')?(assert.ok(paused),Response.json([person,{...person,id:456}])):Response.json({id:123,status:'progress'})});assert.equal(r.status,'searched');assert.equal(r.records.length,1);assert.equal(r.records[0]._profileReadStatus,'provider_detail_read');}finally{if(old===undefined)delete process.env.ROCKETREACH_API_KEY;else process.env.ROCKETREACH_API_KEY=old;}});
 test('authentication failures remain explicit rather than a successful empty market search',async()=>{const old=process.env.ROCKETREACH_API_KEY;process.env.ROCKETREACH_API_KEY='fixture';try{const r=await discoverExternal(c,'owner',{take:async()=>true,fetcher:async()=>new Response('',{status:401})});assert.equal(r.status,'authentication_failed');assert.equal(r.records.length,0);}finally{if(old===undefined)delete process.env.ROCKETREACH_API_KEY;else process.env.ROCKETREACH_API_KEY=old;}});
+
+test('career titles are not proof of an RIA network or delivery achievements',()=>{
+ assert.equal(quotationSupportsRequirement('network in RIA','Regional Director RIA and Bank Group','provider_career_history'),false);
+ assert.equal(quotationSupportsRequirement('Built Rust trading systems','Rust Trading Systems Engineer','provider_career_history'),false);
+});
