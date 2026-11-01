@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {ownerApi,requestProfile,searchFeedback,recordSearchRun,acceptShortlist} from '../lib/pilot-operations.mjs';
+import {workspaceApi} from '../lib/workspace.mjs';
+import {ownerApi,requestProfile,searchFeedback,recordSearchRun,acceptShortlist,downloadCandidateCv} from '../lib/pilot-operations.mjs';
 import {candidateResumeUrl} from '../lib/services.mjs';
 import {networkDiscoveries,visibleNetworkRows} from '../lib/talent-network.mjs';
 import {researchDiscoveries,researchProjection} from '../lib/profile-research.mjs';
@@ -55,4 +56,12 @@ test('CRM file resolution binds the file to the correct candidate and selects on
 
 test('shortlist acceptance contains only current source-backed matches and requires the owned search',()=>fixture(async()=>{
  const candidates=[{reference,researchStatus:'matched'},{reference:'SP-AAAAAAAAAAAAAAAA',researchStatus:'research_queue'}];let saved;globalThis.fetch=async(url,opts)=>{assert.ok(String(url).includes('owner_id=eq.'+userId));saved=JSON.parse(opts.body);return response([{id}]);};await assert.rejects(acceptShortlist({search_id:id,references:['SP-AAAAAAAAAAAAAAAA']},user,candidates),/profile_unavailable/);assert.equal(saved,undefined);await acceptShortlist({search_id:id,references:[reference]},user,candidates);assert.deepEqual(saved.accepted_refs,[reference]);assert.ok(saved.shortlist_accepted_at);
+}));
+
+test('lightweight session check returns verified access flags without loading search history',()=>fixture(async()=>{
+ let calls=0;globalThis.fetch=async url=>{calls++;assert.ok(String(url).includes('/auth/v1/user'));return response({id:userId,email:'owner@example.test',email_confirmed_at:new Date().toISOString(),app_metadata:{spearpoint_owner:true}});};const cookie=workspaceCookie({access_token:'fixture',refresh_token:'fixture'});const result=await workspaceApi('/api/workspace/session',{}, {headers:{cookie}}, {setHeader(){}});assert.equal(result.owner,true);assert.equal(result.email,'owner@example.test');assert.equal(calls,1);
+}));
+
+test('private CV downloads require owner access on each request and never mint a share link',()=>fixture(async()=>{
+ globalThis.fetch=async()=>assert.fail('Unexpected access');await assert.rejects(downloadCandidateCv(id,{id:userId}),/owner_required/);let urls=[];globalThis.fetch=async(url,opts)=>{const u=String(url);urls.push(u);if(u.includes('sp_candidate_submissions'))return response([{id,cv_path:id+'/CV.txt'}]);if(u.includes('/object/authenticated/'))return new Response('SYNTHETIC CV');return response(null);};const file=await downloadCandidateCv(id,user);assert.equal(file.bytes.toString(),'SYNTHETIC CV');assert.equal(file.name,'CV.txt');assert.ok(urls.every(u=>!u.includes('/sign/')));
 }));

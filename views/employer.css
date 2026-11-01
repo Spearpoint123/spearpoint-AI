@@ -15,3 +15,5 @@
 .must-have-evidence{padding-left:20px}.must-have-evidence li{margin:14px 0}.must-have-evidence li>strong,.must-have-evidence li>small{display:block}.must-have-evidence li>small{margin:5px 0;color:var(--muted)}.must-have-evidence li>p{margin:5px 0}
 
 .requirement-clarification:empty{display:none}.requirement-clarification{margin:-8px 0 18px}.requirement-clarification button{margin:4px 6px 4px 0}
+
+.sidebar-bottom #owner-dashboard-link:not([hidden]){display:block}.workspace-loading{max-width:1200px;margin:40px auto;padding:24px;font:16px/1.5 var(--body)}
