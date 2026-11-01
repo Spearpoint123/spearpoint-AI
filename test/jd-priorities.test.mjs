@@ -11,10 +11,12 @@ test('unsupported or fabricated quotes, changed credentials, personal criteria a
 });
 test('a sparse job description may supply fewer than three requirements without inventing the remainder',()=>{assert.equal(validateJdPriorities({...result,priorities:[result.priorities[0]]},source).priorities.length,1);assert.throws(()=>validateJdPriorities({priorities:[]},source),/priorities_empty/);});
 test('suggestions use the existing AI budget, a compact response contract and make no writes or candidate searches',()=>fixture(async()=>{
- const calls=[];globalThis.fetch=async(url,opts)=>{calls.push(String(url));const body=JSON.parse(opts.body);if(String(url).includes('sp_take_rate_limit')){assert.equal(body.p_key,'spearpoint-mandate-ai-daily');assert.equal(body.p_limit,100);return reply(true);}assert.equal(String(url),'https://ai-gateway.vercel.sh/v1/chat/completions');assert.equal(body.response_format.json_schema.schema.properties.priorities.maxItems,3);assert.equal(body.messages[1].content,source);return reply({choices:[{message:{content:JSON.stringify(result)}}]});};const d=await suggestJdPriorities({job_description:source});assert.equal(d.priorities.length,3);assert.equal(calls.length,2);
+ let calls=0;globalThis.fetch=async(url,opts)=>{calls++;assert.ok(String(url).includes('sp_take_rate_limit'));const body=JSON.parse(opts.body);assert.equal(body.p_key,'spearpoint-mandate-ai-daily');assert.equal(body.p_limit,100);return reply(true);};const d=await suggestJdPriorities({job_description:source},{generate:async options=>{assert.equal(options.prompt,source);assert.equal(options.maxRetries,0);assert.ok(options.output);return {output:result};}});assert.equal(d.priorities.length,3);assert.equal(calls,1);
 }));
 test('budget exhaustion, failed responses and malformed output fail visibly instead of inventing priorities',()=>fixture(async()=>{
  globalThis.fetch=async()=>reply(false);await assert.rejects(suggestJdPriorities({job_description:source}),/priorities_unavailable/);
- globalThis.fetch=async url=>String(url).includes('sp_take_rate_limit')?reply(true):reply({choices:[{message:{content:'broken JSON'}}]});await assert.rejects(suggestJdPriorities({job_description:source}),/priorities_unavailable/);
+ globalThis.fetch=async()=>reply(true);await assert.rejects(suggestJdPriorities({job_description:source},{generate:async()=>({output:{priorities:'broken'}})}),/priorities_unavailable/);
  await assert.rejects(suggestJdPriorities({job_description:'x'.repeat(20001)}),/validation/);
 }));
+
+test('PDF spacing and punctuation differences do not reject a supporting source quotation',()=>{assert.equal(validateJdPriorities({priorities:[{requirement:'NFA registration',quote:"Lead NFA's registration procedures."}]},'Lead NFA s registration procedures.').priorities.length,1);});
