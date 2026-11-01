@@ -7,12 +7,12 @@ export function candidateTable(candidates,{onStage,onIntro}={}){
   const checks=p.mustHaveChecks||[];
   if(checks.length===3){
    const list=node('ol','','must-have-evidence');
-   for(const check of checks){const item=node('li');item.append(node('strong',check.requirement),node('small',check.status==='reviewed_evidence'?'Reviewed evidence':check.status==='source_mention'?'Source evidence · unverified':'Evidence needed'),node('p',check.evidence));list.append(item);}
+   for(const check of checks){const item=node('li');item.append(node('strong',check.requirement),node('small',check.status==='reviewed_evidence'?'Reviewed evidence':check.status==='source_supported'?'Source-backed experience':check.status==='source_mention'?'Source evidence · unverified':check.status==='source_conflict'?'Source needs clarification':'Research pending'),node('p',check.evidence));list.append(item);}
    identity.append(list);
   }else identity.append(node('p','Set three must-haves to see an evidence check for each requirement.','table-summary'));
   const consult=node('a','Discuss this profile','button small-button profile-cta');consult.href='/consult?profile='+encodeURIComponent(p.reference);consult.setAttribute('aria-label','Discuss this profile '+p.reference);identity.append(consult);
   const evidence=node('td');
-  if(checks.length===3){evidence.append(node('strong',`${p.mustHaveReviewed||0}/3 with reviewed evidence`,p.mustHaveReviewed===3?'status-good':'status-pending'),node('p',`${p.mustHaveMentions||0}/3 with related source mentions`),node('small','Each requirement is checked separately.'));}
+  if(checks.length===3){evidence.append(node('strong',`${p.mustHaveSupported??p.mustHaveReviewed??0}/3 source-backed requirements`,p.researchStatus==='matched'||p.mustHaveReviewed===3?'status-good':'status-pending'),node('small',p.researchMethod==='source_grounded_ai'?'AI assessed source passages':p.mustHaveReviewed===3?'Specialist-reviewed evidence':'Further source research'),node('small',p.researchReadStatus?.includes('cv_')?'Professional record read; CV access needs a further check.':p.researchReadStatus==='page_read'?'Public biography read':p.researchReadStatus==='detail_read'?'Detailed CRM profile read':''));}
   else evidence.append(node('p','Three must-haves not yet set.'));
   const gaps=node('td');const list=node('ul');(p.gaps||[]).forEach(t=>list.append(node('li',t)));gaps.append(list);
   const source=node('td');source.append(node('span',p.sourceLabel||'Spearpoint CRM · reviewed'),node('small',p.reviewedAt?'Reviewed '+p.reviewedAt:p.checkedAt?'Discovered '+new Date(p.checkedAt).toLocaleDateString():'Review pending'));
@@ -21,4 +21,15 @@ export function candidateTable(candidates,{onStage,onIntro}={}){
   row.append(identity,evidence,gaps,source,pipeline,intro);body.append(row);
  }
  table.append(body);wrap.append(table);return wrap;
+}
+
+export function researchComparison(candidates,options={}){
+ const wrap=node('div');
+ const matched=candidates.filter(p=>p.researchStatus==='matched'||p.mustHaveReviewed===3);
+ const remaining=candidates.filter(p=>!matched.includes(p));
+ wrap.append(node('h3',matched.length+' source-backed '+(matched.length===1?'match':'matches')));
+ if(matched.length)wrap.append(candidateTable(matched,options));
+ else wrap.append(node('p','The search has not yet substantiated all three requirements in one profile. Other sourced people remain below for further research.','notice-box'));
+ if(remaining.length){const queue=node('details','','research-queue');queue.append(node('summary',remaining.length+' other sourced profiles · research incomplete'),node('p','These are real sourced records. Some requirements, source access or current credential details still need to be resolved.','guide-note'),candidateTable(remaining,options));wrap.append(queue);}
+ return wrap;
 }
