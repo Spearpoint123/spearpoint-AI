@@ -1,3 +1,5 @@
+import {professionalMustHaveInput} from '../lib/search-intake.mjs';
+import {assessMandate} from '../lib/talent-search.mjs';
 import {modelMandate} from '../lib/talent-search.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {isPracticalRequirement,isThreeCriterionMatch} from '../views/requirement-types.js';
@@ -16,4 +18,16 @@ test('legacy saved criteria can still be read while new intake rejects practical
  const saved={role:'Chief Technology Officer',family:'technology',location:'Chicago',niches:[],requirements:[],customRequirements:[],otherRequirements:'None',mustHaves:['RIA client relationships','10 years sales','Chicago']};
  assert.doesNotThrow(()=>modelMandate(saved));
  assert.throws(()=>searchIntake({mustHaves:saved.mustHaves},{requireMustHaves:true}),/professional_must_haves_required/);
+});
+
+test('the rule applies to arbitrary locations and role-specific professional requirements',()=>{
+ const cases=[['New York, USA',['RIA relationships','Institutional investment sales','Raised assets for fund products']],['Nairobi, Kenya',['Risk framework delivery','Banking regulatory experience','Led risk teams']],['Reykjavik, Iceland',['Production Rust software','Low-latency systems','Trading execution infrastructure']],['Abu Dhabi, UAE',['Financial reporting','Fundraising delivery','Finance team leadership']]];
+ for(const [location,requirements] of cases){assert.deepEqual(professionalMustHaveInput(requirements,location),requirements);assert.throws(()=>professionalMustHaveInput([requirements[0],requirements[1],location.split(',')[0]],location),/professional_must_haves_required/);}
+});
+test('reviewed catalogue profiles expose location only as a practical check',()=>{
+ const c={role:'Chief Technology Officer',family:'technology',location:'New York',niches:[],requirements:[],customRequirements:[],otherRequirements:'None',mustHaves:['Production Rust software','Trading systems','Team leadership']};
+ const p=assessMandate(c,{title:'Chief Technology Officer',family:'technology',locations:['New York'],niches:[],evidence:[]});
+ assert.doesNotMatch(p.fitReasons.join(' '),/New York|Recorded location/);
+ assert.equal(p.practicalChecks[0].requirement,'Location: New York');
+ const v=professionalProfile(p);assert.ok(v.practicalChecks.some(c=>c.requirement==='Location: New York'));
 });

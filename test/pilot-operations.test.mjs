@@ -47,7 +47,7 @@ test('a positive pilot payment needs recorded evidence and is not an automated t
  globalThis.fetch=async url=>{assert.ok(String(url).includes('/auth/v1/admin/users/'));return response({id:userId});};await assert.rejects(ownerApi('pilot',{employer_id:userId,name:'Pilot',status:'active',pricingModel:'per_search',currency:'USD',amountPaid:1000,paymentEvidence:''},user),/validation/);
 }));
 test('search diagnostics record actual source access and useful-match counts with unknown costs left unset',()=>fixture(async()=>{
- let saved;globalThis.fetch=async(url,opts)=>{saved=JSON.parse(opts.body);return response(null);};await recordSearchRun({id,ownerId:userId,criteria,candidates:[{researchStatus:'matched'},{researchStatus:'research_queue'}],internalStatus:'searched',publicStatus:'daily_limit',durationMs:2000,records:[{provider:'recruitcrm',sources:[{kind:'profile_research',readStatus:'detail_read_cv_reference_only'}]}]});assert.equal(saved.matched_count,1);assert.equal(saved.profile_count,2);assert.equal(saved.source_diagnostics['recruitcrm:detail_read_cv_reference_only'],1);assert.equal(saved.reported_provider_cost_usd,undefined);
+ let saved;globalThis.fetch=async(url,opts)=>{saved=JSON.parse(opts.body);return response(null);};await recordSearchRun({id,ownerId:userId,criteria,candidates:[{researchStatus:'matched',mustHaveChecks:criteria.mustHaves.map(requirement=>({requirement,status:'source_supported'}))},{researchStatus:'research_queue'}],internalStatus:'searched',publicStatus:'daily_limit',durationMs:2000,records:[{provider:'recruitcrm',sources:[{kind:'profile_research',readStatus:'detail_read_cv_reference_only'}]}]});assert.equal(saved.matched_count,1);assert.equal(saved.profile_count,2);assert.equal(saved.source_diagnostics['recruitcrm:detail_read_cv_reference_only'],1);assert.equal(saved.reported_provider_cost_usd,undefined);
 }));
 
 test('CRM file resolution binds the file to the correct candidate and selects only a resume document',()=>{
@@ -55,7 +55,7 @@ test('CRM file resolution binds the file to the correct candidate and selects on
 });
 
 test('shortlist acceptance contains only current source-backed matches and requires the owned search',()=>fixture(async()=>{
- const candidates=[{reference,researchStatus:'matched'},{reference:'SP-AAAAAAAAAAAAAAAA',researchStatus:'research_queue'}];let saved;globalThis.fetch=async(url,opts)=>{assert.ok(String(url).includes('owner_id=eq.'+userId));saved=JSON.parse(opts.body);return response([{id}]);};await assert.rejects(acceptShortlist({search_id:id,references:['SP-AAAAAAAAAAAAAAAA']},user,candidates),/profile_unavailable/);assert.equal(saved,undefined);await acceptShortlist({search_id:id,references:[reference]},user,candidates);assert.deepEqual(saved.accepted_refs,[reference]);assert.ok(saved.shortlist_accepted_at);
+ const candidates=[{reference,researchStatus:'matched',mustHaveChecks:criteria.mustHaves.map(requirement=>({requirement,status:'source_supported'}))},{reference:'SP-AAAAAAAAAAAAAAAA',researchStatus:'research_queue'}];let saved;globalThis.fetch=async(url,opts)=>{assert.ok(String(url).includes('owner_id=eq.'+userId));saved=JSON.parse(opts.body);return response([{id}]);};await assert.rejects(acceptShortlist({search_id:id,references:['SP-AAAAAAAAAAAAAAAA']},user,candidates),/profile_unavailable/);assert.equal(saved,undefined);await acceptShortlist({search_id:id,references:[reference]},user,candidates);assert.deepEqual(saved.accepted_refs,[reference]);assert.ok(saved.shortlist_accepted_at);
 }));
 
 test('lightweight session check returns verified access flags without loading search history',()=>fixture(async()=>{
@@ -64,4 +64,10 @@ test('lightweight session check returns verified access flags without loading se
 
 test('private CV downloads require owner access on each request and never mint a share link',()=>fixture(async()=>{
  globalThis.fetch=async()=>assert.fail('Unexpected access');await assert.rejects(downloadCandidateCv(id,{id:userId}),/owner_required/);let urls=[];globalThis.fetch=async(url,opts)=>{const u=String(url);urls.push(u);if(u.includes('sp_candidate_submissions'))return response([{id,cv_path:id+'/CV.txt'}]);if(u.includes('/object/authenticated/'))return new Response('SYNTHETIC CV');return response(null);};const file=await downloadCandidateCv(id,user);assert.equal(file.bytes.toString(),'SYNTHETIC CV');assert.equal(file.name,'CV.txt');assert.ok(urls.every(u=>!u.includes('/sign/')));
+}));
+
+test('a legacy match label cannot admit a location-based shortlist without three professional criteria',()=>fixture(async()=>{
+ globalThis.fetch=async()=>assert.fail('No write should occur');
+ const candidates=[{reference,researchStatus:'matched',mustHaveReviewed:3,mustHaveChecks:[{requirement:'Rust software',status:'source_supported'},{requirement:'Trading systems',status:'source_supported'},{requirement:'New York',status:'source_supported'}]}];
+ await assert.rejects(acceptShortlist({search_id:id,references:[reference]},user,candidates),/profile_unavailable/);
 }));

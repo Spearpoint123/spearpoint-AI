@@ -45,3 +45,11 @@ test('public biography alternatives must occur in actual provider citations',()=
  const url='https://firm.com/team/real-person',alt='https://event.com/speakers/real-person';const leads=groundedLeads({citations:[url,alt],choices:[{message:{content:JSON.stringify({leads:[{name:'Real Person',url,alternativeUrls:[alt,'https://forged.com/person'],evidence:'Professional biography.'}]})}}]});
  assert.deepEqual(leads[0].sources,[{url},{url:alt}]);
 }));
+
+test('saved-role creation, updates and searches reject practical must-haves before provider calls or writes',()=>fixture(async()=>{
+ const invalid={...criteria,location:'Nairobi, Kenya',mustHaves:['Rust systems experience','Trading systems delivery','Nairobi']};
+ globalThis.fetch=async(url,opts)=>{assert.equal(opts.method,'GET');url=String(url);if(url.includes('sp_employers'))return response([{owner_id:user.id}]);if(url.includes('sp_roles')&&url.includes('id=eq.'))return response([{...role,criteria:invalid}]);if(url.includes('sp_roles'))return response([]);assert.fail('Unexpected provider or write');};
+ await assert.rejects(hiringApi('/api/workspace/hiring/create',{approved:true,criteria:invalid,title:'Trading engineer',job_description:'Build and optimise trading systems.'},user),/professional_must_haves_required/);
+ await assert.rejects(hiringApi('/api/workspace/hiring/update',{role_id:id,version:1,approved:true,criteria:invalid},user),/professional_must_haves_required/);
+ await assert.rejects(hiringApi('/api/workspace/hiring/search-all',{role_id:id,confirmed:true},user),/professional_must_haves_required/);
+}));
