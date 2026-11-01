@@ -17,3 +17,7 @@ test('public regulatory terminology is preserved while known employer names are 
 test('missing or stale source assessment cannot become professional facts',()=>{
  const r=row(['Managed regulatory relationships and risk reporting while developing policies and procedures for a new swap execution facility.']);r.sources[0].requirementsKey='stale';assert.deepEqual(profileEvidence(r,criteria).professionalFacts,[]);
 });
+
+test('subjective assessments, skills dumps and employer descriptions do not appear as experience facts',()=>{
+ const p=profileEvidence(row(['The candidate appears to be a low-to-mid level candidate with strong management experience in financial services.','The company is a recruitment agency specialising in placing compliance professionals with financial services clients.']),criteria);assert.equal(p.professionalFacts.length,0);
+});
