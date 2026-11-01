@@ -1,12 +1,10 @@
 import {isFitCheck,supportedFitChecks,isThreeCriterionMatch} from '/requirement-types.js';
 import {professionalProfile,downloadProfile} from '/profile-document.js';
 import {node} from '/talent.js';
-const checksNeedProfessionalBrief=p=>(p.mustHaveChecks||[]).filter(isFitCheck).length<3;
 function showProfessionalProfile(p){
  const v=professionalProfile(p),dialog=node('dialog','','professional-profile-dialog');dialog.setAttribute('aria-label','Anonymised professional profile '+v.reference);
  const close=node('button','Close','outline-button');close.type='button';close.addEventListener('click',()=>dialog.close());
  dialog.append(close,node('p',v.reference,'reference'),node('h2',v.title),node('p','Anonymised research profile · '+v.source,'guide-note'),node('h3','Why this person may suit your brief'));
- if(checksNeedProfessionalBrief(p))dialog.append(node('p','This saved brief needs three professional must-haves. Location and practical details do not count.','notice-box'));
  if(v.reasons.length){for(const r of v.reasons)dialog.append(node('h4',r.requirement),node('p',r.evidence));}else dialog.append(node('p','Review the experience below. The three must-have requirements have not yet been established.'));
  dialog.append(node('h3','Professional experience'));for(const fact of v.experience)dialog.append(node('p',fact.text),node('small',fact.source));
  if(v.practicalChecks.length){dialog.append(node('h3','Location and practical details'));for(const c of v.practicalChecks)dialog.append(node('h4',c.requirement),node('p',c.evidence));}
