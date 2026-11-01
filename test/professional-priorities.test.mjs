@@ -1,3 +1,4 @@
+import {modelMandate} from '../lib/talent-search.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {isPracticalRequirement,isThreeCriterionMatch} from '../views/requirement-types.js';
 import {searchIntake} from '../lib/search-intake.mjs';
@@ -10,3 +11,9 @@ test('legacy location evidence appears only in practical details, not suitabilit
 test('three supported professional criteria can qualify, while a partial criterion cannot',()=>{const p={mustHaveChecks:['RIA relationships','10 years sales','Grew distribution revenue'].map(requirement=>({requirement,status:'source_supported'}))};assert.equal(isThreeCriterionMatch(p),true);p.mustHaveChecks[2].status='partial_source';assert.equal(isThreeCriterionMatch(p),false);});
 test('server projection never counts source-supported location as a professional fit reason',()=>{const criteria={mustHaves:['RIA network','10 years sales','Chicago'],location:'Chicago'};const p=researchProjection({sources:[{kind:'profile_research',version:RESEARCH_VERSION,requirementsKey:requirementsKey(criteria),checks:[],passages:[{id:'p0',kind:'provider_location',text:'Provider-reported professional location: Chicago, US.'}]}]},criteria);assert.equal(p.mustHaveSupported,0);assert.equal(p.researchStatus,'research_queue');assert.equal(p.mustHaveChecks[2].status,'source_supported');assert.equal(p.mustHaveChecks[2].isFitCriterion,false);});
 test('JD suggestions cannot spend a professional priority on the extracted work location',()=>{assert.throws(()=>validateJdPriorities({location:'Reykjavik',priorities:[{requirement:'Reykjavik',quote:'The role is based in Reykjavik.'}]},'The role is based in Reykjavik.'),/priorities_unavailable/);});
+
+test('legacy saved criteria can still be read while new intake rejects practical priorities',()=>{
+ const saved={role:'Chief Technology Officer',family:'technology',location:'Chicago',niches:[],requirements:[],customRequirements:[],otherRequirements:'None',mustHaves:['RIA client relationships','10 years sales','Chicago']};
+ assert.doesNotThrow(()=>modelMandate(saved));
+ assert.throws(()=>searchIntake({mustHaves:saved.mustHaves},{requireMustHaves:true}),/professional_must_haves_required/);
+});
