@@ -1,13 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {publicProfile,briefInput,archetypes} from '../lib/domain.mjs';
+import {publicProfile,briefInput} from '../lib/domain.mjs';
 import handler,{authorized} from '../api/index.mjs';
 import {sessionCookie,sessionValid} from '../lib/session.mjs';
 import {originAllowed} from '../lib/origin.mjs';
-const now=Date.now();const approved={crm_slug:'private-slug',external_sharing_consent:true,reviewed_at:new Date(now).toISOString(),consent_expires_at:new Date(now+86400000).toISOString(),public_title:'Technology leader',public_summary:'Approved redacted summary',public_skills:['Platform strategy'],first_name:'SECRET',email:'secret@example.com'};
+const now=Date.now();const approved={crm_slug:'private-slug',external_sharing_consent:true,consent_evidence:'Fixture-only explicit sharing approval',reviewed_at:new Date(now).toISOString(),consent_expires_at:new Date(now+86400000).toISOString(),public_title:'Technology leader',public_summary:'Approved redacted summary',public_skills:['Platform strategy'],first_name:'SECRET',email:'secret@example.com'};
 test('only current explicit approvals can leave the server',()=>{for(const patch of [{external_sharing_consent:false},{revoked_at:new Date().toISOString()},{consent_expires_at:'2020-01-01'},{reviewed_at:'2020-01-01'},{public_summary:'Email secret@example.com'},{public_summary:'+44 7700 900123'}])assert.equal(publicProfile({...approved,...patch},new Set(['private-slug']),now),null);assert.equal(publicProfile(approved,new Set(),now),null);const result=publicProfile(approved,new Set(['private-slug']),now);assert.ok(result);assert.ok(!JSON.stringify(result).includes('SECRET'));assert.ok(!JSON.stringify(result).includes('private-slug'));});
-test('archetypes always identify synthetic status and never imply availability',()=>{for(const p of archetypes({role:'CTO',location:'London',skills:'Fintech'})){assert.equal(p.kind,'synthetic');assert.match(p.availability,/Not a real person/);}});
-test('brief requires valid email, consent and empty honeypot',()=>{const body={role:'CTO',location:'London',skills:'Fintech',name:'Test User',email:'test@example.com',company:'Test Company',consent:true};assert.ok(briefInput(body));for(const patch of [{email:'bad'},{consent:false},{website:'spam'},{notes:'x'.repeat(2001)}])assert.throws(()=>briefInput({...body,...patch}));});
+test('brief requires valid email, consent and empty honeypot',()=>{const body={role:'CTO',location:'London',skills:'Fintech',name:'Test User',email:'test@example.com',company:'Test Company',consent:true};assert.ok(briefInput(body));for(const patch of [{email:'bad'},{consent:false},{website:'spam'},{notes:'x'.repeat(7001)}])assert.throws(()=>briefInput({...body,...patch}));});
 function response(){return {headers:{},statusCode:200,setHeader(k,v){this.headers[k]=v;},end(body){this.body=body;}};}
 const config=()=>{process.env.STAGING_USER='tester';process.env.STAGING_PASSWORD='a'.repeat(24);process.env.APP_ORIGIN='https://staging.example.com';};
 const credentials=()=>`Basic ${Buffer.from('tester:'+process.env.STAGING_PASSWORD).toString('base64')}`;
@@ -30,7 +29,21 @@ test('login issues secure session only after rate limit and credential checks',a
  try{const req=password=>({url:'/api/login',method:'POST',headers:{origin:process.env.APP_ORIGIN,'content-type':'application/json'},socket:{remoteAddress:'127.0.0.1'},body:{username:'tester',password}});
  let res=response();await handler(req('incorrect'),res);assert.equal(res.statusCode,401);assert.equal(res.headers['Set-Cookie'],undefined);
  res=response();await handler(req(process.env.STAGING_PASSWORD),res);assert.equal(res.statusCode,200);assert.ok(sessionValid(res.headers['Set-Cookie']));
- const page=response();await handler({url:'/',method:'GET',headers:{cookie:res.headers['Set-Cookie']}},page);assert.match(page.body.toString(),/search-form/);
+ const page=response();await handler({url:'/',method:'GET',headers:{cookie:res.headers['Set-Cookie']}},page);assert.match(page.body.toString(),/href="\/signup"/);
  allowed=false;res=response();await handler(req(process.env.STAGING_PASSWORD),res);assert.equal(res.statusCode,429);assert.equal(res.headers['Set-Cookie'],undefined);
  }finally{globalThis.fetch=original;delete process.env.SUPABASE_SERVICE_ROLE_KEY;delete process.env.RATE_LIMIT_HMAC_KEY;}
+});
+test('search criteria are bounded and brief notes cannot become arbitrary database columns',async()=>{
+ const {searchInput}=await import('../lib/domain.mjs');
+ const input={role:'CTO',location:'London',jobDescription:'Additional scope for consultant review'};
+ assert.equal(searchInput(input).skills,'');assert.equal(searchInput(input).jobDescription,input.jobDescription);
+ assert.throws(()=>searchInput({...input,skills:'x'.repeat(241)}));assert.throws(()=>searchInput({...input,jobDescription:'x'.repeat(4001)}));
+ const saved=briefInput({...input,name:'Test User',company:'Example',email:'test@example.com',consent:true,crm_slug:'must-not-be-saved'});assert.equal(saved.jobDescription,undefined);assert.equal(saved.crm_slug,undefined);
+});
+test('owner approval is explicitly distinguished from candidate permission and needs an approver',()=>{
+ const row={...approved,approval_basis:'owner_approved_anonymised_summary',approved_by:'Spearpoint owner',consent_evidence:'Owner authorisation for anonymised professional summary only; not candidate consent.'};
+ assert.ok(publicProfile(row,new Set(['private-slug']),now));
+ assert.equal(publicProfile({...row,approved_by:''},new Set(['private-slug']),now),null);
+ assert.equal(publicProfile({...row,approval_basis:'unverified'},new Set(['private-slug']),now),null);
+ const output=JSON.stringify(publicProfile(row,new Set(['private-slug']),now));assert.ok(!output.includes('Owner authorisation'));assert.ok(!output.includes('Spearpoint owner'));
 });

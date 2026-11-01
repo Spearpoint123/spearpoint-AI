@@ -1,0 +1,2 @@
+import {$,node,api,card} from '/talent.js';
+try{const token=location.pathname.split('/')[2];const d=await api('/api/shortlist/shared',{token});$('#share-title').textContent=d.title;$('#share-status').textContent=d.message;$('#shared-grid').replaceChildren(...d.profiles.map(p=>card(p,{select:false})));if(!d.profiles.length)$('#share-status').textContent+=' No currently approved profiles are available.';}catch(e){$('#share-status').textContent=e.message;}
