@@ -1,0 +1,9 @@
+const norm=v=>String(v||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim().replace(/\s+/g,' ');
+const places=new Set(['Chicago','London','New York','Dubai','Abu Dhabi','Singapore','Hong Kong','Zurich','Paris','Tokyo','Sydney','San Francisco','Boston','Miami','United States','United Kingdom','UAE','USA','UK','Europe','Remote','Hybrid','On site'].map(norm));
+export function isPracticalRequirement(value,location=''){
+ const v=norm(value).replace(/^(?:(?:must|should|needs to|need to|required to|required|able to) )(?:be )?/,''),l=norm(location);if(!v)return false;
+ return places.has(v)||!!l&&v===l||/^(?:based (?:in|near)|located (?:in|near)|live in|living in|work (?:in|from)|working (?:in|from)|willing to relocate|must relocate|remote(?: working)?(?: only)?$|hybrid(?: working)?(?: only)?$|on site$|available (?:from|by|to start)|start (?:date|by|in)|salary(?: |$)|compensation(?: |$)|notice period)/.test(v);
+}
+export const isFitCheck=c=>c?.isFitCriterion!==false&&c?.sourceKind!=='provider_location'&&!isPracticalRequirement(c?.requirement);
+export const supportedFitChecks=checks=>(checks||[]).filter(c=>isFitCheck(c)&&['source_supported','reviewed_evidence'].includes(c.status));
+export const isThreeCriterionMatch=p=>(p.mustHaveChecks||[]).length===3&&(p.mustHaveChecks||[]).every(isFitCheck)&&supportedFitChecks(p.mustHaveChecks).length===3;
