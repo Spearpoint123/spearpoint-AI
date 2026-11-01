@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {EventEmitter} from 'node:events';
-import {anonymiseExperience,researchPassages,validateAssessment,researchDiscoveries,researchProjection} from '../lib/profile-research.mjs';
+import {anonymiseExperience,researchPassages,validateAssessment,quotationSupportsRequirement,researchDiscoveries,researchProjection} from '../lib/profile-research.mjs';
 import {publicAddress,sourceUrl,pageText,readSource,readPublicProfile} from '../lib/source-reader.mjs';
 import {candidateDetail,hydrateCandidates,professionalDiscoveryPriority} from '../lib/services.mjs';
 import {instantSearch} from '../lib/instant-search.mjs';
@@ -72,4 +72,13 @@ test('available substantive experience prioritises deeper CRM reads without usin
  const good={position:'CTO',candidate_summary:'Built Rust systems and delivered a FIX protocol gateway.'},titleOnly={position:'CTO Rust FIX',candidate_summary:''};
  assert.ok(professionalDiscoveryPriority(good,criteria)>professionalDiscoveryPriority(titleOnly,criteria));
  assert.equal(professionalDiscoveryPriority(titleOnly,criteria),0);
+});
+
+test('a real but unrelated quotation cannot substantiate a technology or leadership requirement',()=>{
+ assert.equal(quotationSupportsRequirement('Solidity experience','DeFi interoperation','summary'),false);
+ assert.equal(quotationSupportsRequirement('Engineering leadership','A leader with 20 years experience in financial services.','summary'),false);
+ assert.equal(quotationSupportsRequirement('DeFi experience','DeFi interoperation','skills'),false);
+ assert.equal(quotationSupportsRequirement('Solidity experience','Developed production Solidity smart contracts.','summary'),true);
+ assert.equal(quotationSupportsRequirement('Engineering leadership','Managed a team exceeding 100 engineers.','work_history'),true);
+ assert.equal(quotationSupportsRequirement('NFA membership','Worked with NFA registered firms.','summary'),false);
 });

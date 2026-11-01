@@ -7,7 +7,7 @@ export function candidateTable(candidates,{onStage,onIntro}={}){
   const checks=p.mustHaveChecks||[];
   if(checks.length===3){
    const list=node('ol','','must-have-evidence');
-   for(const check of checks){const item=node('li');item.append(node('strong',check.requirement),node('small',check.status==='reviewed_evidence'?'Reviewed evidence':check.status==='source_supported'?'Source-backed experience':check.status==='source_mention'?'Source evidence · unverified':check.status==='source_conflict'?'Source needs clarification':'Research pending'),node('p',check.evidence));list.append(item);}
+   for(const check of checks){const item=node('li');item.append(node('strong',check.requirement),node('small',check.status==='reviewed_evidence'?'Reviewed evidence':check.status==='source_supported'?'Source-backed experience':check.status==='source_mention'?'Source evidence · unverified':check.status==='source_conflict'?'Source needs clarification':'Research pending'),node('p',check.evidence.replace(/(?:\s*\[redacted\]\s*)+/g,' … ').trim()));list.append(item);}
    identity.append(list);
   }else identity.append(node('p','Set three must-haves to see an evidence check for each requirement.','table-summary'));
   const consult=node('a','Discuss this profile','button small-button profile-cta');consult.href='/consult?profile='+encodeURIComponent(p.reference);consult.setAttribute('aria-label','Discuss this profile '+p.reference);identity.append(consult);
