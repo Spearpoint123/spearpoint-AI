@@ -40,3 +40,8 @@ test('paused roles explain that candidate reviews require activation and reject 
  globalThis.fetch=async(url)=>{url=String(url);if(url.includes('sp_roles?'))return response([{...role,state:'paused'}]);if(url.includes('sp_role_candidates?'))return response([{id:candidate,role_id:id,source:'public',reference:pub.reference,pipeline_stage:'new'}]);if(url.includes('sp_profile_approvals?'))return response([]);if(url.includes('sp_public_discoveries?'))return response([approved]);if(url.includes('sp_introductions?'))return response([]);assert.fail(url);};const result=await hiringApi('/api/workspace/hiring/view',{role_id:id},user);assert.equal(result.candidates.length,1);assert.equal(result.candidates[0].canRequestIntro,false);assert.match(result.candidates[0].introUnavailableReason,/Activate/);
  globalThis.fetch=async(url)=>{assert.ok(String(url).includes('sp_roles?'));return response([{...role,state:'paused'}]);};await assert.rejects(hiringApi('/api/workspace/hiring/intro',{role_id:id,candidate_id:candidate,confirmed:true},user),/role_inactive/);
 }));
+
+test('public biography alternatives must occur in actual provider citations',()=>fixture(async()=>{
+ const url='https://firm.com/team/real-person',alt='https://event.com/speakers/real-person';const leads=groundedLeads({citations:[url,alt],choices:[{message:{content:JSON.stringify({leads:[{name:'Real Person',url,alternativeUrls:[alt,'https://forged.com/person'],evidence:'Professional biography.'}]})}}]});
+ assert.deepEqual(leads[0].sources,[{url},{url:alt}]);
+}));

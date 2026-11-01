@@ -82,3 +82,9 @@ test('a real but unrelated quotation cannot substantiate a technology or leaders
  assert.equal(quotationSupportsRequirement('Engineering leadership','Managed a team exceeding 100 engineers.','work_history'),true);
  assert.equal(quotationSupportsRequirement('NFA membership','Worked with NFA registered firms.','summary'),false);
 });
+
+test('blocked public profiles fall back only to cited biographies and verify the person',async()=>{
+ const calls=[],lead={person_name:'Real Person',canonical_url:'https://www.linkedin.com/in/real-person',sources:[{url:'https://firm.com/team/real-person'},{url:'https://firm.com/team/other-person'}]};
+ const result=await readPublicProfile(lead,{reader:async url=>{calls.push(url);if(url.includes('linkedin'))throw Error('blocked');return {url,contentType:'text/html',bytes:Buffer.from('<article><h1>Real Person</h1><p>Built Rust systems.</p></article>')};}});
+ assert.equal(result.status,'page_read');assert.equal(result.url,'https://firm.com/team/real-person');assert.equal(calls.length,2);
+});
