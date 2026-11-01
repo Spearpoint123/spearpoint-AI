@@ -7,3 +7,9 @@ export function isPracticalRequirement(value,location=''){
 export const isFitCheck=c=>c?.isFitCriterion!==false&&c?.sourceKind!=='provider_location'&&!isPracticalRequirement(c?.requirement);
 export const supportedFitChecks=checks=>(checks||[]).filter(c=>isFitCheck(c)&&['source_supported','reviewed_evidence'].includes(c.status));
 export const isThreeCriterionMatch=p=>(p.mustHaveChecks||[]).length===3&&(p.mustHaveChecks||[]).every(isFitCheck)&&supportedFitChecks(p.mustHaveChecks).length===3;
+
+export function mustHaveProblems(values,location=''){
+ const clean=Array.from({length:3},(_,i)=>String(values?.[i]||'').trim());
+ const keys=clean.map(s=>norm(s).replace(/\bexperience\b/g,'').trim());
+ return clean.map((value,i)=>value.length<3?'Enter professional must-have '+(i+1)+'.':isPracticalRequirement(value,location)?'Use this field for professional experience, skills, qualifications or results. Put location and practical details in their separate fields.':keys.filter(k=>k===keys[i]).length>1?'Choose three different professional must-haves.':'');
+}

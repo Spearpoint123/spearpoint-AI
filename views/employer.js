@@ -1,4 +1,4 @@
-import {isPracticalRequirement,isThreeCriterionMatch} from '/requirement-types.js';
+import {isPracticalRequirement,isThreeCriterionMatch,mustHaveProblems} from '/requirement-types.js';
 import {EXPERIENCE_LEVELS,WORK_MODES,priorityLabel} from '/brief-settings.js';
 import {$,node,api} from '/talent.js';
 import {candidateTable,researchComparison} from '/candidate-table.js';
@@ -22,15 +22,21 @@ function rolesPage(inbox=false){section(inbox?'Who are you looking for?':'Your r
  const grid=node('div','','role-grid');for(const role of home.roles){const card=node('article','','role-card');card.append(node('span',role.state,'status-pill'),node('h3',role.title),node('p',role.criteria.location,'role-meta'),node('small',role.last_searched_at?'Last checked '+new Date(role.last_searched_at).toLocaleString():'Ready for its first search'),button('Open role',()=>openRole(role.id)));grid.append(card);}content.append(grid);
 }
 function attachMustHaveClarification(form){
- for(let i=1;i<=3;i++){
-  const input=form.elements['mustHave'+i],hint=node('div','','requirement-clarification');hint.setAttribute('aria-live','polite');input.after(hint);
-  const update=()=>{hint.replaceChildren();input.setCustomValidity('');let options=[];
-   if(/^nfa$/i.test(input.value.trim())){hint.append(node('p','Which NFA requirement do you mean?','guide-note'));options=['NFA membership','NFA registration experience','NFA examination experience'];input.setCustomValidity('Specify NFA membership, registration or examination experience.');}
-   if(/series\s*£/i.test(input.value)){hint.append(node('p','Did you mean Series 3?','guide-note'));options=['Series 3'];input.setCustomValidity('Confirm the required qualification.');}
-   for(const label of options)hint.append(button(label,()=>{input.value=label;update();},'outline-button small-button'));
-  };
-  input.addEventListener('input',update);input.addEventListener('change',update);update();
- }
+ const fields=[1,2,3].map(i=>{const input=form.elements['mustHave'+i],hint=node('div','','requirement-clarification');hint.setAttribute('aria-live','polite');input.after(hint);return {input,hint};});
+ const refresh=()=>{
+  const problems=mustHaveProblems(fields.map(({input})=>input.value),form.elements.location?.value);
+  fields.forEach(({input,hint},i)=>{hint.replaceChildren();let message=problems[i],options=[];
+   if(/^nfa$/i.test(input.value.trim())){message='Specify NFA membership, registration or examination experience.';options=['NFA membership','NFA registration experience','NFA examination experience'];}
+   if(/series\s*£/i.test(input.value)){message='Confirm the required qualification.';options=['Series 3'];}
+   input.setCustomValidity(message||'');
+   if(message&&(input.value.trim()||input.dataset.touched==='true'))hint.append(node('p',message,'guide-note'));
+   for(const label of options)hint.append(button(label,()=>{input.value=label;input.dispatchEvent(new Event('input',{bubbles:true}));},'outline-button small-button'));
+  });
+ };
+ for(const {input} of fields){input.addEventListener('input',refresh);input.addEventListener('change',refresh);input.addEventListener('invalid',()=>{input.dataset.touched='true';refresh();});}
+ form.elements.location?.addEventListener('input',refresh);form.elements.location?.addEventListener('change',refresh);
+ form.addEventListener('submit',event=>{refresh();const invalid=fields.find(({input})=>!input.validity.valid);if(invalid){event.preventDefault();event.stopImmediatePropagation();invalid.input.reportValidity();}});
+ refresh();
 }
 function attachInstantIntake(form){
  attachMustHaveClarification(form);
