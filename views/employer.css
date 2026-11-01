@@ -17,3 +17,5 @@
 .requirement-clarification:empty{display:none}.requirement-clarification{margin:-8px 0 18px}.requirement-clarification button{margin:4px 6px 4px 0}
 
 .sidebar-bottom #owner-dashboard-link:not([hidden]){display:block}.workspace-loading{max-width:1200px;margin:40px auto;padding:24px;font:16px/1.5 var(--body)}
+
+.professional-profile-dialog{max-width:800px;max-height:85vh;overflow:auto}.professional-profile-dialog h3{margin-top:28px}.professional-profile-dialog small{display:block;color:var(--muted)}.candidate-table .profile-cta{margin-right:8px}.professional-profile-dialog>button:first-child{float:right}

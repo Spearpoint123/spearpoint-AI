@@ -1,4 +1,15 @@
+import {professionalProfile,downloadProfile} from '/profile-document.js';
 import {node} from '/talent.js';
+function showProfessionalProfile(p){
+ const v=professionalProfile(p),dialog=node('dialog','','professional-profile-dialog');dialog.setAttribute('aria-label','Anonymised professional profile '+v.reference);
+ const close=node('button','Close','outline-button');close.type='button';close.addEventListener('click',()=>dialog.close());
+ dialog.append(close,node('p',v.reference,'reference'),node('h2',v.title),node('p','Anonymised research profile · '+v.source,'guide-note'),node('h3','Why this person may suit your brief'));
+ if(v.reasons.length){for(const r of v.reasons)dialog.append(node('h4',r.requirement),node('p',r.evidence));}else dialog.append(node('p','Review the experience below. The three must-have requirements have not yet been established.'));
+ dialog.append(node('h3','Professional experience'));for(const fact of v.experience)dialog.append(node('p',fact.text),node('small',fact.source));
+ if(v.checks.length){dialog.append(node('h3','Requirements to confirm'));for(const check of v.checks)dialog.append(node('h4',check.requirement),node('p',check.status));}
+ const download=node('button','Download anonymised profile','small-button');download.type='button';download.addEventListener('click',()=>downloadProfile(p));dialog.append(download,node('p','Research profile, not a candidate-authored CV. Interest, availability and current credentials are checked before introduction.','guide-note'));
+ dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();
+}
 export function candidateTable(candidates,{onStage,onIntro,onRequest}={}){
  const wrap=node('div','','candidate-table-wrap');const table=node('table','','candidate-table');table.setAttribute('aria-label','Confidential candidate comparison');const head=node('thead'),hr=node('tr');['Professional experience','Why this person is relevant','Checks before introduction','Source','Pipeline','Introduction'].forEach(label=>hr.append(node('th',label)));head.append(hr);table.append(head);const body=node('tbody');
  if(!candidates.length){const row=node('tr'),cell=node('td','No records in this view. Clear the table filters or use Search internal & market above to source candidates.');cell.colSpan=6;row.append(cell);body.append(row);}
@@ -7,6 +18,7 @@ export function candidateTable(candidates,{onStage,onIntro,onRequest}={}){
   const checks=p.mustHaveChecks||[];
   if(p.professionalFacts?.length){const facts=node('ul');for(const fact of p.professionalFacts.slice(0,3)){const item=node('li',fact.text);item.append(node('small',fact.source));facts.append(item);}identity.append(facts);if(p.professionalFacts.length>3){const more=node('details');more.append(node('summary','More professional experience'));for(const fact of p.professionalFacts.slice(3))more.append(node('p',fact.text),node('small',fact.source));identity.append(more);}}
   else identity.append(node('p',p.summary||'Professional summary awaiting source review.','table-summary'));
+  if(p.professionalFacts?.length){const view=node('button','View professional profile','small-button profile-cta');view.type='button';view.addEventListener('click',()=>showProfessionalProfile(p));const download=node('button','Download anonymised profile','outline-button small-button profile-cta');download.type='button';download.addEventListener('click',()=>downloadProfile(p));identity.append(view,download);}
   const consult=node('a','Discuss this profile','button small-button profile-cta');consult.href='/consult?profile='+encodeURIComponent(p.reference);consult.setAttribute('aria-label','Discuss this profile '+p.reference);if(onRequest){const request=node('button',p.introduction?'Details '+p.introduction.status.replaceAll('_',' '):'Request details','small-button profile-cta');request.type='button';request.disabled=!!p.introduction;request.addEventListener('click',()=>onRequest(p,request));identity.append(request);}else identity.append(consult);
   const evidence=node('td');
   const supported=checks.filter(c=>['source_supported','reviewed_evidence'].includes(c.status));
