@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {externalQuery,externalDiscovery,discoverExternal} from '../lib/external-profiles.mjs';
 import {roleMatches,roleQueries} from '../lib/matching.mjs';
-import {researchPassages,requirementsKey,RESEARCH_VERSION,quotationSupportsRequirement} from '../lib/profile-research.mjs';
+import {researchPassages,requirementsKey,RESEARCH_VERSION,quotationSupportsRequirement,validateAssessment} from '../lib/profile-research.mjs';
 import {pendingDiscovery} from '../lib/instant-search.mjs';
 const c={role:'RIA Sales person',location:'Chicago',mustHaves:['Network in RIA','10 years sales','Chicago'],requirements:[]};
 const person={id:123,name:'PRIVATE PERSON',current_title:'Regional Director - RIA Division',current_employer:'PRIVATE EMPLOYER',location:'Chicago',status:'complete',emails:[{email:'private@example.com'}],phones:[{number:'+12345678900'}],birth_year:1980,job_history:[{title:'Regional Director - RIA Division',company_name:'PRIVATE EMPLOYER',start_date:'2010-06-01',end_date:null,description:'Built and managed advisor distribution relationships across a regional territory, supporting institutional investment sales.'}],skills:['Sales']};
@@ -16,4 +16,11 @@ test('authentication failures remain explicit rather than a successful empty mar
 test('career titles are not proof of an RIA network or delivery achievements',()=>{
  assert.equal(quotationSupportsRequirement('network in RIA','Regional Director RIA and Bank Group','provider_career_history'),false);
  assert.equal(quotationSupportsRequirement('Built Rust trading systems','Rust Trading Systems Engineer','provider_career_history'),false);
+});
+
+test('exact provider city evidence supports location, never unrelated sales experience',()=>{
+ const passages=[{id:'p0',kind:'provider_location',text:'Provider-reported professional location: Chicago, Illinois, US.'}];
+ assert.equal(validateAssessment(null,passages,'chicago',2).verdict,'supported');
+ assert.equal(validateAssessment({index:1,verdict:'partial',passageId:'p0',quote:passages[0].text},passages,'10 years sales',1).verdict,'unresolved');
+ assert.equal(validateAssessment(null,passages,'Chicago client network',0).verdict,'unresolved');
 });
