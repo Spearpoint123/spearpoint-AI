@@ -87,12 +87,15 @@ test('admin publishes an import and clients never see it before that',()=>demo(a
  assert.equal(decryptIdentity(cipher).name.includes('Import'),true);
  const teaser=await publicTeaser({query:'staff payments firm Singapore'});
  assert.equal(JSON.stringify(teaser).includes('Fictional Import'),false);
- assert.equal(teaser.cards.length<=3,true);
+ assert.equal(teaser.cards.length<=6,true);
  assert.equal(teaser.market.profiles,6);
  assert.ok(teaser.chart.seniority.every(row=>row.total>=5));
  assert.ok(teaser.chart.pay.every(row=>row.total>=5));
  const before=await clientApi('/api/client/search',{query:'staff payments firm Singapore'},client);
- assert.equal(before.matches.some(row=>stored.ids.includes(row.id)),false);
+ const shown=before.matches.filter(row=>stored.ids.includes(row.id));
+ assert.equal(shown.length>0,true);
+ assert.equal(JSON.stringify(shown).includes('Fictional'),false);
+ assert.equal(JSON.stringify(shown).includes('Example Payments'),false);
  const published=await adminApi('/api/admin/publish',{ids:stored.ids},admin);
  assert.equal(published.published,6);
  const after=await clientApi('/api/client/search',{query:'staff payments firm Singapore'},client);

@@ -54,7 +54,9 @@ test('client search can take a RocketReach snapshot and nothing identifying',()=
  assert.throws(()=>assertClientSources([{id:'people_data_labs',kind:'snapshot'}],{clientSearch:true}),/client_source_forbidden/);
  assert.throws(()=>assertClientSources([{id:'coresignal',kind:'internal'}],{clientSearch:true}),/client_source_forbidden/);
  assertClientSources([{id:'rocketreach',kind:'snapshot',label:'Wider market'}],{clientSearch:true});
- const card=snapshotFromRocketReach({id:4242,name:'Ada Example',current_title:'Staff engineer',current_employer:'Secret Desk Ltd',location:'London',emails:['ada@secret.example'],phones:['+447700900123'],linkedin_url:'https://www.linkedin.com/in/ada-example'});
+ const card=snapshotFromRocketReach({id:4242,name:'Ada Example',current_title:'Staff engineer',current_employer:'Secret Desk Ltd',location:'London',industry:'Payments',job_history:[{start_date:'2016-01-01',title:'Engineer',company_name:'Secret Desk Ltd'}],emails:['ada@secret.example'],phones:['+447700900123'],linkedin_url:'https://www.linkedin.com/in/ada-example'});
+ assert.match(card.years_bucket,/yrs/);
+ assert.equal(card.region,'London');
  const packed=JSON.stringify(scrubClient(card));
  assert.equal(leak.test(packed),false);
  assert.equal(packed.includes('Ada'),false);
