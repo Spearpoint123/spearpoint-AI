@@ -45,7 +45,9 @@ test('a mapped CRM record keeps the name out of the anonymised profile',()=>{
 });
 
 test('providers stay disabled and off the client path',async()=>{
- assert.equal(partnerProviders().every(row=>row.enabled===false&&row.configured===false),true);
+ const rocket=partnerProviders().find(row=>row.id==='rocketreach');
+ assert.equal(rocket.enabled,Boolean(process.env.ROCKETREACH_API_KEY));
+ assert.equal(partnerProviders().filter(row=>row.id!=='rocketreach').every(row=>row.enabled===false&&row.configured===false),true);
  assert.equal((await searchPartnerProvider('rocketreach')).called,false);
  assert.equal((await searchPartnerProvider('coresignal')).records.length,0);
  assert.throws(()=>assertClientSources([{id:'rocketreach',kind:'licensed'}]),/client_source_forbidden/);
