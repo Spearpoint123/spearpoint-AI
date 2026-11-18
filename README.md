@@ -75,7 +75,7 @@ Schedule is declared in `vercel.json` (03:17 UTC daily). It calls `/api/internal
 
 ## Signup alerts
 
-A new employer account, or a signup the app blocks (personal email, agency domain, or a missing direct-employer declaration), emails `OWNER_ALERT_EMAIL` through Resend. The message includes the address, domain, whether that domain is new or already pending, whether it is a personal or agency domain, the time in Europe/London, and a link to `/owner`. The applicant is not emailed.
+A new employer account, or a signup the app blocks (personal email, agency domain, or a missing direct-employer declaration), emails `OWNER_ALERT_EMAIL` through Resend. The send is registered with Vercel `waitUntil` and also awaited for at most three seconds, so the function cannot freeze before the message is handed to Resend. Signup still succeeds if the alert fails. Logs are `owner_alert_sent`, `owner_alert_skipped`, and `owner_alert_failed`. The message includes the address, domain, whether that domain is new or already pending, whether it is a personal or agency domain, the time in Europe/London, and a link to `/owner`. The applicant is not emailed.
 
 The same address is limited to one alert an hour. If `RESEND_API_KEY` or `ALERT_FROM_EMAIL` is missing, the alert is logged and skipped. A failed send does not fail signup.
 
