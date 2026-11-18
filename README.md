@@ -28,6 +28,7 @@ Open http://127.0.0.1:3000. `npm run dev` enables the fictional demonstration wh
 | Desk | Email | Password |
 |---|---|---|
 | Client portal (`/signin`, then `/hiring`) | `client@demo.spearpoint.test` | `demo-client-pass` |
+| Live search (`/begin/portal`) | `portal@harbour-lane.example` | `demo-portal-pass` |
 | Team workspace (`/recruit`) | `recruiter@demo.spearpoint.test` | `demo-recruiter-pass` |
 
 The demonstration password works only while `SPEARPOINT_DEMO=true`, no Supabase service key is present, and `VERCEL_ENV` is not `production`. Every demo person is invented. Do not turn the demonstration on for `ai.spearpointsearch.com`.
@@ -83,7 +84,9 @@ Blocks that reach Supabase Auth directly, without the app, are rejected by `publ
 
 ## Client journey
 
-`/begin` is the new client path: work-email sign-up, a short brief, an editable search profile, a market map, a plain-English profile search, anonymised profiles, the HubSpot booking link, and an engagement choice. It reads `sp_candidates` only. RocketReach and other licensed providers are not called. RecruitCRM is not written to. Apply `supabase/migrations/20261118190000_client_journey.sql` and set `CANDIDATE_IDENTITY_KEY` before storing identity. The local demo seeds fictional anonymised profiles when that migration is not applied.
+`/begin` is the new client path: work-email sign-up, a short brief, an editable search profile, a market map, a plain-English profile search, anonymised profiles, the HubSpot booking link, and an engagement choice. `/begin/portal` is the live search for a verified employer with an active engagement. It shows the pipeline, an updated market map, plain-English activity in `sp_search_activity` (the older `sp_activity` table is the workspace outcomes log and is not reused), the next weekly call, and tracked requests. Identity stays hidden unless that candidate has an open reveal for that employer and the reveal is in `sp_audit_log`. It reads `sp_candidates` only. RocketReach and other licensed providers are not called. RecruitCRM is not written to. Apply `supabase/migrations/20261118190000_client_journey.sql` and `supabase/migrations/20261118201000_client_portal.sql`. Set `CANDIDATE_IDENTITY_KEY` before storing identity. Leave `HUBSPOT_MEETINGS_AUTOBOOK` false until a HubSpot Meetings API is connected. The local demo seeds fictional anonymised profiles when those migrations are not applied.
+
+The local demo sets a throwaway identity key when none is configured, so the sample reveal can be shown. Do not reuse that key. The local portal sign-in is `portal@harbour-lane.example` / `demo-portal-pass`. `client@demo.spearpoint.test` stays unverified, so the portal shows the closed state.
 
 ## Checks
 
