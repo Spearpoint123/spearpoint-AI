@@ -1,6 +1,6 @@
 import Home from './home-client';
 const title='Spearpoint | See the market before you see a name';
-const description='Spearpoint maps senior talent from its own database. Try a search, see anonymised profiles, then speak with a partner.';
+const description='Spearpoint maps senior talent from its own database. Try a search, see confidential profiles, then speak with a partner.';
 export const metadata={
  title,
  description,
