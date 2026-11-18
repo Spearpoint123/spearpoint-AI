@@ -52,13 +52,13 @@ test('outreach mail is sent only from the verified partner address',async()=>{
  let called=0;
  const fetcher=async()=>{called++;return {ok:true,json:async()=>({id:'mail-1'})};};
  process.env.RESEND_API_KEY='test-key';
- process.env.PARTNER_OUTREACH_FROM='recruiter@demo.spearpoint.test';
+ process.env.PARTNER_OUTREACH_DOMAIN='demo.spearpoint.test';
  assert.equal((await sendPartnerMail({from:'other@example.invalid',to:'a@example.invalid',subject:'Note',text:'Hello',fetcher})).sent,false);
  assert.equal(called,0);
  assert.equal((await sendPartnerMail({from:'recruiter@demo.spearpoint.test',to:'a@example.invalid',subject:'Note',text:'Hello',fetcher})).sent,true);
  assert.equal(called,1);
  delete process.env.RESEND_API_KEY;
- delete process.env.PARTNER_OUTREACH_FROM;
+ delete process.env.PARTNER_OUTREACH_DOMAIN;
 });
 
 test('a partner can run the desk and a candidate can approve one employer',()=>demo(async()=>{
@@ -67,7 +67,7 @@ test('a partner can run the desk and a candidate can approve one employer',()=>d
  assert.equal(home.searches.length,1);
  assert.equal(home.searches[0].overdue,true);
  assert.match(home.sources,/not connected/);
- assert.equal(JSON.stringify(home).includes('rocketreach'),false);
+ assert.equal(home.providers.every(row=>row.enabled===false&&row.configured===false),true);
  const searchId=home.searches[0].id;
  const offer=sampleCandidates.find(row=>row.pay_band==='200–250').id;
  process.env.RECRUIT_CRM_WRITE='true';

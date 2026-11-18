@@ -13,6 +13,8 @@ import {demoMode} from '../lib/services.mjs';
 import {clientApi} from '../lib/client-journey.mjs';
 import {partnerApi} from '../lib/partner-desk.mjs';
 import {consentApi} from '../lib/candidate-consent.mjs';
+import {adminApi} from '../lib/admin-desk.mjs';
+import {publicTeaser} from '../lib/public-teaser.mjs';
 import {serveJourney} from '../lib/journey-static.mjs';
 const files={'/favicon.ico':['favicon.png','image/png'],'/hero-og.jpg':['hero-og.jpg','image/jpeg'],'/hero-knight.webp':['hero-knight.webp','image/webp'],'/recruit':['recruit.html','text/html; charset=utf-8'],'/recruit.js':['recruit.js','text/javascript'],'/recruit.css':['recruit.css','text/css'],'/requirement-types.js':['requirement-types.js','text/javascript'],'/profile-document.js':['profile-document.js','text/javascript'],'/owner':['owner.html','text/html; charset=utf-8'],'/owner.js':['owner.js','text/javascript'],'/owner.css':['owner.css','text/css'],'/talent-network':['candidate-join.html','text/html; charset=utf-8'],'/candidate-join.js':['candidate-join.js','text/javascript'],'/candidate-join.css':['candidate-join.css','text/css'],'/consult.js':['consult.js','text/javascript'],'/consult':['consult.html','text/html; charset=utf-8'],'/brief-settings.js':['brief-settings.js','text/javascript'],'/explore':['explore.html','text/html; charset=utf-8'],'/signup':['employer.html','text/html; charset=utf-8'],'/signin':['employer.html','text/html; charset=utf-8'],'/hiring':['employer.html','text/html; charset=utf-8'],'/employer.js':['employer.js','text/javascript'],'/employer.css':['employer.css','text/css'],'/candidate-table.js':['candidate-table.js','text/javascript'],'/talent-taxonomy.js':['talent-taxonomy.js','text/javascript'],'/workspace':['workspace.html','text/html; charset=utf-8'],'/workspace.js':['workspace.js','text/javascript'],'/talent.js':['talent.js','text/javascript'],'/shortlist':['shared.html','text/html; charset=utf-8'],'/shared.js':['shared.js','text/javascript'],'/':['index.html','text/html; charset=utf-8'],'/app.js':['app.js','text/javascript'],'/search-journey.js':['search-journey.js','text/javascript'],'/style.css':['style.css','text/css'],'/privacy':['privacy.html','text/html; charset=utf-8'],'/logomark.svg':['logomark.svg','image/svg+xml']};
 export const PUBLIC_HOST='ai.spearpointsearch.com';
@@ -80,33 +82,37 @@ export default async function handler(req,res){
  }
  if(req.method==='GET'&&/^\/api\/owner\/cv\/[a-f0-9-]{36}$/i.test(path)){try{const user=await workspaceUser(req,res),file=await downloadCandidateCv(path.split('/').at(-1),user);res.setHeader('Content-Type','application/octet-stream');res.setHeader('Content-Disposition','attachment; filename="'+file.name+'"');return res.end(file.bytes);}catch(error){return json(error.message==='unauthorized'?401:error.message==='owner_required'?403:error.message==='not_found'?404:503,{error:'This private CV requires authorised owner access.'});}}
  if(req.method==='GET'&&/^\/shortlist\/[a-zA-Z0-9_-]{43}$/.test(path))return asset('shared.html','text/html; charset=utf-8');
+ if(req.method==='GET'&&path==='/classic'){let html=await readFile(new URL('../views/index.html',import.meta.url),'utf8');if(publicSite)html=html.replace(/<div class=\"staging\">.*?<\/div>/,'').replace(' Please use test data in staging.','');res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(html);}
+ if(req.method==='GET'&&(path==='/'||path==='/begin'||path.startsWith('/begin/'))){if(await serveJourney(path==='/'?'/begin/':path,res))return;}
  if(req.method==='GET'&&files[path]){const [file,type]=files[path];res.setHeader('Content-Type',type);if(/\.(?:js|css|svg|png|webp|jpe?g)$/i.test(file))res.setHeader('Cache-Control','public, max-age=86400');
   if(publicSite&&path==='/hiring'){let html=await readFile(new URL('../views/employer.html',import.meta.url),'utf8');html=html.replace('<div id="auth-screen" class="auth-layout">','<p id="workspace-loading" class="workspace-loading" role="status">Opening your private workspace…</p><div id="auth-screen" class="auth-layout" hidden>');return res.end(html);}
   if(publicSite&&path==='/privacy')return asset('privacy-public.html',type);
-  if(publicSite&&path==='/'){let html=await readFile(new URL('../views/index.html',import.meta.url),'utf8');html=html.replace(/<div class=\"staging\">.*?<\/div>/,'').replace(' Please use test data in staging.','');return res.end(html);}
   return res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));}
  if(path==='/robots.txt'){res.setHeader('Content-Type','text/plain');return res.end('User-agent: *\nDisallow: /\n');}
- if(req.method==='GET'&&(path==='/begin'||path.startsWith('/begin/'))){if(await serveJourney(path,res))return;}
  if(req.method==='GET'&&!path.startsWith('/api/')){res.statusCode=404;res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(await readFile(new URL('../views/not-found.html',import.meta.url)));}
  const candidateRoute=['/api/candidates/read-cv','/api/candidates/join'].includes(path);
  const workspaceRoute=path.startsWith('/api/workspace/')||path.startsWith('/api/mandate/')||path==='/api/shortlist/shared';
  const clientRoute=path.startsWith('/api/client/');
  const partnerRoute=path.startsWith('/api/partner/');
+ const adminRoute=path.startsWith('/api/admin/');
  const consentRoute=path==='/api/candidate/consent';
- if(!candidateRoute&&!workspaceRoute&&!clientRoute&&!partnerRoute&&!consentRoute&&!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});
+ const teaserRoute=path==='/api/public/teaser';
+ if(!candidateRoute&&!workspaceRoute&&!clientRoute&&!partnerRoute&&!adminRoute&&!consentRoute&&!teaserRoute&&!['/api/search','/api/brief'].includes(path))return json(404,{error:'Not found'});
  if(req.method!=='POST'){res.setHeader('Allow','POST');return json(405,{error:'Method not allowed'});}
  if(!originAllowed(req.headers.origin))return json(403,{error:'Request origin rejected. Please open Spearpoint AI at its published address and try again.'});
  if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'JSON required'});
  const documentRoute=path==='/api/workspace/hiring/extract-document';
  if(documentRoute){try{await workspaceUser(req,res);}catch{return json(401,{error:'Sign in to upload a job description.'});}}
  const longBriefRoute=['/api/workspace/hiring/instant-search','/api/workspace/hiring/interpret','/api/workspace/hiring/suggest-priorities'].includes(path);
- const bodyLimit=(documentRoute||candidateRoute)?2900000:longBriefRoute||partnerRoute?96000:clientRoute||consentRoute?32000:12000;
+ const bodyLimit=(documentRoute||candidateRoute)?2900000:longBriefRoute||partnerRoute||adminRoute?96000:clientRoute||consentRoute||teaserRoute?32000:12000;
  let body;
  try{if(req.body){if(Buffer.byteLength(JSON.stringify(req.body))>bodyLimit)return json(413,{error:'Request too large'});body=typeof req.body==='string'?JSON.parse(req.body):req.body;}else{let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>bodyLimit)return json(413,{error:'Request too large'});}body=JSON.parse(raw);}if(!body||Array.isArray(body)||typeof body!=='object')throw Error();}catch{return json(400,{error:'Invalid request'});}
  try{
   if(candidateRoute)return json(200,await candidateIntake(path,body,req));
   if(clientRoute)return json(200,await clientApi(path,body,await workspaceUser(req,res)));
   if(partnerRoute)return json(200,await partnerApi(path,body,await workspaceUser(req,res)));
+  if(adminRoute)return json(200,await adminApi(path,body,await workspaceUser(req,res)));
+  if(teaserRoute){if(!await rateLimit(req,'search')){res.setHeader('Retry-After','3600');return json(429,{error:'Please wait before trying again.'});}return json(200,await publicTeaser(body));}
   if(consentRoute){if(!await rateLimit(req,'consent')){res.setHeader('Retry-After','3600');return json(429,{error:'Please wait before trying again.'});}return json(200,await consentApi(body));}
   if(workspaceRoute)return json(200,await workspaceApi(path,body,req,res));
   const input=path==='/api/search'?searchInput(body):briefInput(body);
