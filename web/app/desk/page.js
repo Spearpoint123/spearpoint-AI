@@ -11,5 +11,6 @@ export default function Desk(){
   <h2>Request queue</h2>
   {data.requests.map(row=><article className="card" key={row.id}><h3>{row.title}</h3><p>{row.type.replaceAll('_',' ')}. {row.status.replaceAll('_',' ')}. {row.overdue?'Overdue.':''}</p><p>{row.body}</p></article>)}
   {!data.requests.length&&<p className="muted">No open requests.</p>}
+  <h2>Providers</h2><p>These adapters are off. No call is made.</p>{(data.providers||[]).map(row=><p key={row.id}>{row.label}. {row.reason}</p>)}
   <p role="status">{status}</p></PartnerShell>;
 }

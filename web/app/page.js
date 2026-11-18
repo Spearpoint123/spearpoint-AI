@@ -1,20 +1,15 @@
 'use client';
 import {useState} from 'react';
-import {useRouter} from 'next/navigation';
 import {api,Shell} from '../lib/api';
-export default function Start(){
- const router=useRouter();
- const [mode,setMode]=useState('signup');
+const booking='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';
+export default function Home(){
+ const [query,setQuery]=useState('senior quant researcher, crypto market making, Dubai or London, $250-350K');
+ const [result,setResult]=useState(null);
  const [status,setStatus]=useState('');
- async function submit(event){
+ async function search(event){
   event.preventDefault();
-  const form=new FormData(event.target);
-  setStatus(mode==='signup'?'Creating your account…':'Signing in…');
-  try{
-   await api('/api/workspace/auth',{action:mode,email:form.get('email'),password:form.get('password'),consent:true,directEmployer:true});
-   await api('/api/client/bootstrap',{});
-   router.push('/brief');
-  }catch(error){setStatus(error.message);}
+  setStatus('Reading Spearpoint’s database…');
+  try{setResult(await api('/api/public/teaser',{query}));setStatus('');}catch(error){setStatus(error.message);}
  }
- return <Shell><h1>Start a search.</h1><p>Use your work email. Free email domains are not accepted.</p><form onSubmit={submit}><label>Work email<input name="email" type="email" required autoComplete="email"/></label><label>Password<input name="password" type="password" required minLength={12} autoComplete={mode==='signup'?'new-password':'current-password'}/></label><button type="submit">{mode==='signup'?'Create account':'Sign in'}</button> <button type="button" className="ghost" onClick={()=>setMode(mode==='signup'?'signin':'signup')}>{mode==='signup'?'I already have an account':'Create an account'}</button></form><p className="muted" role="status">{status}</p><p className="muted">Local demonstration: client@demo.spearpoint.test / demo-client-pass. Portal, once verified: portal@harbour-lane.example / demo-portal-pass.</p></Shell>;
+ return <Shell banner="Anonymised profiles only. Names are not part of this view."><div className="hero"><p className="kicker">Executive search</p><h1>See the market before you see a name.</h1><p>Spearpoint maps senior talent from its own database. A partner runs the search. You decide from anonymised profiles.</p><form className="searchbar" onSubmit={search}><input aria-label="Try a search" value={query} onChange={event=>setQuery(event.target.value)}/><button type="submit">Try a search</button></form><p role="status">{status}</p>{result&&<><p>{result.total} anonymised profiles in the database. {result.message}</p><div className="grid"><div className="card"><h3>Region</h3>{(result.map.region||[]).slice(0,4).map(row=><p key={row.name}>{row.name} · {row.total}</p>)}</div><div className="card"><h3>Pay bands</h3><p>{(result.map.pay||[]).slice(0,4).join(', ')||'none'}</p></div></div><div className="grid">{result.cards.map((card,index)=><article className="card tease" key={index}><p className="score">Match {card.score}</p><h2>{card.level}</h2><p>{card.region} · {card.pay_band}</p><p>{card.firm_type}</p></article>)}</div><p>Sign up to open the full cards and the reason each one matched.</p></>}<p><a className="button" href="/begin/start">Start a search</a> <a className="button ghost" href={booking}>Book a call</a></p></div></Shell>;
 }
