@@ -32,4 +32,16 @@ button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)
 .steps .on{color:var(--green);font-weight:700}
 .tease{filter:blur(.2px)}
 .tease p{color:rgba(36,36,36,.55)}
+.landing{max-width:880px;margin:0 auto;padding:20px 16px 72px}
+.landing h1{font-size:34px;line-height:1.15;margin:0 0 12px}
+.landing .hero{max-width:none}
+.landing .examples{display:flex;flex-wrap:wrap;gap:8px}
+.landing .examples button{padding:8px 12px}
+.landing .count{font-family:Georgia,"Iowan Old Style",Palatino,serif;font-size:28px;margin:8px 0 12px}
+.landing .veil{filter:blur(6px);user-select:none}
+.landing .capture{background:var(--white);border:1px solid var(--line);padding:18px;margin-top:8px}
+.landing .how{padding-left:0;list-style:none}
+.landing .how li{margin:10px 0}
+.landing .fee{max-width:420px}
+@media(min-width:800px){.landing{padding:40px 24px 96px}.landing h1{font-size:52px}.landing .searchbar{flex-direction:row}}
 @media(max-width:700px){.top{align-items:flex-start;flex-direction:column}.searchbar{flex-direction:column}}
