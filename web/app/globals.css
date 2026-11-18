@@ -17,6 +17,16 @@ button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
 .chips label{margin:0;min-width:140px}
 .score{font-variant-numeric:tabular-nums;color:var(--green)}
+.origin{margin:0 0 4px;color:var(--green)}
+.ticks{list-style:none;padding:0;margin:8px 0 12px}
+.ticks li{margin:3px 0}
+.ticks .gap{color:rgba(36,36,36,.72)}
+.snapshot{margin:8px 0}
+nav button.link{background:transparent;color:var(--green);border:0;padding:0}
+.modal-back{position:fixed;inset:0;background:rgba(36,36,36,.5);z-index:30;display:grid;place-items:center;padding:16px}
+.modal{background:#fff;color:#242424;width:min(760px,100%);max-height:92vh;overflow:auto;padding:20px}
+.modal h2{margin-top:0}
+.meetings-embed{min-height:680px;background:#fff}
 .stage{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--green)}
 .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:start}
 .board .card{margin:0}
@@ -51,10 +61,15 @@ button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)
 .landing .examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .landing .examples button{background:transparent;color:#f3f3f3;border:1px solid rgba(243,243,243,.55);padding:8px 12px}
 .landing .examples button:hover,.landing .examples button:focus-visible{background:rgba(243,243,243,.12);color:#f3f3f3}
+.landing .bar button.link{color:#f3f3f3}
+.landing .musts{margin-top:22px;max-width:640px}
+.landing .musts p,.landing .musts label{color:#f3f3f3}
+.landing .musts input{color:#242424;background:#fff;border:0}
+.landing .musts button{background:#fff;color:#00301c;margin-top:8px}
+.landing .teasers .origin,.landing .teasers .score{color:#00301c}
+.landing .teasers .note{margin:14px 0 0}
 .landing button:focus-visible,.landing a:focus-visible,.landing input:focus-visible{outline:2px solid #4590c4;outline-offset:3px}
 .landing .reveal{opacity:1;padding:40px 0 28px}
-@media (prefers-reduced-motion:no-preference){.landing .reveal{animation:rise .4s ease forwards}}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .landing .count{font-family:Georgia,"Iowan Old Style",Palatino,serif;font-size:32px;line-height:1.2;margin:0 0 24px}
 .landing .teasers{display:grid;gap:14px}
 .landing .teasers article{background:#fff;border:1px solid var(--line);padding:18px}
