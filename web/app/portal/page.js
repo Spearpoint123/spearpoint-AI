@@ -33,11 +33,10 @@ export default function Portal(){
    setStatus('Export recorded in the audit log.');
   }catch(error){setStatus(error.message);}
  }
- const banner='Profiles stay confidential. A name is shown once that candidate approves this employer. The reveal is audited.';
- if(!data)return <Shell banner={banner}><p role="status">{status}</p></Shell>;
- if(data.gate)return <Shell banner={banner}><h1>Portal.</h1><p>{data.message}</p><p><a className="button" href="/begin/book">Book a call</a> <a className="button" href="/begin/engagement">Choose an engagement</a></p><p role="status">{status}</p></Shell>;
+ if(!data)return <Shell><p role="status">{status}</p></Shell>;
+ if(data.gate)return <Shell><h1>Portal.</h1><p>{data.message}</p><p><a className="button" href="/begin/book">Book a call</a> <a className="button" href="/begin/engagement">Choose an engagement</a></p><p role="status">{status}</p></Shell>;
  const whenText=new Date(data.call.starts_at).toLocaleString('en-GB',{dateStyle:'full',timeStyle:'short',timeZone:'Europe/London'});
- return <Shell banner={banner}><h1>{data.search.title}.</h1><p>{data.organisation.name}. {labels[data.engagement.status]||data.engagement.status}. {data.engagement.label}.</p>
+ return <Shell><h1>{data.search.title}.</h1><p>{data.organisation.name}. {labels[data.engagement.status]||data.engagement.status}. {data.engagement.label}.</p>
   <h2>Pipeline</h2>
   <div className="board">{data.stages.map(stage=><section key={stage}><p className="stage">{labels[stage]} · {data.counts[stage]||0}</p>{data.pipeline.filter(row=>row.stage===stage).map(row=><article className="card" key={row.id}><h3>{row.level} · {row.firm_type}</h3><p>{row.region} · {row.years_bucket} · {row.pay_band}</p><p>{row.summary}</p>{row.fictional?<p>Demo profile. Not a real person.</p>:<p>Verified by Spearpoint</p>}<p>{identityLine(row)}</p></article>)}{!data.counts[stage]&&<p className="muted">None yet.</p>}</section>)}</div>
   <h2>Market</h2><p>{data.marketMessage}</p><div className="grid"><Bars title="Firm type" rows={data.map.firm_type}/><Bars title="Region" rows={data.map.region}/><Bars title="Level" rows={data.map.seniority}/></div><p className="muted">Pay bands in view: {(data.map.pay||[]).join(', ')||'none'}.</p>

@@ -9,19 +9,19 @@ test('the public homepage is the new search front and the pilot routes stay put'
  try{
   const home=response();await handler({url:'/',method:'GET',headers:publicHeaders},home);
   assert.equal(home.statusCode,200);
-  assert.match(home.body.toString(),/See the market before you see a name/);
+  assert.match(home.body.toString(),/See the shortlist before you see a name/);
   assert.match(home.body.toString(),/href="\/signup"/);
   const begin=response();await handler({url:'/begin/',method:'GET',headers:publicHeaders},begin);
   assert.equal(begin.statusCode,200);
-  assert.match(begin.body.toString(),/See the market before you see a name/);
+  assert.match(begin.body.toString(),/See the shortlist before you see a name/);
   const classic=response();await handler({url:'/classic',method:'GET',headers:publicHeaders},classic);
   assert.equal(classic.statusCode,200);
   assert.match(classic.body.toString(),/hero-knight\.webp/);
-  assert.doesNotMatch(classic.body.toString(),/See the market before you see a name/);
+  assert.doesNotMatch(classic.body.toString(),/See the shortlist before you see a name/);
   for(const path of ['/signin','/recruit','/hiring','/workspace','/owner','/talent-network','/consult','/privacy','/explore','/signup']){
    const page=response();await handler({url:path,method:'GET',headers:publicHeaders},page);
    assert.equal(page.statusCode,200,path);
-   assert.doesNotMatch(page.body.toString(),/See the market before you see a name/);
+   assert.doesNotMatch(page.body.toString(),/See the shortlist before you see a name/);
   }
   const missing=response();await handler({url:'/not-a-page',method:'GET',headers:publicHeaders},missing);
   assert.equal(missing.statusCode,404);
