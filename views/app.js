@@ -81,7 +81,7 @@ function drawGuide(){
  }
  $('#requirements-review').hidden=true;$('#search-submit').textContent='Review requirements';$('#guide-back').hidden=guideStep===0;$('#guide-context').textContent=[selection.niche,guideStep>1?selection.function:null,guideStep>2?selection.role:null].filter(Boolean).join(' / ');$('#search-submit').hidden=guideStep!==3||!selection.location;
 }
-$('#guide-back').addEventListener('click',()=>jumpToStep(Math.max(0,guideStep-1)));
+if($('#guide-back')){$('#guide-back').addEventListener('click',()=>jumpToStep(Math.max(0,guideStep-1)));
 document.querySelectorAll('.journey button').forEach(button=>button.addEventListener('click',()=>jumpToStep(Number(button.dataset.step))));
 function confidentialProfile(profile){
  const article=el('article','','confidential-profile');
@@ -159,4 +159,4 @@ $('#request-report').addEventListener('click',()=>{
 $('#brief-form').addEventListener('submit',async event=>{
  event.preventDefault();if(!currentSearch)return;const button=event.target.querySelector('button');button.disabled=true;$('#brief-status').textContent='Saving your briefing request…';
  try{const data=Object.fromEntries(new FormData(event.target));const result=await post('/api/brief',{...currentSearch,...data,notes:`${data.notes||'Hiring briefing request'}\nSearch context: ${currentReport?.niche||selection.niche}; ${currentReport?.function||selection.function}.\nAdditional brief notes: ${currentSearch.jobDescription||'None'}. Report version: 2026-10-30.`,consent:data.consent==='on'});$('#brief-status').textContent=`${result.message} Reference: ${result.reference}`;event.target.reset();}catch(error){$('#brief-status').textContent=error.message;}finally{button.disabled=false;}
-});
+});}
