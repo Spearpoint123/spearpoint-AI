@@ -51,10 +51,10 @@ test('the RecruitCRM pull is read-only, paged and resumable',()=>demo(async()=>{
  const pages=[[crmPerson(1),crmPerson(2),crmPerson(3),crmPerson(4),crmPerson(5),crmPerson(6)],[]];
  let calls=0;
  const fetcher=async(page,watermark)=>{calls++;assert.equal(typeof watermark,'string');return {configured:true,records:pages[page-1]||[],next:page===1};};
- const first=await stepImport({fetcher,paceMs:0});
+ const first=await stepImport({fetcher,maxPages:1});
  assert.equal(first.status,'running');
  assert.equal(first.imported,6);
- const second=await stepImport({fetcher,paceMs:0});
+ const second=await stepImport({fetcher,maxPages:1});
  assert.equal(second.status,'complete');
  assert.equal(calls,2);
  const stored=await db('sp_candidates?source=eq.recruitcrm&publication=eq.unpublished&limit=20');
@@ -62,4 +62,14 @@ test('the RecruitCRM pull is read-only, paged and resumable',()=>demo(async()=>{
  assert.equal(stored.every(row=>row.fictional===false),true);
  process.env.RECRUIT_CRM_WRITE='true';
  assert.equal((await stepImport({fetcher})).status,'blocked');
+}));
+
+test('an errored import resumes its page and a 429 is retried',()=>demo(async()=>{
+ await db('sp_import_jobs',{method:'POST',body:{id:'a1000001-0000-4000-8000-0000000000aa',status:'error',page:13,imported:0,updated_count:184,skipped:116,last_error:'timeout',updated_at:new Date().toISOString()}});
+ let calls=0;
+ const fetcher=async page=>{calls++;if(calls===1)return {configured:true,rateLimited:true,retryAfter:0.01,records:[],next:true};assert.equal(page,13);return {configured:true,records:[],next:false};};
+ const result=await stepImport({fetcher,budgetMs:5000});
+ assert.equal(result.status,'complete');
+ assert.equal(result.page,13);
+ assert.equal(calls,2);
 }));

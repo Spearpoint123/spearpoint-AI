@@ -77,12 +77,14 @@ test('the client journey stays on the Spearpoint database and records the engage
  assert.equal(JSON.stringify(market).includes('rocketreach'),false);
  const search=await clientApi('/api/client/search',{query:'senior quant researcher, crypto market making, Dubai or London, $250-350K'},user);
  assert.equal(search.filters.pay_band,'250–350');
- assert.equal(search.matches.every(row=>row.why&&row.score>=0),true);
+ assert.equal(search.matches.every(row=>row.snapshot&&row.origin==='Spearpoint network'&&row.met>=0),true);
+ assert.equal(search.matches.some(row=>row.summary||row.why||row.source),false);
  const saved=await clientApi('/api/client/save-search',{query:search.filters.region,filters:search.filters},user);
  assert.ok(saved.saved.id);
  const card=await clientApi('/api/client/candidate',{id:search.matches[0].id},user);
  assert.equal(card.identity,'hidden');
- assert.equal(card.candidate.summary.length>0,true);
+ assert.equal(card.candidate.snapshot.length>0,true);
+ assert.equal(card.candidate.summary,undefined);
  const book=await clientApi('/api/client/book',{},user);
  assert.match(book.url,/meetings-eu1\.hubspot\.com/);
  assert.match(book.url,/email=/);

@@ -79,7 +79,7 @@ export default async function handler(req,res){
   if(!['GET','POST'].includes(req.method))return json(405,{error:'Method not allowed'});
   const cron=process.env.CRON_SECRET||'';
   if(cron.length<20||req.headers.authorization!=='Bearer '+cron)return json(401,{error:'Import job is not authorised.'});
-  try{const {stepImport}=await import('../lib/crm-import-job.mjs');return json(200,await stepImport({maxPages:12}));}catch{return json(503,{error:'The RecruitCRM read could not run.'});}
+  try{const {stepImport}=await import('../lib/crm-import-job.mjs');return json(200,await stepImport({maxPages:30,budgetMs:45000}));}catch{return json(503,{error:'The RecruitCRM read could not run.'});}
  }
  const demo=demoMode()&&String(req.headers.host||'').split(':')[0]!==PUBLIC_HOST;
  if(!publicSite&&!demo&&!authorized(req)){
