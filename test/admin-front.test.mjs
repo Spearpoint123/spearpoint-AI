@@ -82,6 +82,9 @@ test('admin publishes an import and clients never see it before that',()=>demo(a
  const teaser=await publicTeaser({query:'staff payments firm Singapore'});
  assert.equal(JSON.stringify(teaser).includes('Fictional Import'),false);
  assert.equal(teaser.cards.length<=3,true);
+ assert.equal(teaser.market.profiles,6);
+ assert.ok(teaser.chart.seniority.every(row=>row.total>=5));
+ assert.ok(teaser.chart.pay.every(row=>row.total>=5));
  const before=await clientApi('/api/client/search',{query:'staff payments firm Singapore'},client);
  assert.equal(before.matches.some(row=>stored.ids.includes(row.id)),false);
  const published=await adminApi('/api/admin/publish',{ids:stored.ids},admin);
