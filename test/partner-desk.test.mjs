@@ -67,7 +67,8 @@ test('a partner can run the desk and a candidate can approve one employer',()=>d
  assert.equal(home.searches.length,1);
  assert.equal(home.searches[0].overdue,true);
  assert.match(home.sources,/not connected/);
- assert.equal(home.providers.every(row=>row.enabled===false&&row.configured===false),true);
+ assert.equal(home.providers.filter(row=>row.id!=='rocketreach').every(row=>row.enabled===false&&row.configured===false),true);
+ assert.equal(home.providers.find(row=>row.id==='rocketreach').enabled,home.providers.find(row=>row.id==='rocketreach').configured);
  const searchId=home.searches[0].id;
  const offer=sampleCandidates.find(row=>row.pay_band==='200–250').id;
  process.env.RECRUIT_CRM_WRITE='true';
