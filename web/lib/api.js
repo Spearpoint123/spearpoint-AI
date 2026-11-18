@@ -1,3 +1,7 @@
+'use client';
+import {useState} from 'react';
+import {useRouter} from 'next/navigation';
+import {BookingModal} from '../app/booking';
 export async function api(path,body){
  const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})});
  const data=await response.json().catch(()=>({}));
@@ -5,7 +9,9 @@ export async function api(path,body){
  return data;
 }
 export function Shell({children,banner}){
- return <div className="wrap"><header className="top"><a className="brand" href="/begin">SPEARPOINT</a><nav><a href="/begin/brief">Brief</a><a href="/begin/market">Market</a><a href="/begin/search">Search</a><a href="/begin/portal">Portal</a><a href="/begin/book">Book a call</a><a href="/begin/engagement">Engagement</a></nav></header>{banner?<p className="banner">{banner}</p>:null}{children}</div>;
+ const router=useRouter();
+ const [open,setOpen]=useState(false);
+ return <div className="wrap"><header className="top"><a className="brand" href="/begin">SPEARPOINT</a><nav><a href="/begin/brief">Brief</a><a href="/begin/market">Market</a><a href="/begin/search">Search</a><a href="/begin/portal">Portal</a><button type="button" className="link" onClick={()=>setOpen(true)}>Book a call</button><a href="/begin/engagement">Engagement</a></nav></header>{banner?<p className="banner">{banner}</p>:null}{children}<BookingModal open={open} onClose={()=>setOpen(false)} onBooked={()=>{setOpen(false);router.push('/engagement');}}/></div>;
 }
 export function Steps({current}){
  const items=['Brief','Profile','Market','Search'];

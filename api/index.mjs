@@ -118,7 +118,7 @@ export default async function handler(req,res){
   if(clientRoute)return json(200,await clientApi(path,body,await workspaceUser(req,res)));
   if(partnerRoute)return json(200,await partnerApi(path,body,await workspaceUser(req,res)));
   if(adminRoute)return json(200,await adminApi(path,body,await workspaceUser(req,res)));
-  if(teaserRoute){if(!await rateLimit(req,'search')){res.setHeader('Retry-After','3600');return json(429,{error:'Please wait before trying again.'});}return json(200,await publicTeaser(body));}
+  if(teaserRoute){if(!await rateLimit(req,'search')){res.setHeader('Retry-After','3600');return json(429,{error:'Please wait before trying again.'});}const ip=process.env.VERCEL?req.headers['x-vercel-forwarded-for']:req.socket?.remoteAddress;return json(200,await publicTeaser(body,{ip:typeof ip==='string'&&ip?ip:'local',anonymous:true}));}
   if(consentRoute){if(!await rateLimit(req,'consent')){res.setHeader('Retry-After','3600');return json(429,{error:'Please wait before trying again.'});}return json(200,await consentApi(body));}
   if(workspaceRoute)return json(200,await workspaceApi(path,body,req,res));
   const input=path==='/api/search'?searchInput(body):briefInput(body);
