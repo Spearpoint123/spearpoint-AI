@@ -4,7 +4,7 @@ import {api,Shell} from '../../lib/api';
 const labels={approached:'Approached',interested:'Interested',shortlisted:'Shortlisted',interviewing:'Interviewing',offer:'Offer',hired:'Hired',active:'Active',add_candidate:'Add a candidate',move_interview:'Move an interview',change_brief:'Change the brief',add_target:'Add a target firm',pause:'Pause the search',question:'Ask a question',open:'Open',in_progress:'In progress',done:'Done'};
 const requestTypes=['add_candidate','move_interview','change_brief','add_target','pause','question'];
 function identityLine(row){
- if(row.identity_state==='shown'&&row.identity)return `${row.identity.name}, ${row.identity.employer}.${row.identity.fictional?' Fictional sample. Not a real person.':''}`;
+ if(row.identity_state==='shown'&&row.identity)return `${row.identity.name}, ${row.identity.employer}.`;
  if(row.identity_state==='unavailable')return 'Identity is approved for this employer, but the record is not available.';
  return 'Identity pending candidate approval.';
 }
@@ -39,7 +39,7 @@ export default function Portal(){
  const whenText=new Date(data.call.starts_at).toLocaleString('en-GB',{dateStyle:'full',timeStyle:'short',timeZone:'Europe/London'});
  return <Shell banner={banner}><h1>{data.search.title}.</h1><p>{data.organisation.name}. {labels[data.engagement.status]||data.engagement.status}. {data.engagement.label}.</p>
   <h2>Pipeline</h2>
-  <div className="board">{data.stages.map(stage=><section key={stage}><p className="stage">{labels[stage]} · {data.counts[stage]||0}</p>{data.pipeline.filter(row=>row.stage===stage).map(row=><article className="card" key={row.id}><h3>{row.level} · {row.firm_type}</h3><p>{row.region} · {row.years_bucket} · {row.pay_band}</p><p>{row.summary}</p><p>{identityLine(row)}</p></article>)}{!data.counts[stage]&&<p className="muted">None yet.</p>}</section>)}</div>
+  <div className="board">{data.stages.map(stage=><section key={stage}><p className="stage">{labels[stage]} · {data.counts[stage]||0}</p>{data.pipeline.filter(row=>row.stage===stage).map(row=><article className="card" key={row.id}><h3>{row.level} · {row.firm_type}</h3><p>{row.region} · {row.years_bucket} · {row.pay_band}</p><p>{row.summary}</p>{row.fictional&&<p>Demo profile. Not a real person.</p>}<p>{identityLine(row)}</p></article>)}{!data.counts[stage]&&<p className="muted">None yet.</p>}</section>)}</div>
   <h2>Market</h2><p>{data.marketMessage}</p><div className="grid"><Bars title="Firm type" rows={data.map.firm_type}/><Bars title="Region" rows={data.map.region}/><Bars title="Level" rows={data.map.seniority}/></div><p className="muted">Pay bands in view: {(data.map.pay||[]).join(', ')||'none'}.</p>
   <h2>Activity</h2>{data.activity.map(row=><p key={row.created_at+row.summary}>{row.summary}</p>)}
   <h2>Weekly call</h2><div className="card"><p>{whenText}</p><p>{data.call.notice}</p><p><a href={data.call.meeting_url}>Open the HubSpot link</a></p><form onSubmit={moveCall}><label>Move to<input type="date" required value={when} onChange={event=>setWhen(event.target.value)}/></label><button type="submit">Move the call</button></form></div>
