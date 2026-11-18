@@ -54,6 +54,9 @@ See `.env.example`. Set real values in Vercel, not in git.
 | `ROCKETREACH_API_KEY` | Optional licensed enrichment already used by employer search |
 | `PEOPLE_DATA_LABS_API_KEY`, `CORESIGNAL_API_KEY` | Reserved. The adapters are stubs and make no requests |
 | `CRON_SECRET` | 20+ characters. Authorises `GET /api/internal/retention` |
+| `OWNER_ALERT_EMAIL` | The only address that receives signup alerts. Set this to `sam@spearpointsearch.com` |
+| `ALERT_FROM_EMAIL` | From address on a domain verified in Resend |
+| `RESEND_API_KEY` | Resend API key. If it is empty, alerts are skipped and signup still succeeds |
 | `SPEARPOINT_DEMO` | `true` only for local or preview rehearsals without a database |
 
 Staff metadata, set in Supabase Auth on the user (never in the browser):
@@ -68,7 +71,15 @@ Owners keep `spearpoint_owner: true`. Operators keep `spearpoint_role: "operator
 
 Apply the SQL files in `supabase/migrations` in filename order if they are not already present. The new file `20261118153000_retention_events_and_imports.sql` replaces `sp_purge_staging` so expired public-research leads are deleted, and adds `sp_product_events`, `sp_import_leads` and `sp_recruiter_pipeline`.
 
-Schedule is declared in `vercel.json` (03:17 UTC daily). It calls `/api/internal/retention` with `Authorization: Bearer $CRON_SECRET`. Until `CRON_SECRET` is set and the function exists in the database, deletion does not run. Ask Spearpoint to delete a person’s record in the meantime.
+Schedule is declared in `vercel.json` (03:17 UTC daily). It calls `/api/internal/retention` with `Authorization: Bearer $CRON_SECRET`. Until `CRON_SECRET` is set and the function exists in the database, deletion does not run. Ask Spearpoint to delete a person’s record in the meantime. The same job emails any signup blocks recorded by the auth hook and not yet sent.
+
+## Signup alerts
+
+A new employer account, or a signup the app blocks (personal email, agency domain, or a missing direct-employer declaration), emails `OWNER_ALERT_EMAIL` through Resend. The message includes the address, domain, whether that domain is new or already pending, whether it is a personal or agency domain, the time in Europe/London, and a link to `/owner`. The applicant is not emailed.
+
+The same address is limited to one alert an hour. If `RESEND_API_KEY` or `ALERT_FROM_EMAIL` is missing, the alert is logged and skipped. A failed send does not fail signup.
+
+Blocks that reach Supabase Auth directly, without the app, are rejected by `public.sp_before_employer_signup` and stored in `sp_signup_attempts`. The daily retention call sends those as one digest. In the Supabase dashboard, Authentication → Hooks → Before user created must call `public.sp_before_employer_signup`. Apply `supabase/migrations/20261118170000_signup_attempt_alerts.sql` once so the hook can record those attempts.
 
 ## Checks
 
