@@ -82,13 +82,13 @@ export default async function handler(req,res){
  }
  if(req.method==='GET'&&/^\/api\/owner\/cv\/[a-f0-9-]{36}$/i.test(path)){try{const user=await workspaceUser(req,res),file=await downloadCandidateCv(path.split('/').at(-1),user);res.setHeader('Content-Type','application/octet-stream');res.setHeader('Content-Disposition','attachment; filename="'+file.name+'"');return res.end(file.bytes);}catch(error){return json(error.message==='unauthorized'?401:error.message==='owner_required'?403:error.message==='not_found'?404:503,{error:'This private CV requires authorised owner access.'});}}
  if(req.method==='GET'&&/^\/shortlist\/[a-zA-Z0-9_-]{43}$/.test(path))return asset('shared.html','text/html; charset=utf-8');
+ if(req.method==='GET'&&path==='/classic'){let html=await readFile(new URL('../views/index.html',import.meta.url),'utf8');if(publicSite)html=html.replace(/<div class=\"staging\">.*?<\/div>/,'').replace(' Please use test data in staging.','');res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(html);}
+ if(req.method==='GET'&&(path==='/'||path==='/begin'||path.startsWith('/begin/'))){if(await serveJourney(path==='/'?'/begin/':path,res))return;}
  if(req.method==='GET'&&files[path]){const [file,type]=files[path];res.setHeader('Content-Type',type);if(/\.(?:js|css|svg|png|webp|jpe?g)$/i.test(file))res.setHeader('Cache-Control','public, max-age=86400');
   if(publicSite&&path==='/hiring'){let html=await readFile(new URL('../views/employer.html',import.meta.url),'utf8');html=html.replace('<div id="auth-screen" class="auth-layout">','<p id="workspace-loading" class="workspace-loading" role="status">Opening your private workspace…</p><div id="auth-screen" class="auth-layout" hidden>');return res.end(html);}
   if(publicSite&&path==='/privacy')return asset('privacy-public.html',type);
-  if(publicSite&&path==='/'){let html=await readFile(new URL('../views/index.html',import.meta.url),'utf8');html=html.replace(/<div class=\"staging\">.*?<\/div>/,'').replace(' Please use test data in staging.','');return res.end(html);}
   return res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));}
  if(path==='/robots.txt'){res.setHeader('Content-Type','text/plain');return res.end('User-agent: *\nDisallow: /\n');}
- if(req.method==='GET'&&(path==='/begin'||path.startsWith('/begin/'))){if(await serveJourney(path,res))return;}
  if(req.method==='GET'&&!path.startsWith('/api/')){res.statusCode=404;res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(await readFile(new URL('../views/not-found.html',import.meta.url)));}
  const candidateRoute=['/api/candidates/read-cv','/api/candidates/join'].includes(path);
  const workspaceRoute=path.startsWith('/api/workspace/')||path.startsWith('/api/mandate/')||path==='/api/shortlist/shared';

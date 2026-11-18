@@ -88,4 +88,9 @@ test('admin publishes an import and clients never see it before that',()=>demo(a
  assert.equal(after.matches.some(row=>stored.ids.includes(row.id)),true);
  const logs=await db('sp_audit_log?action=eq.verification&limit=5');
  assert.equal(logs.length>=1,true);
+ await db('sp_candidates',{method:'POST',body:{id:'c3000001-0000-4000-8000-000000000001',source:'demo',level:'Senior',seniority:'senior',years_bucket:'10–15 yrs',region:'London',firm_type:'bank',sector:'markets',pay_band:'200–250',summary:'Fictional demo row.',fictional:true,publication:'published',created_at:new Date().toISOString()}});
+ const concealed=await adminApi('/api/admin/demo',{action:'hide'},admin);
+ assert.equal(concealed.hidden,1);
+ const row=(await db('sp_candidates?id=eq.c3000001-0000-4000-8000-000000000001&limit=1'))[0];
+ assert.equal(row.publication,'unpublished');
 }));

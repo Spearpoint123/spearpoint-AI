@@ -13,6 +13,7 @@ export default function Admin(){
  async function price(id){setStatus('Saving terms…');try{await api('/api/admin/price',{id,fee_percent:17.5,monthly_amount:0,engagement_fee:5000,note:'Manual invoice.'});setStatus('Terms saved.');}catch(error){setStatus(error.message);}}
  async function publish(){setStatus('Publishing…');try{const ids=(data.unpublished||[]).map(row=>row.id);const result=await api('/api/admin/publish',{ids});setStatus(`${result.published} published. ${result.suppressed.length} held back.`);await load();}catch(error){setStatus(error.message);}}
  async function pull(){setStatus('Checking RecruitCRM…');try{const result=await api('/api/admin/import',{pull:true});setStatus(result.reason==='live_import_disabled'?'A live RecruitCRM pull is switched off. Nothing was read.':`${result.imported} imported.`);}catch(error){setStatus(error.message);}}
+ async function hideDemo(){setStatus('Hiding fictional demo profiles…');try{const result=await api('/api/admin/demo',{action:'hide'});setStatus(`${result.hidden} fictional demo profiles are now unpublished.`);}catch(error){setStatus(error.message);}}
  if(!data)return <Shell><p role="status">{status}</p></Shell>;
  const report=data.report||{};
  return <Shell banner="Admin. Owner and operator only."><h1>Admin.</h1>
@@ -22,5 +23,6 @@ export default function Admin(){
   <h2>Audit</h2>{(data.audit||[]).map(row=><p key={row.id}>{row.action}. {row.entity}</p>)}{!(data.audit||[]).length&&<p className="muted">No reveals or exports yet.</p>}
   <h2>Unpublished imports</h2><p>Profiles from RecruitCRM stay here until you publish them. Consent for existing records is still undecided.</p><button type="button" onClick={pull}>Check RecruitCRM</button> <button type="button" onClick={publish} disabled={!data.unpublished.length}>Publish all</button>
   {data.unpublished.map(row=><p key={row.id}>{row.level} · {row.firm_type} · {row.region} · {row.pay_band}</p>)}
+  <h2>Fictional demo profiles</h2><p>These are the published sample profiles marked source demo. Hide them before real profiles are published. Removing them deletes only rows with source demo.</p><button type="button" onClick={hideDemo}>Hide fictional demo profiles</button>
   <p role="status">{status}</p></Shell>;
 }
