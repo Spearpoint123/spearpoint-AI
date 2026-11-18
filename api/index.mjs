@@ -24,6 +24,7 @@ export function authorized(req){
 }
 export default async function handler(req,res){
  for(const [k,v] of Object.entries({'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow, noarchive','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",'Strict-Transport-Security':'max-age=31536000'}))res.setHeader(k,v);
+ if(req.method==='HEAD'){req.method='GET';const end=res.end.bind(res);res.end=()=>end();}
  const json=(status,body)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));};
  const path=new URL(req.url,'http://localhost').pathname;
  const publicSite=isPublicRequest(req);
@@ -35,7 +36,8 @@ export default async function handler(req,res){
   if(decorated){res.statusCode=302;res.setHeader('Location','/'+landing.search);return res.end();}
  }
 
- if(publicSite&&['/api/login','/login.js','/login'].includes(path))return json(404,{error:'Not found'});
+ if(publicSite&&path==='/login'){res.statusCode=302;res.setHeader('Location','/signin');return res.end();}
+ if(publicSite&&['/api/login','/login.js'].includes(path))return json(404,{error:'Not found'});
  const asset=async(file,type,{cache=false}={})=>{res.setHeader('Content-Type',type);if(cache)res.setHeader('Cache-Control','public, max-age=86400');res.end(await readFile(new URL(`../views/${file}`,import.meta.url)));};
  if(req.method==='GET'&&path==='/login.js')return asset('login.js','text/javascript',{cache:true});
  if(req.method==='GET'&&path==='/style.css'){

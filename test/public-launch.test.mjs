@@ -18,6 +18,8 @@ test('public routes avoid trial fonts, block login and reject foreign origins',a
  const css=response();await handler({url:'/style.css',method:'GET',headers:{host:'ai.spearpointsearch.com'}},css);assert.match(css.body,/Georgia/);assert.doesNotMatch(css.body,/font-family:"GT /);
  for(const url of ['/GT-Canon-VF.ttf','/GT-Standard-VF.ttf']){const font=response();await handler({url,method:'GET',headers:{host:'ai.spearpointsearch.com'}},font);assert.equal(font.statusCode,404);}
  const privacy=response();await handler({url:'/privacy',method:'GET',headers:{host:'ai.spearpointsearch.com'}},privacy);assert.match(privacy.body.toString(),/sam@spearpointsearch.com/);assert.doesNotMatch(privacy.body.toString(),/must be updated|private trial/);
+ const head=response();await handler({url:'/style.css',method:'HEAD',headers:{host:'ai.spearpointsearch.com'}},head);assert.equal(head.statusCode,200);assert.equal(head.headers['Content-Type'],'text/css');assert.equal(head.body,undefined);
+ const moved=response();await handler({url:'/login',method:'GET',headers:{host:'ai.spearpointsearch.com'}},moved);assert.equal(moved.statusCode,302);assert.equal(moved.headers.Location,'/signin');
  assert.equal(originAllowed('https://ai.spearpointsearch.com'),true);assert.equal(originAllowed('https://ai.spearpointsearch.com.attacker.example'),false);
  const blocked=response();await handler({url:'/api/search',method:'POST',headers:{host:'ai.spearpointsearch.com',origin:'https://evil.example','content-type':'application/json'}},blocked);assert.equal(blocked.statusCode,403);
  }finally{delete process.env.VERCEL;}

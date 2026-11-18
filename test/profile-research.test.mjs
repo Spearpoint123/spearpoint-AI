@@ -46,7 +46,7 @@ test('full CRM hydration rechecks off-limits and preserves other records when a 
 }));
 test('public source reading blocks private addresses and pins a verified public DNS address',async()=>{
  for(const ip of ['127.0.0.1','10.0.0.1','169.254.169.254','100.64.1.1','172.16.0.1','192.168.1.1','::1'])assert.equal(publicAddress(ip),false);assert.equal(publicAddress('93.184.216.34'),true);
- for(const url of ['http://firm.com','https://127.0.0.1','https://169.254.169.254','https://user:pass@firm.com','https://firm.com:8080','https://evil.internal'])assert.equal(sourceUrl(url),null);
+ for(const url of ['http://firm.com','https://127.0.0.1','https://169.254.169.254','https://user:pass@firm.com','https://firm.com:8080','https://evil.internal','https://www.linkedin.com/in/someone','https://uk.linkedin.com/in/someone'])assert.equal(sourceUrl(url),null);
  let contacted=false;await assert.rejects(readSource('https://firm.com',{resolve:async()=>[{address:'127.0.0.1'}],transport:()=>{contacted=true;}}),/source_blocked/);assert.equal(contacted,false);
  const transport=(_u,options,callback)=>{const req=new EventEmitter();req.setTimeout=()=>req;req.destroy=()=>{};options.lookup('firm.com',{},(_err,address)=>assert.equal(address,'93.184.216.34'));const res=new EventEmitter();res.statusCode=200;res.headers={'content-type':'text/html'};process.nextTick(()=>{callback(res);res.emit('data',Buffer.from('<article>Real Person built Rust systems.</article>'));res.emit('end');});return req;};
  const actual=await readSource('https://firm.com/team/person',{resolve:async()=>[{address:'93.184.216.34'}],transport});assert.match(pageText(actual.bytes.toString()),/Rust systems/);
@@ -86,5 +86,5 @@ test('a real but unrelated quotation cannot substantiate a technology or leaders
 test('blocked public profiles fall back only to cited biographies and verify the person',async()=>{
  const calls=[],lead={person_name:'Real Person',canonical_url:'https://www.linkedin.com/in/real-person',sources:[{url:'https://firm.com/team/real-person'},{url:'https://firm.com/team/other-person'}]};
  const result=await readPublicProfile(lead,{reader:async url=>{calls.push(url);if(url.includes('linkedin'))throw Error('blocked');return {url,contentType:'text/html',bytes:Buffer.from('<article><h1>Real Person</h1><p>Built Rust systems.</p></article>')};}});
- assert.equal(result.status,'page_read');assert.equal(result.url,'https://firm.com/team/real-person');assert.equal(calls.length,2);
+ assert.equal(result.status,'page_read');assert.equal(result.url,'https://firm.com/team/real-person');assert.deepEqual(calls,['https://firm.com/team/real-person']);
 });
