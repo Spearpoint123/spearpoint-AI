@@ -75,6 +75,12 @@ export default async function handler(req,res){
   if(cron.length<20||req.headers.authorization!=='Bearer '+cron)return json(401,{error:'Retention job is not authorised.'});
   try{const {db}=await import('../lib/services.mjs');await db('rpc/sp_purge_staging',{method:'POST',body:{}});try{const {sendSignupDigest}=await import('../lib/owner-alert.mjs');await sendSignupDigest();}catch(error){console.warn('owner_alert_digest_failed',error?.message||'error');}return json(200,{ok:true});}catch{return json(503,{error:'Retention could not run. Apply the latest database migration and confirm the database is reachable.'});}
  }
+ if(path==='/api/internal/crm-sync'){
+  if(!['GET','POST'].includes(req.method))return json(405,{error:'Method not allowed'});
+  const cron=process.env.CRON_SECRET||'';
+  if(cron.length<20||req.headers.authorization!=='Bearer '+cron)return json(401,{error:'Import job is not authorised.'});
+  try{const {stepImport}=await import('../lib/crm-import-job.mjs');return json(200,await stepImport({maxPages:12}));}catch{return json(503,{error:'The RecruitCRM read could not run.'});}
+ }
  const demo=demoMode()&&String(req.headers.host||'').split(':')[0]!==PUBLIC_HOST;
  if(!publicSite&&!demo&&!authorized(req)){
   if(req.method==='GET'&&(path==='/'||path==='/login'))return asset('login.html','text/html; charset=utf-8');
