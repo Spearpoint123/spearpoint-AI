@@ -81,6 +81,10 @@ The same address is limited to one alert an hour. If `RESEND_API_KEY` or `ALERT_
 
 Blocks that reach Supabase Auth directly, without the app, are rejected by `public.sp_before_employer_signup` and stored in `sp_signup_attempts`. The daily retention call sends those as one digest. In the Supabase dashboard, Authentication → Hooks → Before user created must call `public.sp_before_employer_signup`. Apply `supabase/migrations/20261118170000_signup_attempt_alerts.sql` once so the hook can record those attempts.
 
+## Client journey
+
+`/begin` is the new client path: work-email sign-up, a short brief, an editable search profile, a market map, a plain-English profile search, anonymised profiles, the HubSpot booking link, and an engagement choice. It reads `sp_candidates` only. RocketReach and other licensed providers are not called. RecruitCRM is not written to. Apply `supabase/migrations/20261118190000_client_journey.sql` and set `CANDIDATE_IDENTITY_KEY` before storing identity. The local demo seeds fictional anonymised profiles when that migration is not applied.
+
 ## Checks
 
 `npm test` runs the suite. `npm run check` parses the entrypoints.
