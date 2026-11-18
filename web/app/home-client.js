@@ -61,7 +61,7 @@ export default function Home(){
    <li><span>2</span><div><h3>Judge.</h3><p>A partner approaches people and decides who is worth a conversation.</p></div></li>
    <li><span>3</span><div><h3>Meet.</h3><p>You meet people who have approved you.</p></div></li>
   </ol></div></section>
-  <section className="fee"><div className="frame"><h2>Single search.</h2><p>US$5,000, credited against the 17.5% fee.</p></div></section>
+  <section className="fee"><div className="frame"><div className="fee-card"><h2>Single search.</h2><p>US$5,000, credited against the 17.5% fee.</p></div></div></section>
   <section className="quiet"><div className="frame"><h2>Confidential by design.</h2><p>Employer and candidate data is handled under UK GDPR. The same rule applies to UAE searches.</p><p>A name is shared only after the candidate approves the employer.</p></div></section>
   {catalogue?.profiles>0&&<p className="census">{catalogue.profiles} senior {catalogue.profiles===1?'profile':'profiles'} mapped{catalogue.sectors?` across ${catalogue.sectors} ${catalogue.sectors===1?'sector':'sectors'}`:''}.</p>}
   <section className="close"><div className="frame"><h2>Start with the role.</h2><p>Search the database, or speak with a partner.</p><p className="actions"><a className="button" href="#search">Search</a><a className="button light" href={booking}>Book a call</a></p><p className="fine"><a href="/begin/start">Sign in</a> · <a href="/signup">Existing employer workspace</a></p></div></section>

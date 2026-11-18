@@ -43,15 +43,17 @@ button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)
 .landing .kicker{color:#8fbfa8}
 .landing .sub{max-width:38rem;font-size:18px;margin:0 0 28px}
 .landing .searchbar{background:#fff;border-radius:2px;padding:6px;gap:6px;margin:0}
-.landing .searchbar input{border:0;padding:14px 16px;font-size:17px}
+.landing .searchbar input{border:0;padding:14px 16px;font-size:17px;color:#242424;background:#fff;caret-color:#242424}
+.landing .searchbar input::placeholder{color:rgba(36,36,36,.55)}
 .landing .searchbar button,.landing .close .button{background:#fff;color:#00301c}
+.landing .searchbar button:hover,.landing .close .button:hover{background:#f3f3f3;color:#00301c}
 .landing .examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.landing .examples button{background:transparent;color:#f3f3f3;border:1px solid rgba(243,243,243,.35);padding:8px 12px}
-.landing .examples button:hover,.landing .searchbar button:hover,.landing .close .button:hover{background:#f3f3f3}
+.landing .examples button{background:transparent;color:#f3f3f3;border:1px solid rgba(243,243,243,.55);padding:8px 12px}
+.landing .examples button:hover,.landing .examples button:focus-visible{background:rgba(243,243,243,.12);color:#f3f3f3}
 .landing button:focus-visible,.landing a:focus-visible,.landing input:focus-visible{outline:2px solid #4590c4;outline-offset:3px}
-.landing .reveal{animation:rise .45s ease}
-@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.landing .reveal{padding:56px 0}
+.landing .reveal{opacity:1;padding:40px 0 28px}
+@media (prefers-reduced-motion:no-preference){.landing .reveal{animation:rise .4s ease forwards}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .landing .count{font-family:Georgia,"Iowan Old Style",Palatino,serif;font-size:32px;line-height:1.2;margin:0 0 24px}
 .landing .teasers{display:grid;gap:14px}
 .landing .teasers article{background:#fff;border:1px solid var(--line);padding:18px}
@@ -63,13 +65,14 @@ button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)
 .landing .meter i{display:block;height:8px;background:#00301c;border-radius:99px}
 .landing .capture{background:#fff;border:1px solid var(--line);padding:24px;margin-top:8px}
 .landing .capture h2,.landing .steps h2,.landing .fee h2,.landing .quiet h2,.landing .close h2{margin-top:0}
-.landing .steps{padding:72px 0}
-.landing .steps ol{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:28px}
+.landing .steps{padding:40px 0 8px}
+.landing .steps ol{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:18px}
 .landing .steps li{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start}
 .landing .steps span{width:52px;height:52px;border:1px solid #00301c;border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-size:22px;color:#00301c}
 .landing .steps h3{margin:0 0 4px;font-size:26px}
 .landing .steps p,.landing .fee p,.landing .quiet p{margin:0}
-.landing .fee{padding:8px 0 64px}
+.landing .fee{padding:20px 0 36px}
+.landing .fee-card{background:#fff;border:1px solid var(--line);padding:22px 24px;max-width:520px}
 .landing .quiet{background:#e7eef2;padding:64px 0}
 .landing .quiet p+p{margin-top:12px}
 .landing .census{max-width:1040px;margin:28px auto;padding:0 20px;color:rgba(36,36,36,.72)}

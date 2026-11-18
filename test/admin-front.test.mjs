@@ -44,6 +44,12 @@ test('a mapped CRM record keeps the name out of the anonymised profile',()=>{
  assert.equal(recruitCrmPull().ran,false);
 });
 
+test('a demo homepage with no real profiles shows the fixture count',()=>demo(async()=>{
+ const teaser=await publicTeaser({query:'senior',counts:true});
+ assert.equal(teaser.market.profiles,86);
+ assert.equal(teaser.market.sectors,8);
+}));
+
 test('providers stay disabled and off the client path',async()=>{
  const rocket=partnerProviders().find(row=>row.id==='rocketreach');
  assert.equal(rocket.enabled,Boolean(process.env.ROCKETREACH_API_KEY));
