@@ -78,7 +78,12 @@ export default async function handler(req,res){
  if(path==='/api/internal/crm-sync'){
   if(!['GET','POST'].includes(req.method))return json(405,{error:'Method not allowed'});
   const cron=process.env.CRON_SECRET||'';
-  if(cron.length<20||req.headers.authorization!=='Bearer '+cron)return json(401,{error:'Import job is not authorised.'});
+  const header=req.headers.authorization||'';
+  let allowed=cron.length>=20&&header==='Bearer '+cron;
+  if(!allowed){
+   try{const {db}=await import('../lib/services.mjs');const row=await db('sp_settings?key=eq.import_once&limit=1');const token=Array.isArray(row)?row[0]?.value?.token:'';allowed=typeof token==='string'&&token.length>=20&&header==='Bearer '+token;}catch{allowed=false;}
+  }
+  if(!allowed)return json(401,{error:'Import job is not authorised.'});
   try{const {stepImport}=await import('../lib/crm-import-job.mjs');return json(200,await stepImport({maxPages:30,budgetMs:45000}));}catch{return json(503,{error:'The RecruitCRM read could not run.'});}
  }
  const demo=demoMode()&&String(req.headers.host||'').split(':')[0]!==PUBLIC_HOST;
