@@ -1,5 +1,5 @@
 'use client';
-import {useEffect,useState} from 'react';
+import {useState} from 'react';
 import {useRouter} from 'next/navigation';
 import {api} from '../lib/api';
 const booking='https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone';
@@ -12,11 +12,9 @@ function Chart({title,rows}){
 export default function Home(){
  const router=useRouter();
  const [query,setQuery]=useState('');
- const [catalogue,setCatalogue]=useState(null);
  const [result,setResult]=useState(null);
  const [status,setStatus]=useState('');
  const [capture,setCapture]=useState('');
- useEffect(()=>{api('/api/public/teaser',{query:'senior',counts:true}).then(data=>setCatalogue(data.market)).catch(()=>{});},[]);
  async function search(event,nextQuery){
   event?.preventDefault();
   const text=(nextQuery??query).trim();
@@ -42,9 +40,9 @@ export default function Home(){
   <section className="hero">
    <header className="bar"><a className="brand" href="/begin">SPEARPOINT</a><nav><a href="/begin/start">Sign in</a><a href={booking}>Book a call</a></nav></header>
    <div className="frame">
-    <p className="kicker">Executive search</p>
-    <h1>See the shortlist before you see a name.</h1>
-    <p className="sub">For hiring leaders in capital markets, crypto, AI, payments and trading. Roles above $150k.</p>
+    <h1>Senior hiring, without the search-firm price.</h1>
+    <p className="sub">Hire leaders and senior talent above $150K for a fraction of the cost of an executive search firm. Software maps the market. A partner runs the approach and the close.</p>
+    <p className="aside">See the shortlist before you see a name.</p>
     <form id="search" className="searchbar" onSubmit={search}><input aria-label="Role and city" value={query} placeholder="Head of quantitative research, London" onChange={event=>setQuery(event.target.value)}/><button type="submit">Search</button></form>
     <div className="examples">{examples.map(example=><button type="button" key={example} onClick={event=>search(event,example)}>{example}</button>)}</div>
     <p className="status" role="status">{status}</p>
@@ -61,9 +59,8 @@ export default function Home(){
    <li><span>2</span><div><h3>Judge.</h3><p>A partner approaches people and decides who is worth a conversation.</p></div></li>
    <li><span>3</span><div><h3>Meet.</h3><p>You meet people who have approved you.</p></div></li>
   </ol></div></section>
-  <section className="fee"><div className="frame"><div className="fee-card"><h2>Single search.</h2><p>US$5,000, credited against the 17.5% fee.</p></div></div></section>
   <section className="quiet"><div className="frame"><h2>Confidential by design.</h2><p>Employer and candidate data is handled under UK GDPR. The same rule applies to UAE searches.</p><p>A name is shared only after the candidate approves the employer.</p></div></section>
-  {catalogue?.profiles>0&&<p className="census">{catalogue.profiles} senior {catalogue.profiles===1?'profile':'profiles'} mapped{catalogue.sectors?` across ${catalogue.sectors} ${catalogue.sectors===1?'sector':'sectors'}`:''}.</p>}
+  <p className="census">Mapping senior talent across capital markets, crypto, AI, payments and trading.</p>
   <section className="close"><div className="frame"><h2>Start with the role.</h2><p>Search the database, or speak with a partner.</p><p className="actions"><a className="button" href="#search">Search</a><a className="button light" href={booking}>Book a call</a></p><p className="fine"><a href="/begin/start">Sign in</a> · <a href="/signup">Existing employer workspace</a></p></div></section>
  </div>;
 }

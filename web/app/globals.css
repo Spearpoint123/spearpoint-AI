@@ -39,7 +39,8 @@ button.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)
 .landing .bar{display:flex;justify-content:space-between;gap:16px;align-items:center;max-width:1040px;margin:0 auto 48px;padding:8px 20px}
 .landing .bar .brand,.landing .bar a{color:#f3f3f3;text-decoration:none}
 .landing .bar nav{display:flex;gap:18px}
-.landing .hero h1{font-size:40px;line-height:1.08;margin:0 0 16px;max-width:14ch;color:#f3f3f3}
+.landing .hero h1{font-size:40px;line-height:1.08;margin:0 0 16px;max-width:12em;color:#f3f3f3}
+.landing .aside{margin:0 0 16px;font-size:18px;color:#f3f3f3}
 .landing .kicker{color:#8fbfa8}
 .landing .sub{max-width:38rem;font-size:18px;margin:0 0 28px}
 .landing .searchbar{background:#fff;border-radius:2px;padding:6px;gap:6px;margin:0}

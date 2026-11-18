@@ -1,6 +1,6 @@
 import Home from './home-client';
-const title='Spearpoint | See the shortlist before you see a name';
-const description='For hiring leaders in capital markets, crypto, AI, payments and trading. Roles above $150k. Confidential profiles from Spearpoint’s database.';
+const title='Spearpoint | Senior hiring, without the search-firm price';
+const description='Hire leaders and senior talent above $150K for a fraction of the cost of an executive search firm. Software maps the market. A partner runs the approach and the close.';
 export const metadata={
  title,
  description,
