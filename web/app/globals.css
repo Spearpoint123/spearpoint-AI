@@ -53,19 +53,25 @@ nav button.link{background:transparent;color:var(--green);border:0;padding:0}
 .landing .aside{margin:0 0 16px;font-size:18px;color:#f3f3f3}
 .landing .kicker{color:#8fbfa8}
 .landing .sub{max-width:38rem;font-size:18px;margin:0 0 28px}
-.landing .searchbar{background:#fff;border-radius:2px;padding:6px;gap:6px;margin:0}
-.landing .searchbar input{border:0;padding:14px 16px;font-size:17px;color:#242424;background:#fff;caret-color:#242424}
+.landing .finder{margin:0}
+.landing .search-label{display:block;margin:0 0 8px;color:#f3f3f3;font-size:16px}
+.landing .searchbar{background:transparent;border-radius:0;padding:0;gap:10px;margin:0;flex-direction:column;align-items:stretch}
+.landing .searchbar input{border:2px solid #f3f3f3;border-radius:2px;padding:12px 14px;min-height:48px;font-size:16px;color:#242424;background:#fff;caret-color:#242424}
 .landing .searchbar input::placeholder{color:rgba(36,36,36,.55)}
+.landing .searchbar input:focus{border-color:#4590c4;outline:2px solid #4590c4;outline-offset:2px}
 .landing .searchbar button,.landing .close .button{background:#fff;color:#00301c}
+.landing .searchbar button{width:100%;min-height:48px;font-size:16px;font-weight:600}
 .landing .searchbar button:hover,.landing .close .button:hover{background:#f3f3f3;color:#00301c}
-.landing .examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.landing .examples button{background:transparent;color:#f3f3f3;border:1px solid rgba(243,243,243,.55);padding:8px 12px}
-.landing .examples button:hover,.landing .examples button:focus-visible{background:rgba(243,243,243,.12);color:#f3f3f3}
+.landing .examples{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.landing .try{font-size:14px;color:rgba(243,243,243,.75)}
+.landing .examples button{background:transparent;color:rgba(243,243,243,.85);border:1px solid rgba(243,243,243,.35);padding:4px 10px;min-height:0;font-size:14px;font-weight:400}
+.landing .examples button:hover,.landing .examples button:focus-visible{background:rgba(243,243,243,.08);color:#f3f3f3}
 .landing .bar button.link{color:#f3f3f3}
 .landing .musts{margin-top:22px;max-width:640px}
-.landing .musts p,.landing .musts label{color:#f3f3f3}
-.landing .musts input{color:#242424;background:#fff;border:0}
-.landing .musts button{background:#fff;color:#00301c;margin-top:8px}
+.landing .musts p,.landing .musts label{color:#f3f3f3;font-size:16px}
+.landing .musts input{color:#242424;background:#fff;border:2px solid #f3f3f3;border-radius:2px;min-height:48px;font-size:16px}
+.landing .musts input:focus{border-color:#4590c4;outline:2px solid #4590c4;outline-offset:2px}
+.landing .musts button{background:#fff;color:#00301c;margin-top:8px;width:100%;min-height:48px;font-size:16px}
 .landing .teasers .origin,.landing .teasers .score{color:#00301c}
 .landing .teasers .note{margin:14px 0 0}
 .landing button:focus-visible,.landing a:focus-visible,.landing input:focus-visible{outline:2px solid #4590c4;outline-offset:3px}
@@ -102,7 +108,12 @@ nav button.link{background:transparent;color:var(--green);border:0;padding:0}
 @media(min-width:800px){
  .landing .hero{padding:28px 0 96px}
  .landing .hero h1{font-size:68px}
- .landing .searchbar{flex-direction:row}
+ .landing .searchbar{flex-direction:row;align-items:center;background:#fff;border-radius:2px;padding:6px;gap:6px}
+ .landing .searchbar input{border:0;min-height:48px}
+ .landing .searchbar input:focus{outline-offset:0}
+ .landing .searchbar button{width:auto;background:#00301c;color:#fff}
+ .landing .searchbar button:hover{background:#014028;color:#fff}
+ .landing .musts button{width:auto}
  .landing .teasers{grid-template-columns:repeat(3,1fr)}
  .landing .chart{grid-template-columns:1fr 1fr;gap:40px}
  .landing .steps ol{grid-template-columns:repeat(3,1fr)}

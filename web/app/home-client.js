@@ -18,10 +18,16 @@ export default function Home(){
  const [status,setStatus]=useState('');
  const [capture,setCapture]=useState('');
  const [booking,setBooking]=useState(false);
- async function search(event,nextQuery){
+ function fillExample(example){
+  setQuery(example);
+  setMusts(null);
+  setResult(null);
+  setStatus('');
+  document.getElementById('role-search')?.focus();
+ }
+ async function search(event){
   event?.preventDefault();
-  const text=(nextQuery??query).trim();
-  if(nextQuery)setQuery(nextQuery);
+  const text=query.trim();
   if(text.length<3){setStatus('Name the role, then the city.');return;}
   setResult(null);
   setStatus('Reading the role…');
@@ -53,8 +59,11 @@ export default function Home(){
     <h1>Senior hiring, without the search-firm price.</h1>
     <p className="sub">Hire leaders and senior talent above $150K for a fraction of the cost of an executive search firm. Software maps the market. A partner runs the approach and the close.</p>
     <p className="aside">See the shortlist before you see a name.</p>
-    <form id="search" className="searchbar" onSubmit={search}><input aria-label="Role and city" value={query} placeholder="Head of quantitative research, London" onChange={event=>{setQuery(event.target.value);setMusts(null);setResult(null);}}/><button type="submit">Search</button></form>
-    <div className="examples">{examples.map(example=><button type="button" key={example} onClick={event=>search(event,example)}>{example}</button>)}</div>
+    <form id="search" className="finder" onSubmit={search}>
+     <label className="search-label" htmlFor="role-search">Describe the role you're hiring for</label>
+     <div className="searchbar"><input id="role-search" aria-label="Describe the role you're hiring for" value={query} placeholder="e.g. Head of quantitative research, London" onChange={event=>{setQuery(event.target.value);setMusts(null);setResult(null);}}/><button type="submit">Search</button></div>
+    </form>
+    <div className="examples"><span className="try">Try:</span>{examples.map(example=><button type="button" key={example} onClick={()=>fillExample(example)}>{example}</button>)}</div>
     {musts&&<form className="musts" onSubmit={confirm}><p>What are the three things this person must have?</p>{musts.map((item,index)=><label key={index}>Must-have {index+1}<input aria-label={`Must-have ${index+1}`} value={item} onChange={event=>setMusts(musts.map((value,place)=>place===index?event.target.value:value))}/></label>)}<button type="submit">Score the shortlist</button></form>}
     <p className="status" role="status">{status}</p>
    </div>
