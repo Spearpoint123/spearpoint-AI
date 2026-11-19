@@ -43,7 +43,8 @@ test('must-haves are suggested from the role and rank ahead of score',()=>{
 test('a snapshot stays on structured fields',()=>{
  const text=templateSnapshot(sampleCandidates[0]);
  assert.match(text,/Senior/);
- assert.match(text,/Dubai/);
+ assert.match(text,/Crypto market maker in Dubai/);
+ assert.doesNotMatch(text,/\. crypto/);
  assert.match(text,/Pay band/);
  assert.equal(leak.test(text),false);
 });
