@@ -24,3 +24,10 @@ test('cross-specialism role search updates the specialism and keeps other choice
  assert.equal(result.function,'Commercial');assert.equal(result.niche,'Exchanges');assert.equal(result.location,'London');
  assert.throws(()=>selectSearchOption(result,'role','Unknown role',groups));assert.throws(()=>selectSearchOption(result,'function','Unknown',groups));
 });
+test('custom roles preserve exact titles and clear incompatible selections',()=>{
+ const selected=selectSearchOption({niche:'Exchanges',function:'Commercial'},'customRole','Director of Derivatives Sales',groups);
+ assert.equal(selected.role,'Director of Derivatives Sales');assert.equal(canVisitStep(selected,3,groups),true);
+ assert.equal(selectSearchOption(selected,'function','Trading',groups).role,undefined);
+ assert.throws(()=>selectSearchOption({},'customRole','Sales',groups));
+ assert.throws(()=>selectSearchOption(selected,'customRole','x'.repeat(101),groups));
+});

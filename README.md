@@ -1,38 +1,110 @@
-# Spearpoint AI — private staging MVP
+# Spearpoint AI
 
-Free employer search → profile exploration → retained-search hiring briefing.
+Employer workspace for confidential senior hiring, plus a Spearpoint team desk for day-to-day search. Clients describe a role, review an AI interpretation, compare anonymised evidence and request a specialist introduction. The team can see names, search more deeply, import a LinkedIn Recruiter export and draft outreach. Nothing is sent automatically.
 
-Booking: https://meetings-eu1.hubspot.com/sam-w/new-client-hiring-briefing-clone
+The public wording on the marketing pages is unchanged in substance. This repository is the application behind [ai.spearpointsearch.com](https://ai.spearpointsearch.com/).
 
-## Run and verify
+## Architecture
 
-Node 22 or newer, zero runtime packages. `npm test`, `npm run check`, then `npm run dev` after securely configuring the environment. No environment values are committed. Protected pages and endpoints require a signed session from the browser sign-in form (or HTTP Basic Authentication); a missing password or password shorter than 20 characters denies all access. Assets live in `views/` and are served through the protected function, not an unprotected static directory.
+- One Vercel serverless function, `api/index.mjs`, serves the HTML, CSS and JSON API. There is no separate static host, so security headers apply to every response.
+- Employer accounts use Supabase Auth. The session cookie is encrypted, HttpOnly and `SameSite=Strict`.
+- RecruitCRM is read on the server. A note is written only when `RECRUIT_CRM_WRITE=true` and a recruiter confirms it.
+- Public-web research, where configured, goes through the existing provider adapters. Spearpoint does not scrape LinkedIn. Licensed sources plug in behind `lib/sourcing/providers.mjs`. LinkedIn Recruiter is used by pasting a generated Boolean string, or by uploading a CSV the recruiter exported themselves.
+- Client surfaces stay anonymised. The team desk at `/recruit` is limited to staff (`spearpoint_owner`, `spearpoint_role=operator` or `spearpoint_role=recruiter` on the Supabase user’s `app_metadata`).
+- First-party product events (briefs, searches, candidates surfaced, introduction requests) are stored for the team metrics panel. There is no advertising cookie.
 
-## Secure staging setup
+## Run the demonstration
 
-1. In Supabase project **pcezdsdhmjxpjakxtdhz**, inspect existing migrations, then apply `supabase/migrations/202610210001_staging.sql`. It creates only `sp_` prefixed tables/functions; no existing records are altered. Do not apply twice.
-2. Enable Supabase Cron and schedule `select public.sp_purge_staging();` daily. Verify the job succeeds before setting `RETENTION_JOB_CONFIRMED=true`.
-3. Configure Vercel **Preview** environment variables in its secure dashboard: `SUPABASE_URL` (the exact project URL), `SUPABASE_SERVICE_ROLE_KEY` (sensitive), `RATE_LIMIT_HMAC_KEY` (random ≥32 characters, sensitive), `STAGING_USER`, `STAGING_PASSWORD` (random ≥20 characters, sensitive), `APP_ORIGIN` (exact deployment or stable staging origin), and `RETENTION_JOB_CONFIRMED`. See `.env.example` for names only. Never paste credentials into chat, commits, query strings or browser code.
-4. Keep Vercel deployment protection enabled. Use a Preview deployment, with no production domain. Keep password credentials in your password manager and share them only with authorised testers. Do not use `NEXT_PUBLIC_` prefixes.
-5. Set `RECRUIT_CRM_API_KEY` securely, verify the GET `/v1/candidates/search` response/filter contract in this account, and only then set `RECRUIT_CRM_ENABLED=true`. The public API reference was checked at https://docs.recruitcrm.io/docs/rcrm-api-reference/253721386feef-search-for-candidates; the deployed application still needs a live credential smoke test. The ChatGPT Recruit CRM connection does not supply credentials to a hosted application.
-6. Add consent approvals through an authorised operator only. Each row requires explicit external-sharing consent evidence, expiry, a recent review, and manually approved redacted public copy. Names, exact employers, contact details, URLs, unique project history and other identifying combinations must be removed during review. Do not bulk infer consent from general CRM membership. Revoke or expire the approval to remove publication. Review off-limits and current source status before approval, and after any material change.
-7. Keep `HUBSPOT_SYNC_AUTHORIZED=false` until the owner explicitly authorises automatic contact creation. The booking CTA works independently. If enabled, contact sync sends name, email and company only; failure is recorded for operator review. Existing contacts can return a duplicate response and are marked `needs_review`; there is no automatic overwrite or retry.
+Node.js 22 or newer.
 
-## Behaviour and limits
+```bash
+npm install
+npm test
+npm run dev
+```
 
-- All Recruit CRM requests use a fixed server-side host and GET only. No CRM write endpoint exists. CRM results remain in memory and are never returned raw or logged.
-- A real profile requires a matching CRM slug, explicit consent, no revocation, unexpired permission and a review in the last 30 days. Only approved public fields leave the server. Availability is never asserted.
-- No shareable real result, disabled connector or CRM error produces explicitly labelled synthetic templates. These are not fabricated candidates and contain no names or availability claims. Templates are deterministic; this MVP does not perform generative AI ranking.
-- Searches query the CRM first when its server credential is configured and the connector is enabled. The documented `position` and `marked_as_off_limit=false` filters are used; common executive title/acronym variants are queried with at most two pages each. A shared 45-request/minute provider budget limits upstream traffic. This bounded search is not comprehensive market coverage.
-- Only current consented approvals can produce real cards. Scoring uses approved public title (40%), comma-separated experience/skill criteria (40%, proportional) and location evidence in approved copy (20%). Missing evidence earns no points. Admission requires role alignment and at least 80%; an 80% score can therefore include a location gap, which is explicitly shown. This is criteria coverage, not a validated suitability prediction. No protected personal characteristics enter the score. Raw CRM experience and contact data are not used as public explanations.
-- Real and synthetic cards share Experience / Why it could fit / Gaps to discuss / booking sections. Synthetic cards never receive a real-match score. When live lookup is disabled or fails, the UI explicitly says that the CRM check was not completed; it does not claim the database contains no fit.
-- Supabase backs atomic hourly limits: 20 searches and 5 briefs per keyed IP hash. Missing database or limiter configuration returns 503. No in-memory production limiter fallback.
-- Exact-origin JSON POSTs, input bounds, a honeypot, no-store responses, CSP, anti-framing, no indexing and staging authentication apply. Search inputs and briefs are not logged by application code.
-- Briefs are private under RLS, accessible only server-side and to trusted operators. Record retention is 30 days plus the daily purge interval. Rate hashes expire after their window plus a day. Scheduled deletion must be configured before lead capture is enabled.
-- This is a private test environment. Public launch requires a completed legal-controller/privacy contact notice and an operational privacy process. Do not submit real personal data during staging.
+Open http://127.0.0.1:3000. `npm run dev` enables the fictional demonstration when no Supabase service key is set.
 
-## Required live acceptance checks
+| Desk | Email | Password |
+|---|---|---|
+| Client portal (`/signin`, then `/hiring`) | `client@demo.spearpoint.test` | `demo-client-pass` |
+| Live search (`/begin/portal`) | `portal@harbour-lane.example` | `demo-portal-pass` |
+| Partner desk (`/begin/desk`) | `recruiter@demo.spearpoint.test` | `demo-recruiter-pass` |
+| Team workspace (`/recruit`) | `recruiter@demo.spearpoint.test` | `demo-recruiter-pass` |
 
-Verify an authenticated page and assets load, and anonymous protected-page/API requests are denied and the sign-in page is shown. Confirm no source or secret files are served. Verify the deployment’s security headers, mobile layout and booking destination. Test Supabase schema and RLS using anon/authenticated roles; rate-limit concurrency; 21st search and 6th brief limits; missing database rejection; a synthetic fallback; an explicitly approved fixture; expiry/revocation; CRM timeout; successful test brief storage; retention execution. Remove test data. Capture deployment state and live response checks before claiming the MVP is operational.
+The demonstration password works only while `SPEARPOINT_DEMO=true`, no Supabase service key is present, and `VERCEL_ENV` is not `production`. Every demo person is invented. Do not turn the demonstration on for `ai.spearpointsearch.com`.
 
-Local security tests are necessary but do not verify Vercel, Supabase or Recruit CRM connectivity. Deployment and integration status are tracked separately in `STATUS.md`.
+Suggested walk-through:
+
+1. Sign in on `/recruit` and search “quantitative equities python”. Results are labelled fictional.
+2. Build a LinkedIn Recruiter string and import a small CSV. Confirm the draft outreach says nothing was sent.
+3. Sign out, sign in as the client, and run a search with three must-haves. Names and email addresses are not shown.
+
+## Environment
+
+See `.env.example`. Set real values in Vercel, not in git.
+
+| Name | Purpose |
+|---|---|
+| `APP_ORIGIN` | Exact browser origin allowed to POST |
+| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Database and auth. Required outside the demo |
+| `RATE_LIMIT_HMAC_KEY` | 32+ characters. Hashes IP rate limits and seals session cookies |
+| `STAGING_USER`, `STAGING_PASSWORD` | Basic auth for private deployments. Password at least 20 characters |
+| `RECRUIT_CRM_ENABLED`, `RECRUIT_CRM_API_KEY` | Live ATS search. Without them, the team desk shows the fictional set |
+| `RECRUIT_CRM_WRITE` | Must be `true` before a confirmed note is saved to RecruitCRM |
+| `AI_GATEWAY_API_KEY` | Employer brief interpretation |
+| `ROCKETREACH_API_KEY` | Optional licensed enrichment already used by employer search |
+| `PEOPLE_DATA_LABS_API_KEY`, `CORESIGNAL_API_KEY` | Reserved. The adapters are stubs and make no requests |
+| `CRON_SECRET` | 20+ characters. Authorises `GET /api/internal/retention` |
+| `OWNER_ALERT_EMAIL` | The only address that receives signup alerts. Set this to `sam@spearpointsearch.com` |
+| `ALERT_FROM_EMAIL` | From address on a domain verified in Resend |
+| `RESEND_API_KEY` | Resend API key. If it is empty, alerts are skipped and signup still succeeds |
+| `SPEARPOINT_DEMO` | `true` only for local or preview rehearsals without a database |
+
+Staff metadata, set in Supabase Auth on the user (never in the browser):
+
+```json
+{"spearpoint_role":"recruiter"}
+```
+
+Owners keep `spearpoint_owner: true`. Operators keep `spearpoint_role: "operator"`.
+
+## Database
+
+Apply the SQL files in `supabase/migrations` in filename order if they are not already present. The new file `20261118153000_retention_events_and_imports.sql` replaces `sp_purge_staging` so expired public-research leads are deleted, and adds `sp_product_events`, `sp_import_leads` and `sp_recruiter_pipeline`.
+
+Schedule is declared in `vercel.json` (03:17 UTC daily). It calls `/api/internal/retention` with `Authorization: Bearer $CRON_SECRET`. Until `CRON_SECRET` is set and the function exists in the database, deletion does not run. Ask Spearpoint to delete a person’s record in the meantime. The same job emails any signup blocks recorded by the auth hook and not yet sent.
+
+## Signup alerts
+
+A new employer account, or a signup the app blocks (personal email, agency domain, or a missing direct-employer declaration), emails `OWNER_ALERT_EMAIL` through Resend. The send is registered with Vercel `waitUntil` and also awaited for at most three seconds, so the function cannot freeze before the message is handed to Resend. Signup still succeeds if the alert fails. Logs are `owner_alert_sent`, `owner_alert_skipped`, and `owner_alert_failed`. The message includes the address, domain, whether that domain is new or already pending, whether it is a personal or agency domain, the time in Europe/London, and a link to `/owner`. The applicant is not emailed.
+
+The same address is limited to one alert an hour. If `RESEND_API_KEY` or `ALERT_FROM_EMAIL` is missing, the alert is logged and skipped. A failed send does not fail signup.
+
+Blocks that reach Supabase Auth directly, without the app, are rejected by `public.sp_before_employer_signup` and stored in `sp_signup_attempts`. The daily retention call sends those as one digest. In the Supabase dashboard, Authentication → Hooks → Before user created must call `public.sp_before_employer_signup`. Apply `supabase/migrations/20261118170000_signup_attempt_alerts.sql` once so the hook can record those attempts.
+
+## Client journey
+
+`/begin` is the new client path: work-email sign-up, a short brief, an editable search profile, a market map, a plain-English profile search, anonymised profiles, the HubSpot booking link, and an engagement choice. `/begin/portal` is the live search for a verified employer with an active engagement. It shows the pipeline, an updated market map, plain-English activity in `sp_search_activity` (the older `sp_activity` table is the workspace outcomes log and is not reused), the next weekly call, and tracked requests. Identity stays hidden unless that candidate has an open reveal for that employer and the reveal is in `sp_audit_log`. It reads `sp_candidates` only. RocketReach and other licensed providers are not called. RecruitCRM is not written to. Apply `supabase/migrations/20261118190000_client_journey.sql` and `supabase/migrations/20261118201000_client_portal.sql`. Set `CANDIDATE_IDENTITY_KEY` before storing identity. Leave `HUBSPOT_MEETINGS_AUTOBOOK` false until a HubSpot Meetings API is connected. The local demo seeds fictional anonymised profiles when those migrations are not applied.
+
+The local demo sets a throwaway identity key when none is configured, so the sample reveal can be shown. Do not reuse that key. The local portal sign-in is `portal@harbour-lane.example` / `demo-portal-pass`. `client@demo.spearpoint.test` stays unverified, so the portal shows the closed state.
+
+## Partner desk
+
+`/begin/desk` is for a recruiter, operator or owner. It lists assigned searches with the next action and overdue items, then one search workspace: pipeline moves, notes, plain-English activity, the client request queue, time entries, outreach drafts, interview slots, call summaries and an offer comparison against pay bands already in the database. Outreach is drafted by Gemini when `AI_GATEWAY_API_KEY` is set, otherwise by a fixed note. It is sent only after an explicit confirm, and only from an address on `PARTNER_OUTREACH_DOMAIN`. A reveal link is copied, not emailed. The candidate opens `/begin/consent` and approves or withdraws for that one employer. Apply `supabase/migrations/20261118213000_partner_desk.sql`. `RECRUIT_CRM_WRITE` stays false. RocketReach is called from the partner desk only when `ROCKETREACH_API_KEY` is set. Those results are labelled external, stored unpublished, and excluded from client search. People Data Labs and Coresignal are not called. Apply `supabase/migrations/20261118250000_provider_lookup.sql` so the lookup is accepted by the audit log.
+
+`/` and `/begin` both serve the search front. A visitor can try a search and see counts, pay bands and three anonymised teasers before creating an account. `/signin`, `/signup`, `/hiring`, `/workspace`, `/recruit`, `/owner`, `/talent-network`, `/consult`, `/privacy` and `/api/*` are unchanged. The previous marketing page, including its `#how` section, is at `/classic`. `/begin/admin` is for an owner or operator: verify an employer, activate an engagement, set terms, read the report, review reveals and exports, publish imported profiles, and hide the fictional demo set. An owner or operator can read the next RecruitCRM page from admin. The read is paged, rate-limited and resumable, and a daily cron at `/api/internal/crm-sync` continues it. `RECRUIT_CRM_WRITE` stays false, so nothing is written back. Imported profiles stay unpublished until an admin publishes them. Apply `supabase/migrations/20261118240000_staff_search.sql`. The existing `RECRUIT_CRM_API_KEY` and `CRON_SECRET` are used. No new secret is required. Licensed providers are listed on the partner desk as disabled adapters and are not called. Client search still rejects them. Outreach can be sent only from an address on `PARTNER_OUTREACH_DOMAIN`, after an explicit click, and the send is logged. Apply `supabase/migrations/20261118220000_admin_publish.sql`, then `supabase/migrations/20261118230000_demo_profiles.sql`. The second file inserts 82 fictional published profiles with `source='demo'` and no identity rows. It does nothing when the id already exists. Hide them from Admin, or run `update public.sp_candidates set publication='unpublished' where source='demo' and fictional=true;`. Remove only those rows with `delete from public.sp_candidates where source='demo' and fictional=true;`.
+
+## Checks
+
+`npm test` runs the suite. `npm run check` parses the entrypoints.
+
+## Founder actions before this is relied on in production
+
+- Rotate any Supabase service key, staging password, RecruitCRM key or HubSpot token that has ever been pasted into a chat, a ticket or a deployed bundle. This tree does not contain those values; the project URL in `.env.example` is not itself a secret, but the service-role key for that project must stay private.
+- Set the Vercel env vars above on the staging project first. Do not set `SPEARPOINT_DEMO` on production.
+- Apply the new SQL migration and set `CRON_SECRET`.
+- Put `spearpoint_role` on each teammate’s Supabase user before they use `/recruit`.
+- Buy a web licence for GT Canon and GT Standard if those faces should return. The trial files have been removed. Pages now use Georgia and the system sans.
+- Decide whether People Data Labs, Coresignal or another licensed source should be implemented. The stubs do not call those APIs.
+- Replace the HubSpot booking slug if `new-client-hiring-briefing-clone` should not be the public link. It is still the live booking URL and has not been changed.
